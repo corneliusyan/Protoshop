@@ -1,5 +1,5 @@
 run:
-	g++ -o main Pixel.cpp main.cpp -lm
+	g++ -o main Image.cpp main.cpp -lm
 	./main
 
 clean:
