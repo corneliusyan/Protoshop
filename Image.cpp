@@ -1,6 +1,7 @@
 #include "Image.hpp"
 #include <iostream>
 #include <stdio.h>
+#include <cstdlib>
 using namespace std;
 
 Image::Image()
@@ -16,7 +17,7 @@ Image::Image(ImageType imageType, int imageHeight, int imageWidth)
     type = imageType;
     height = imageHeight;
     width = imageWidth;
-    printf("\nreset image");
+
     resetImage();
 }
 
@@ -28,6 +29,7 @@ void Image::resetImage()
         in = (unsigned char **)malloc(height * sizeof(unsigned char *));
         for (int i = 0; i < height; i++)
         {
+            in[i] = (unsigned char *)malloc(width * sizeof(unsigned char));
             for (int j = 0; j < width; j++)
             {
                 in[i][j] = 0;
@@ -38,6 +40,7 @@ void Image::resetImage()
         in = (unsigned char **)malloc(height * sizeof(unsigned char *));
         for (int i = 0; i < height; i++)
         {
+            in[i] = (unsigned char *)malloc(width * sizeof(unsigned char));
             for (int j = 0; j < width; j++)
             {
                 in[i][j] = 0;
@@ -50,6 +53,9 @@ void Image::resetImage()
         b = (unsigned char **)malloc(height * sizeof(unsigned char *));
         for (int i = 0; i < height; i++)
         {
+            r[i] = (unsigned char *)malloc(width * sizeof(unsigned char));
+            g[i] = (unsigned char *)malloc(width * sizeof(unsigned char));
+            b[i] = (unsigned char *)malloc(width * sizeof(unsigned char));
             for (int j = 0; j < width; j++)
             {
                 r[i][j] = 0;
