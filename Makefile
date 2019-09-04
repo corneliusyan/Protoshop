@@ -1,6 +1,9 @@
 run:
-	g++ -o main Image.cpp main.cpp -lm
-	./main
+	g++ \
+		-lm \
+		-o photoshop \
+		src/image/*.cpp \
+		src/main.cpp
 
 clean:
-	rm main
+	rm photoshop
