@@ -1,6 +1,8 @@
 #ifndef BASE_IMAGE_HPP
 #define BASE_IMAGE_HPP
 
+#include "pixel.hpp"
+
 enum ImageType {
     BLACKWHITE,
     GRAYSCALE,
@@ -9,6 +11,7 @@ enum ImageType {
 
 class Image {
 private:
+  pixel** pixels;
 
 public:
   ImageType imageType;
@@ -34,6 +37,8 @@ public:
    * @param {char*} filename of the image file
    */
   Image(char* filename);
+
+  ~Image();
 };
 
 #endif
