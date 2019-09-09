@@ -3,8 +3,13 @@
 
 #include "base.hpp"
 
-class BWImage : Image {
-
+class BWImage : public Image {
+public:
+  /**
+   * @method loadPPM
+   * @param {std::string} filename the name of the file to be loaded
+   */
+  static BWImage* loadPBM(std::string filename);
 };
 
 #endif

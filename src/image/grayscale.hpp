@@ -3,8 +3,13 @@
 
 #include "base.hpp"
 
-class GrayscaleImage : Image {
-
+class GrayscaleImage : public Image {
+public:
+  /**
+   * @method loadPGM
+   * @param {std::string} filename the name of the file to be loaded
+   */
+  static GrayscaleImage* loadPGM(std::string filename);
 };
 
 #endif

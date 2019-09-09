@@ -1,6 +1,7 @@
 #ifndef BASE_IMAGE_HPP
 #define BASE_IMAGE_HPP
 
+#include <iostream>
 #include "pixel.hpp"
 
 enum ImageType {
@@ -10,19 +11,13 @@ enum ImageType {
 };
 
 class Image {
-private:
+protected:
   pixel** pixels;
 
 public:
   ImageType imageType;
   int height;
   int width;
-
-  /**
-   * @constructor
-   * @param {ImageType} imageType type of the image
-   */
-  Image(ImageType imageType);
 
   /**
    * @constructor
@@ -34,9 +29,9 @@ public:
 
   /**
    * @constructor
-   * @param {char*} filename of the image file
+   * @param {string} filename of the image file
    */
-  Image(char* filename);
+  static Image load(std::string filename);
 
   ~Image();
 };
