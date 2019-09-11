@@ -13,9 +13,9 @@ RGBImage* RGBImage::loadPPMAscii(char* bytes, int size) {
   RGBImage* image = new RGBImage(height, width);
   for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
-      uchar r = nextInt(bytes, size, &pointer) & 0xFF;
-      uchar g = nextInt(bytes, size, &pointer) & 0xFF;
-      uchar b = nextInt(bytes, size, &pointer) & 0xFF;
+      uchar r = (int) ((nextInt(bytes, size, &pointer) * 1.0 / maxValue) * 255) & 0xFF;
+      uchar g = (int) ((nextInt(bytes, size, &pointer) * 1.0 / maxValue) * 255) & 0xFF;
+      uchar b = (int) ((nextInt(bytes, size, &pointer) * 1.0 / maxValue) * 255) & 0xFF;
       image->set_pixel(i, j, pixel(r, g, b));
     }
   }

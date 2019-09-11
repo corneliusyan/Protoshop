@@ -11,4 +11,10 @@ clean:
 	rm protoshop
 
 windows:
-	g++ -lm -o photoshop src/image/*.cpp src/main.cpp -O2 -lgdi32 && photoshop
+	g++ \
+		-lm -std=c++11 \
+		-o protoshop \
+		src/image/*.cpp \
+		src/utils/*.cpp \
+		src/main.cpp \
+		-O2 -lgdi32
