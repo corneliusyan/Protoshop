@@ -1,5 +1,7 @@
 #include <cstdlib>
-#include "../utils/string.hpp";
+#include <iostream>
+#include "../../lib/CImg/CImg.h"
+#include "../utils/string.hpp"
 #include "b_w.hpp"
 #include "base.hpp"
 #include "exception.hpp"
@@ -19,6 +21,19 @@ Image::Image(ImageType imageType, int height, int width) {
       this->pixels[i][j] = pixel(0, 0, 0, 0);
     }
   }
+
+  int depth = 0;
+  switch (imageType) {
+    case BLACKWHITE:
+    case GRAYSCALE:
+      depth = 1;
+      break;
+    case RGB:
+      depth = 3;
+      break;
+  }
+  this->cimg = new cimg_library::CImg<unsigned char>(height, width, 1, depth);
+  this->cimg->fill(0);
 }
 
 Image::~Image() {
@@ -28,7 +43,7 @@ Image::~Image() {
   free(this->pixels);
 }
 
-Image Image::load(std::string filename) {
+Image* Image::load(std::string filename) {
   if (hasEnding(filename, ".pbm")) {
     return BWImage::loadPBM(filename);
   } else if (hasEnding(filename, ".pgm")) {
@@ -40,4 +55,15 @@ Image Image::load(std::string filename) {
   } else {
     throw ImageLoadException("format not supported");
   }
+}
+
+void Image::set_pixel(int row, int col, pixel px) {
+  this->pixels[row][col] = px;
+  for (int i = 0; i < px.len; i++) {
+    (*this->cimg)(col, row, 0, i) = px.in[i];
+  }
+}
+
+void Image::show() {
+  this->cimg->display("Image");
 }

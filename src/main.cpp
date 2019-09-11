@@ -1,21 +1,15 @@
 #include <iostream>
 
-#include "../lib/CImg/CImg.h"
-
 #include "image/image.hpp"
-using namespace std;
-using namespace cimg_library;
+#include "image/exception.hpp"
 
 int main() {
-    CImg<unsigned char> img(640,400,1,3);  // Define a 640x400 color image with 8 bits per color component.
-    img.fill(0);                           // Set pixel values to 0 (color : black)
-    unsigned char purple[] = { 255,0,255 };        // Define a purple color
-    // img.draw_text(100,100,"Hello World",purple); // Draw a purple "Hello world" at coordinates (100,100).
-    for(int i=1;i<=50;i++){
-      for(int j=1;j<=50;j++){
-        img(i,j,0,1)=255;
-      }
-    }
-    img.display("My first CImg code");             // Display the image in a display window.
-    return 0;
+  try {
+    Image* img = Image::load("./res/baboon24.ppm");
+    img->show();
+  } catch (ImageLoadException e) {
+    std::cout << e.get_message() << std::endl;
+  }
+
+  return 0;
 }
