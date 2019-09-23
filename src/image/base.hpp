@@ -15,14 +15,6 @@ class Image {
 protected:
   pixel** pixels;
 
-  /**
-   * @method set_pixel
-   * @param {int} row position of pixel from top, starting from 0
-   * @param {int} col position of pixel from left, starting from 0
-   * @param {pixel} px new pixel
-   */
-  void set_pixel(int row, int col, pixel px);
-
 private:
   cimg_library::CImg<unsigned char>* cimg;
 
@@ -44,6 +36,21 @@ public:
    * @param {string} filename of the image file
    */
   static Image* load(std::string filename);
+
+  /**
+   * @method set_pixel
+   * @param {int} row position of pixel from top, starting from 0
+   * @param {int} col position of pixel from left, starting from 0
+   * @param {pixel} px new pixel
+   */
+  void set_pixel(int row, int col, pixel px);
+
+  /**
+   * @method get_pixel
+   * @param {int} row position of pixel from top, starting from 0
+   * @param {int} col position of pixel from left, starting from 0
+   */
+  pixel get_pixel(int row, int col);
 
   /**
    * @method show

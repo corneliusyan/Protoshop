@@ -64,6 +64,10 @@ void Image::set_pixel(int row, int col, pixel px) {
   }
 }
 
+pixel Image::get_pixel(int row, int col) {
+  return this->pixels[row][col];
+}
+
 void Image::show() {
   this->cimg->display("Image");
 }
