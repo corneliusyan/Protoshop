@@ -18,3 +18,11 @@ windows:
 		src/utils/*.cpp \
 		src/main.cpp \
 		-O2 -lgdi32
+
+mac:
+	g++ \
+		-o protoshop \
+		src/image/*.cpp \
+		src/utils/*.cpp \
+		src/main.cpp \
+		-O2 -lm -std=c++11 -lpthread -I/usr/X11R6/include -L/usr/X11R6/lib -lX11
