@@ -4,6 +4,7 @@ compile:
 		-o protoshop \
 		src/image/*.cpp \
 		src/utils/*.cpp \
+		src/adjustment/*.cpp \
 		src/main.cpp \
 		-O2 -L/usr/X11R6/lib -lm -lpthread -lX11
 
@@ -16,6 +17,7 @@ windows:
 		-o protoshop \
 		src/image/*.cpp \
 		src/utils/*.cpp \
+		src/adjustment/*.cpp \
 		src/main.cpp \
 		-O2 -lgdi32
 
@@ -24,5 +26,6 @@ mac:
 		-o protoshop \
 		src/image/*.cpp \
 		src/utils/*.cpp \
+		src/adjustment/*.cpp \
 		src/main.cpp \
 		-O2 -lm -std=c++11 -lpthread -I/usr/X11R6/include -L/usr/X11R6/lib -lX11
