@@ -1,5 +1,4 @@
 #include "inverse.hpp"
-#include <cstdio>
 
 void AdjustmentInverse::apply(Image* target) {
   for (int i = 0; i < target->height; i++) {
