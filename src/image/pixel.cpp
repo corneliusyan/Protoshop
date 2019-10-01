@@ -3,6 +3,13 @@
 #include "stdio.h"
 #include <iostream>
 
+pixel::pixel() {
+  len = 1;
+  in = (uchar*) malloc(len * sizeof (uchar));
+  in[0] = 0;
+  alpha = 1;
+}
+
 pixel::pixel(uchar p) {
   len = 1;
   in = (uchar*) malloc(len * sizeof (uchar));
@@ -46,20 +53,29 @@ pixel& pixel::operator=(const pixel& other) {
   return *this;
 }
 
-pixel& pixel::operator+(uchar scalar) {
+pixel& pixel::operator+(int scalar) {
   for (int i = 0; i < len; i++) {
-    in[i] += scalar;
+    int temp = in[i] + scalar;
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
   }
   return *this;
 }
 
-pixel& pixel::operator-(uchar scalar) {
+pixel& pixel::operator-(int scalar) {
   for (int i = 0; i < len; i++) {
     in[i] -= scalar;
   }
 }
 
-pixel operator-(uchar scalar, const pixel& px) {
+pixel operator-(int scalar, const pixel& px) {
   pixel res(px);
   for (int i = 0; i < res.len; i++) {
     res.in[i] = scalar - px.in[i];
