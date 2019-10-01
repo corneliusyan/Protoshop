@@ -21,6 +21,14 @@ private:
    */
   static RGBImage* loadPPMBinary(char* bytes, int size);
 
+  /**
+   * @method loatBMPBitmap
+   * @desc load BMP fron bytes, treated as bitmap
+   * @param {char[]} bytes of the image
+   * @return {RGBImage*} Image loaded from the bytes
+   */
+  static RGBImage* loadBMPBitmap(char* bytes, int size);
+
 public:
   RGBImage(int height, int width) : Image(RGB, height, width) { }
 
