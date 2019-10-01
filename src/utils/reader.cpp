@@ -38,3 +38,25 @@ std::string nextString(char* bytes, int size, int* pointer) {
   }
   return result;
 }
+
+int nextInt16(char* bytes, int size, int* pointer) {
+  int result = 0;
+  for (int i = 0; i < 2; i++) {
+    result |= (bytes[*pointer] << (i * 8));
+    if (*pointer + 1 < size) {
+      (*pointer)++;
+    }
+  }
+  return result;
+}
+
+int nextInt32(char* bytes, int size, int* pointer) {
+  int result = 0;
+  for (int i = 0; i < 4; i++) {
+    result |= (bytes[*pointer] << (i * 8));
+    if (*pointer + 1 < size) {
+      (*pointer)++;
+    }
+  }
+  return result;
+}
