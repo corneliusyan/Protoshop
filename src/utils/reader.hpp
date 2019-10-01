@@ -34,4 +34,18 @@ int nextInt(char* bytes, int size, int* pointer);
  */
 std::string nextString(char* bytes, int size, int* pointer);
 
+/**
+ * return the 2 byte starting from pointer as 16-bit integer
+ * update the pointer to the next pointer
+ * the bytes will be read until size only
+ */
+int nextInt16(char* bytes, int size, int* pointer);
+
+/**
+ * return the 4 byte starting from pointer as 32-bit integer
+ * update the pointer to the next pointer
+ * the bytes will be read until size only
+ */
+int nextInt32(char* bytes, int size, int* pointer);
+
 #endif
