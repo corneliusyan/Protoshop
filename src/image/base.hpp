@@ -40,6 +40,14 @@ public:
   static Image* load(std::string filename);
 
   /**
+   * @method set_black
+   * @param {int} row position of pixel from top, starting from 0
+   * @param {int} col position of pixel from left, starting from 0
+   * change pixel[row][col] into a black pixel, according to imageType
+   */
+  void set_black(int row, int col);
+
+  /**
    * @method set_pixel
    * @param {int} row position of pixel from top, starting from 0
    * @param {int} col position of pixel from left, starting from 0

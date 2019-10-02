@@ -68,6 +68,18 @@ Image* Image::load(std::string filename) {
   }
 }
 
+void Image::set_black(int row, int col) {
+  switch (imageType) {
+    case BLACKWHITE:
+    case GRAYSCALE:
+      set_pixel(row, col, pixel(0));
+      break;
+    case RGB:
+      set_pixel(row, col, pixel(0, 0, 0));
+      break;
+  }
+}
+
 void Image::set_pixel(int row, int col, pixel px) {
   this->pixels[row][col] = px;
   for (int i = 0; i < px.len; i++) {
