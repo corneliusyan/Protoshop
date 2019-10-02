@@ -11,7 +11,8 @@ int main() {
     // Image* img = *img_lena + *img_baboon;
     // img->show();
     Image* img = Image::load("./res/lena.bmp");
-    AdjustmentTranslate::apply(img, 30, 25);
+    // AdjustmentTranslate::apply(img, 30, 25);
+    AdjustmentRotate::rotate90CCW(img);
     img->show();
     // Image* img2 = *img + *img;
     // img2->show();
