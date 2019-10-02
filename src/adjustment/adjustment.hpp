@@ -2,3 +2,7 @@
 #include "inverse.hpp"
 #include "grayscale.hpp"
 #include "brighten.hpp"
+#include "translate.hpp"
+#include "rotate.hpp"
+#include "flip.hpp"
+#include "zoom.hpp"
