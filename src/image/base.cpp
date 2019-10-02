@@ -37,7 +37,14 @@ Image::Image(ImageType imageType, int height, int width) {
 }
 
 Image::Image(const Image& other) {
+  Image img(other.imageType, other.height, other.width);
 
+  for (int i = 0; i < img.height; i++) {
+    for (int j = 0; j < img.width; j++) {
+      img.set_pixel(i, j, other.pixels[i][j]);
+    }
+  }
+  *this = img;
 }
 
 Image::~Image() {
@@ -76,31 +83,73 @@ void Image::show() {
   this->cimg->display("Image");
 }
 
-Image Image::operator+(const Image& other) {
+Image* Image::operator+(const Image& other) {
+  Image* img = new Image(*this);
 
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] + other.pixels[i][j]);
+    }
+  }
+  return img;
 }
 
-Image Image::operator*(const Image& other) {
+Image* Image::operator*(const Image& other) {
+  Image* img = new Image(*this);
 
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] * other.pixels[i][j]);
+    }
+  }
+  return img;
 }
 
-Image Image::operator+(int scalar) {
+Image* Image::operator+(int scalar) {
+  Image* img = new Image(*this);
 
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] + scalar);
+    }
+  }
+  return img;
 }
 
 
-Image Image::operator-(int scalar) {
+Image* Image::operator-(int scalar) {
+  Image* img = new Image(*this);
 
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] - scalar);
+    }
+  }
+  return img;
 }
 
 
-Image Image::operator*(int scalar) {
+Image* Image::operator*(int scalar) {
+  Image* img = new Image(*this);
 
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] * scalar);
+    }
+  }
+  return img;
 }
 
 
-Image Image::operator/(int scalar) {
+Image* Image::operator/(int scalar) {
+  Image* img = new Image(*this);
 
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] / scalar);
+    }
+  }
+  return img;
 }
 
 

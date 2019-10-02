@@ -62,12 +62,12 @@ public:
 
   ~Image();
 
-  Image operator+(const Image& other);
-  Image operator*(const Image& other);
-  Image operator+(int scalar);
-  Image operator-(int scalar);
-  Image operator*(int scalar);
-  Image operator/(int scalar);
+  Image* operator+(const Image& other);
+  Image* operator*(const Image& other);
+  Image* operator+(int scalar);
+  Image* operator-(int scalar);
+  Image* operator*(int scalar);
+  Image* operator/(int scalar);
 };
 
 #endif

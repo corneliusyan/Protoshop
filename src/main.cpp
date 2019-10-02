@@ -7,7 +7,8 @@
 int main() {
   try {
     Image* img = Image::load("./res/lena.bmp");
-    img->show();
+    Image* img2 = *img + *img;
+    img2->show();
   } catch (ImageLoadException e) {
     std::cout << e.get_message() << std::endl;
   }
