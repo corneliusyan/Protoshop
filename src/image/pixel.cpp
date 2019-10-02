@@ -53,6 +53,22 @@ pixel& pixel::operator=(const pixel& other) {
   return *this;
 }
 
+pixel& pixel::operator+(const pixel& other) {
+  for (int i = 0; i < len; i++) {
+    int temp = in[i] + other.in[i];
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
+  }
+  return *this;
+}
+
 pixel& pixel::operator+(int scalar) {
   for (int i = 0; i < len; i++) {
     int temp = in[i] + scalar;
@@ -69,10 +85,88 @@ pixel& pixel::operator+(int scalar) {
   return *this;
 }
 
-pixel& pixel::operator-(int scalar) {
+pixel& pixel::operator-(const pixel& other) {
   for (int i = 0; i < len; i++) {
-    in[i] -= scalar;
+    int temp = in[i] - other.in[i];
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
   }
+  return *this;
+}
+
+pixel& pixel::operator-(int scalar) {
+  return *this + (-scalar);
+}
+
+pixel& pixel::operator*(const pixel& other) {
+  for (int i = 0; i < len; i++) {
+    int temp = in[i] * other.in[i];
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
+  }
+  return *this;
+}
+
+pixel& pixel::operator*(int scalar) {
+  for (int i = 0; i < len; i++) {
+    int temp = in[i] * scalar;
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
+  }
+  return *this;
+}
+
+pixel& pixel::operator/(const pixel& other) {
+  for (int i = 0; i < len; i++) {
+    int temp = in[i] / other.in[i];
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
+  }
+  return *this;
+}
+
+pixel& pixel::operator/(int scalar) {
+  for (int i = 0; i < len; i++) {
+    int temp = in[i] / scalar;
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
+  }
+  return *this;
 }
 
 pixel operator-(int scalar, const pixel& px) {
