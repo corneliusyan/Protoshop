@@ -31,6 +31,8 @@ public:
    */
   Image(ImageType imageType, int height, int width);
 
+  Image(const Image& other);
+
   /**
    * @constructor
    * @param {string} filename of the image file
@@ -59,6 +61,13 @@ public:
   void show();
 
   ~Image();
+
+  Image operator+(const Image& other);
+  Image operator*(const Image& other);
+  Image operator+(int scalar);
+  Image operator-(int scalar);
+  Image operator*(int scalar);
+  Image operator/(int scalar);
 };
 
 #endif

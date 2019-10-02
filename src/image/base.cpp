@@ -36,6 +36,10 @@ Image::Image(ImageType imageType, int height, int width) {
   this->cimg->fill(0);
 }
 
+Image::Image(const Image& other) {
+
+}
+
 Image::~Image() {
   for (int i = 0; i < this->height; i++) {
     free(this->pixels[i]);
@@ -71,3 +75,32 @@ pixel Image::get_pixel(int row, int col) {
 void Image::show() {
   this->cimg->display("Image");
 }
+
+Image Image::operator+(const Image& other) {
+
+}
+
+Image Image::operator*(const Image& other) {
+
+}
+
+Image Image::operator+(int scalar) {
+
+}
+
+
+Image Image::operator-(int scalar) {
+
+}
+
+
+Image Image::operator*(int scalar) {
+
+}
+
+
+Image Image::operator/(int scalar) {
+
+}
+
+
