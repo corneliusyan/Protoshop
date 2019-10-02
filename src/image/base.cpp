@@ -152,4 +152,40 @@ Image* Image::operator/(int scalar) {
   return img;
 }
 
+Image* Image::operator&(const Image& other) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] & other.pixels[i][j]);
+    }
+  }
+  return img;
+}
+
+Image* Image::operator|(const Image& other) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] | other.pixels[i][j]);
+    }
+  }
+  return img;
+}
+
+
+Image* Image::operator!(void) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, !(img->pixels[i][j]));
+    }
+  }
+  return img;
+}
+
+
+
 

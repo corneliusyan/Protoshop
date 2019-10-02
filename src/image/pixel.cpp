@@ -169,6 +169,25 @@ pixel& pixel::operator/(int scalar) {
   return *this;
 }
 
+pixel& pixel::operator&(const pixel& other) {
+  for (int i = 0; i < len; i++)
+    in[i] &= other.in[i];
+  return *this;
+}
+
+pixel& pixel::operator|(const pixel& other) {
+  for (int i = 0; i < len; i++)
+    in[i] |= other.in[i];
+  return *this;
+}
+
+
+pixel& pixel::operator!(void) {
+  for (int i = 0; i < len; i++)
+    in[i] = !in[i];
+  return *this;
+}
+
 pixel operator-(int scalar, const pixel& px) {
   pixel res(px);
   for (int i = 0; i < res.len; i++) {
