@@ -36,6 +36,17 @@ Image::Image(ImageType imageType, int height, int width) {
   this->cimg->fill(0);
 }
 
+Image::Image(const Image& other) {
+  Image img(other.imageType, other.height, other.width);
+
+  for (int i = 0; i < img.height; i++) {
+    for (int j = 0; j < img.width; j++) {
+      img.set_pixel(i, j, other.pixels[i][j]);
+    }
+  }
+  *this = img;
+}
+
 Image::~Image() {
   for (int i = 0; i < this->height; i++) {
     free(this->pixels[i]);
@@ -57,6 +68,18 @@ Image* Image::load(std::string filename) {
   }
 }
 
+void Image::set_black(int row, int col) {
+  switch (imageType) {
+    case BLACKWHITE:
+    case GRAYSCALE:
+      set_pixel(row, col, pixel(0));
+      break;
+    case RGB:
+      set_pixel(row, col, pixel(0, 0, 0));
+      break;
+  }
+}
+
 void Image::set_pixel(int row, int col, pixel px) {
   this->pixels[row][col] = px;
   for (int i = 0; i < px.len; i++) {
@@ -71,3 +94,110 @@ pixel Image::get_pixel(int row, int col) {
 void Image::show() {
   this->cimg->display("Image");
 }
+
+Image* Image::operator+(const Image& other) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] + other.pixels[i][j]);
+    }
+  }
+  return img;
+}
+
+Image* Image::operator*(const Image& other) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] * other.pixels[i][j]);
+    }
+  }
+  return img;
+}
+
+Image* Image::operator+(int scalar) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] + scalar);
+    }
+  }
+  return img;
+}
+
+
+Image* Image::operator-(int scalar) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] - scalar);
+    }
+  }
+  return img;
+}
+
+
+Image* Image::operator*(int scalar) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] * scalar);
+    }
+  }
+  return img;
+}
+
+
+Image* Image::operator/(int scalar) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] / scalar);
+    }
+  }
+  return img;
+}
+
+Image* Image::operator&(const Image& other) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] & other.pixels[i][j]);
+    }
+  }
+  return img;
+}
+
+Image* Image::operator|(const Image& other) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, img->pixels[i][j] | other.pixels[i][j]);
+    }
+  }
+  return img;
+}
+
+
+Image* Image::operator!(void) {
+  Image* img = new Image(*this);
+
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->set_pixel(i, j, !(img->pixels[i][j]));
+    }
+  }
+  return img;
+}
+
+
+
+

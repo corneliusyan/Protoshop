@@ -19,8 +19,17 @@ struct pixel {
   ~pixel();
 
   pixel& operator=(const pixel& other);
+  pixel& operator+(const pixel& other);
   pixel& operator+(int scalar);
+  pixel& operator-(const pixel& other);
   pixel& operator-(int scalar);
+  pixel& operator*(const pixel& other);
+  pixel& operator*(int scalar);
+  pixel& operator/(const pixel& other);
+  pixel& operator/(int scalar);
+  pixel& operator&(const pixel& other);
+  pixel& operator|(const pixel& other);
+  pixel& operator!(void);
 };
 
 pixel operator-(int scalar, const pixel& px);
