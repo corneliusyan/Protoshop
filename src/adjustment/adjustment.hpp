@@ -1,4 +1,4 @@
 #include "base.hpp"
 #include "inverse.hpp"
-#include "grayscale.hpp"
+#include "grayscaling.hpp"
 #include "brighten.hpp"

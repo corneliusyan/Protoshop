@@ -1,4 +1,4 @@
-#include "grayscale.hpp"
+#include "grayscaling.hpp"
 
 void AdjustmentGrayscale::apply(Image* target) {
   if (target->imageType == RGB) {
