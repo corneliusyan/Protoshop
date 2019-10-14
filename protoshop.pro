@@ -11,3 +11,4 @@ SOURCES += $$system(find src -name "*.cpp")
 
 CONFIG += x11 thread c++11
 OBJECTS_DIR = bin
+QT += widgets printsupport

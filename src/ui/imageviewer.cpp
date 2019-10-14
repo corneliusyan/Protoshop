@@ -1,12 +1,12 @@
 #include <QtWidgets>
 #if defined(QT_PRINTSUPPORT_LIB)
-#include <QtPrintSupport/qtprintsupportglobal.h>
-#if QT_CONFIG(printdialog)
-#include <QPrintDialog>
-#endif
+  #include <QtPrintSupport/qtprintsupportglobal.h>
+  #if QT_CONFIG(printdialog)
+    #include <QPrintDialog>
+  #endif
 #endif
 
-#include "imageviewer.h"
+#include "imageviewer.hpp"
 
 #include <iostream>
 

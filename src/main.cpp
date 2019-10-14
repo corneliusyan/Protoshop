@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "ui/imageviewer.h"
+#include "ui/imageviewer.hpp"
 
 #include <QApplication>
 #include <QCommandLineParser>

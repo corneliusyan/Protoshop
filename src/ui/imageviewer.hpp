@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QImage>
 #ifndef QT_NO_PRINTER
-#include <QPrinter>
+  #include <QPrinter>
 #endif
 
 #include "src/image/image.hpp"
