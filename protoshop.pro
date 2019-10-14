@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core gui
 QT += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -12,11 +12,8 @@ INCLUDEPATH += .
 DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
-HEADERS += lib/CImg/CImg.h \
-           $$system(find src -name "*.hpp") \
-           src/ui/imageviewer.h
+HEADERS += $$system(find src -name "*.hpp")
 SOURCES += $$system(find src -name "*.cpp")
 
 CONFIG += x11 thread c++11
 OBJECTS_DIR = bin
-QT += widgets printsupport
