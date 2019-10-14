@@ -6,6 +6,13 @@
   #endif
 #endif
 
+#include <QtCharts/QChartView>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QValueAxis>
+
 #include "imageviewer.hpp"
 
 #include <iostream>
@@ -169,6 +176,74 @@ void ImageViewer::rotate90CCW() {
     setImage(newImage);
 }
 
+void ImageViewer::showHistogramRed() {
+    showHistogram(Qt::red);
+}
+
+void ImageViewer::showHistogramGreen() {
+    showHistogram(Qt::green);
+}
+
+void ImageViewer::showHistogramBlue() {
+    showHistogram(Qt::blue);
+}
+
+void ImageViewer::showHistogram(Qt::GlobalColor colorCode) {
+    int hist[256] = {0};
+    int height = image.height();
+    int width = image.width();
+    int max = 0;
+
+    for (int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
+            int value;
+            QColor qc = image.pixelColor(i,j);
+
+            if (colorCode == Qt::red) value = qc.red();
+            else if (colorCode == Qt::green) value = qc.green();
+            else value = qc.blue();
+
+            hist[value]++;
+            if (hist[value] > max) max = hist[value];
+        }
+    }
+
+    QStringList categories;
+    QtCharts::QBarSet *set0 = new QtCharts::QBarSet("Histogram");
+    set0->setColor(colorCode);
+
+    for (int i = 0; i < 256; i++) {
+        *set0 << hist[i];
+        categories << QString::number(i);
+    }
+
+    QtCharts::QBarSeries *series = new QtCharts::QBarSeries();
+    series->append(set0);
+
+    QtCharts::QChart *chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->setTitle("Histogram");
+
+    QtCharts::QBarCategoryAxis *axisX = new QtCharts::QBarCategoryAxis();
+    axisX->append(categories);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
+
+    QtCharts::QValueAxis *axisY = new QtCharts::QValueAxis();
+    axisY->setRange(0,max);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+    QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    chartView->resize(1000,500);
+    chartView->show();
+}
+
 void ImageViewer::zoomIn() {
     scaleImage(1.25);
 }
@@ -192,7 +267,7 @@ void ImageViewer::fitToWindow() {
 
 void ImageViewer::about() {
     QMessageBox::about(this, tr("About Protoshop"),
-            tr("<p>by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
+            tr("<p>Protoshop by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
 }
 
 void ImageViewer::createActions() {
@@ -225,6 +300,15 @@ void ImageViewer::createActions() {
     rotate90CCWAct = editMenu->addAction(tr("&Rotate 90CCW"), this, &ImageViewer::rotate90CCW);
     rotate90CCWAct->setEnabled(false);
 
+    QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
+
+    redHistogramAct = histogramMenu->addAction(tr("&Red"), this, &ImageViewer::showHistogramRed);
+    redHistogramAct->setEnabled(false);
+    greenHistogramAct = histogramMenu->addAction(tr("&Green"), this, &ImageViewer::showHistogramGreen);
+    greenHistogramAct->setEnabled(false);
+    blueHistogramAct = histogramMenu->addAction(tr("&Blue"), this, &ImageViewer::showHistogramBlue);
+    blueHistogramAct->setEnabled(false);
+
     QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
     zoomInAct = viewMenu->addAction(tr("Zoom &In (25%)"), this, &ImageViewer::zoomIn);
@@ -249,13 +333,15 @@ void ImageViewer::createActions() {
     QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
 
     helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
-    helpMenu->addAction(tr("About &Qt"), &QApplication::aboutQt);
 }
 
 void ImageViewer::updateActions() {
     saveAsAct->setEnabled(!image.isNull());
     copyAct->setEnabled(!image.isNull());
     rotate90CCWAct->setEnabled(!image.isNull());
+    redHistogramAct->setEnabled(!image.isNull());
+    greenHistogramAct->setEnabled(!image.isNull());
+    blueHistogramAct->setEnabled(!image.isNull());
     zoomInAct->setEnabled(!fitToWindowAct->isChecked());
     zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
     normalSizeAct->setEnabled(!fitToWindowAct->isChecked());

@@ -4,12 +4,13 @@
 #include <QMainWindow>
 #include <QImage>
 #ifndef QT_NO_PRINTER
-  #include <QPrinter>
+    #include <QPrinter>
 #endif
 
 #include "src/image/image.hpp"
 #include "src/image/exception.hpp"
 #include "src/adjustment/adjustment.hpp"
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -33,6 +34,11 @@ private slots:
     void print();
 
     void rotate90CCW();
+    void showHistogramRed();
+    void showHistogramGreen();
+    void showHistogramBlue();
+    void showHistogram(Qt::GlobalColor colorCode);
+
     void copy();
     void paste();
     void zoomIn();
@@ -61,6 +67,10 @@ private:
 #endif
 
     QAction *rotate90CCWAct;
+    QAction *redHistogramAct;
+    QAction *greenHistogramAct;
+    QAction *blueHistogramAct;
+
     QAction *saveAsAct;
     QAction *printAct;
     QAction *copyAct;
