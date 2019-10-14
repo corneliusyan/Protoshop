@@ -36,15 +36,12 @@ Image::Image(ImageType imageType, int height, int width) {
   this->cimg->fill(0);
 }
 
-Image::Image(const Image& other) {
-  Image img(other.imageType, other.height, other.width);
-
-  for (int i = 0; i < img.height; i++) {
-    for (int j = 0; j < img.width; j++) {
-      img.set_pixel(i, j, other.pixels[i][j]);
+Image::Image(const Image& other) : Image(other.imageType, other.height, other.width){
+  for (int i = 0; i < this->height; i++) {
+    for (int j = 0; j < this->width; j++) {
+      this->pixels[i][j] = other.pixels[i][j];
     }
   }
-  *this = img;
 }
 
 Image::~Image() {

@@ -8,11 +8,11 @@ void AdjustmentRotate::rotate90CCW(Image* target) {
   for (int i = 0; i < N; i++) {
     k = M-1;
     for (int j = 0; j < M; j++) {
-      std::cout<<"k: "<<k<<", i: "<<i<<", j: "<<j<<std::endl;
       target->set_pixel(k, i, img->get_pixel(i, j));
       k--;
     }
   }
+  delete img;
 }
 
 void AdjustmentRotate::rotate90CW(Image* target) {
