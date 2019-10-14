@@ -1,6 +1,9 @@
+#include <QtWidgets>
+#include <QtPrintSupport/qtprintsupportglobal.h>
+#include <QPrintDialog>
+
 #include <cstdlib>
 #include <iostream>
-#include "../../lib/CImg/CImg.h"
 #include "../utils/string.hpp"
 #include "b_w.hpp"
 #include "base.hpp"
@@ -8,6 +11,22 @@
 #include "grayscale.hpp"
 #include "pixel.hpp"
 #include "r_g_b.hpp"
+
+Image::Image() {
+    this->imageType = ImageType::RGB;
+    this->height = 32;
+    this->width = 32;
+
+    this->pixels = (pixel**) malloc(height * sizeof (pixel*));
+    for (int i = 0; i < height; i++) {
+      this->pixels[i] = (pixel*) malloc(width * sizeof (pixel));
+      for (int j = 0; j < width; j++) {
+        this->pixels[i][j] = pixel(0, 0, 0, 0);
+      }
+    }
+
+    this->qimg = new QImage();
+}
 
 Image::Image(ImageType imageType, int height, int width) {
   this->imageType = imageType;
@@ -23,17 +42,21 @@ Image::Image(ImageType imageType, int height, int width) {
   }
 
   int depth = 0;
+  QImage::Format qt_format;
   switch (imageType) {
     case BLACKWHITE:
     case GRAYSCALE:
       depth = 1;
+      qt_format = QImage::Format_Grayscale8;
       break;
     case RGB:
       depth = 3;
+      qt_format = QImage::Format_RGB32;
       break;
   }
-  this->cimg = new cimg_library::CImg<unsigned char>(height, width, 1, depth);
-  this->cimg->fill(0);
+
+  this->qimg = new QImage(width, height, qt_format);
+  this->qimg->fill(0);
 }
 
 Image::Image(const Image& other) {
@@ -82,8 +105,15 @@ void Image::set_black(int row, int col) {
 
 void Image::set_pixel(int row, int col, pixel px) {
   this->pixels[row][col] = px;
-  for (int i = 0; i < px.len; i++) {
-    (*this->cimg)(col, row, 0, i) = px.in[i];
+  QRgb value;
+
+  if (px.len == 1) {
+      value = qRgb(px.in[0], px.in[0], px.in[0]);
+      (*this->qimg).setPixel(col, row, value);
+  } else {
+      value = qRgb(px.in[0], px.in[1], px.in[2]);
+      // std::cout << px.in[0] << " " << px.in[1] << " " << px.in[2] << std::endl;
+      (*this->qimg).setPixel(col, row, value);
   }
 }
 
@@ -92,7 +122,29 @@ pixel Image::get_pixel(int row, int col) {
 }
 
 void Image::show() {
-  this->cimg->display("Image");
+
+}
+
+QImage Image::getQImage() {
+    if ((*this->qimg).isNull()) {
+        std::cout << "null ewe" << std::endl;
+    }
+    return (*this->qimg);
+}
+
+Image& Image::operator=(const Image& other) {
+    this->qimg = other.qimg;
+    this->width = other.width;
+    this->height = other.height;
+    this->imageType = other.imageType;
+    this->pixels = (pixel**) malloc(height * sizeof (pixel*));
+    for (int i = 0; i < height; i++) {
+      this->pixels[i] = (pixel*) malloc(width * sizeof (pixel));
+      for (int j = 0; j < width; j++) {
+        this->pixels[i][j] = other.pixels[i][j];
+      }
+    }
+    return (*this);
 }
 
 Image* Image::operator+(const Image& other) {

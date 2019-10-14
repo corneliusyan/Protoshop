@@ -1,8 +1,8 @@
 #ifndef BASE_IMAGE_HPP
 #define BASE_IMAGE_HPP
 
+#include <QImage>
 #include <iostream>
-#include "../../lib/CImg/CImg.h"
 #include "pixel.hpp"
 
 enum ImageType {
@@ -16,7 +16,7 @@ protected:
   pixel** pixels;
 
 private:
-  cimg_library::CImg<unsigned char>* cimg;
+  QImage* qimg;
 
 public:
   ImageType imageType;
@@ -32,6 +32,8 @@ public:
   Image(ImageType imageType, int height, int width);
 
   Image(const Image& other);
+
+  Image();
 
   /**
    * @constructor
@@ -70,6 +72,8 @@ public:
 
   ~Image();
 
+  QImage getQImage();
+  Image& operator=(const Image& other);
   Image* operator+(const Image& other);
   Image* operator*(const Image& other);
   Image* operator+(int scalar);
