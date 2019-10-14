@@ -36,3 +36,4 @@ protoshop
 .qmake.stash
 Makefile
 protoshop.pro.user
+.DS_Store
