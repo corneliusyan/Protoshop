@@ -69,6 +69,22 @@ pixel& pixel::operator+(const pixel& other) {
   return *this;
 }
 
+pixel& pixel::operator+=(const pixel& other) {
+  for (int i = 0; i < len; i++) {
+    int temp = in[i] + other.in[i];
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
+  }
+  return *this;
+}
+
 pixel& pixel::operator+(int scalar) {
   for (int i = 0; i < len; i++) {
     int temp = in[i] + scalar;
@@ -122,6 +138,22 @@ pixel& pixel::operator*(const pixel& other) {
 }
 
 pixel& pixel::operator*(int scalar) {
+  for (int i = 0; i < len; i++) {
+    int temp = in[i] * scalar;
+    if (temp < 0) {
+      in[i] = 0;
+    } else {
+      if (temp > 255) {
+        in[i] = 255;
+      } else {
+        in[i] = temp;
+      }
+    }
+  }
+  return *this;
+}
+
+pixel& pixel::operator*(double scalar) {
   for (int i = 0; i < len; i++) {
     int temp = in[i] * scalar;
     if (temp < 0) {

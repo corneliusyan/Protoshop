@@ -10,6 +10,7 @@
 #include "src/image/image.hpp"
 #include "src/image/exception.hpp"
 #include "src/adjustment/adjustment.hpp"
+#include "src/filter/filter.hpp"
 #include <iostream>
 
 QT_BEGIN_NAMESPACE
@@ -72,6 +73,9 @@ private slots:
   void zoomOut();
   void normalSize();
   void fitToWindow();
+
+  void filterGaussian();
+
   void about();
 
 private:
@@ -127,6 +131,8 @@ private:
   QAction *zoomOutAct;
   QAction *normalSizeAct;
   QAction *fitToWindowAct;
+
+  QAction *filterGaussianAct;
 };
 
 #endif

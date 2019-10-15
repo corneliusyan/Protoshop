@@ -527,6 +527,14 @@ void ImageViewer::fitToWindow() {
   updateActions();
 }
 
+void ImageViewer::filterGaussian() {
+  FilterGaussian* filter = new FilterGaussian();
+  filter->apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
           tr("<p>Protoshop by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
@@ -656,6 +664,10 @@ void ImageViewer::createActions() {
   fitToWindowAct->setCheckable(true);
   fitToWindowAct->setShortcut(tr("Ctrl+F"));
 
+  QMenu *filterMenu = menuBar()->addMenu(tr("&Filter"));
+  filterGaussianAct = filterMenu->addAction(tr("&Gaussian"), this, &ImageViewer::filterGaussian);
+  filterGaussianAct->setEnabled(false);
+
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
 
   helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
@@ -675,7 +687,7 @@ void ImageViewer::updateActions() {
   scalarDivideAct->setEnabled(!image.isNull());
   scalarNotAct->setEnabled(!image.isNull());
   brightenAct->setEnabled(!image.isNull());
-  
+
   unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());
   rotate90CCWAct->setEnabled(!image.isNull());
@@ -695,6 +707,8 @@ void ImageViewer::updateActions() {
   zoomInAct->setEnabled(!fitToWindowAct->isChecked());
   zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
   normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
+
+  filterGaussianAct->setEnabled(!image.isNull());
 }
 
 void ImageViewer::scaleImage(double factor) {
