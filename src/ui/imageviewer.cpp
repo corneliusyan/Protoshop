@@ -220,6 +220,20 @@ void ImageViewer::showMessage() {
   statusBar()->showMessage(message);
 }
 
+void ImageViewer::brighten() {
+  AdjustmentBrighten::apply(img,25);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::unbrighten() {
+  AdjustmentBrighten::apply(img,-25);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::rotate90CW() {
   AdjustmentRotate::rotate90CW(img);
   const QImage newImage = img->getQImage();
@@ -355,6 +369,12 @@ void ImageViewer::createActions() {
   QAction *pasteAct = editMenu->addAction(tr("&Paste"), this, &ImageViewer::paste);
   pasteAct->setShortcut(QKeySequence::Paste);
 
+  brightenAct = editMenu->addAction(tr("&brighten"), this, &ImageViewer::brighten);
+  brightenAct->setEnabled(false);
+
+  unbrightenAct = editMenu->addAction(tr("&unbrighten"), this, &ImageViewer::unbrighten);
+  unbrightenAct->setEnabled(false);
+
   rotate90CWAct = editMenu->addAction(tr("&Rotate 90CW"), this, &ImageViewer::rotate90CW);
   rotate90CWAct->setEnabled(false);
 
@@ -399,6 +419,8 @@ void ImageViewer::createActions() {
 void ImageViewer::updateActions() {
   saveAsAct->setEnabled(!image.isNull());
   copyAct->setEnabled(!image.isNull());
+  brightenAct->setEnabled(!image.isNull());
+  unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());
   rotate90CCWAct->setEnabled(!image.isNull());
   redHistogramAct->setEnabled(!image.isNull());

@@ -35,6 +35,8 @@ private slots:
 
   void showMessage();
 
+  void brighten();
+  void unbrighten();
   void rotate90CW();
   void rotate90CCW();
   void showHistogramRed();
@@ -70,6 +72,8 @@ private:
   QPrinter printer;
 #endif
 
+  QAction *brightenAct;
+  QAction *unbrightenAct;
   QAction *rotate90CWAct;
   QAction *rotate90CCWAct;
   QAction *redHistogramAct;
