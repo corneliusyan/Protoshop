@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QImage>
 #ifndef QT_NO_PRINTER
-    #include <QPrinter>
+  #include <QPrinter>
 #endif
 
 #include "src/image/image.hpp"
@@ -22,62 +22,67 @@ QT_END_NAMESPACE
 
 class ImageViewer : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    ImageViewer();
-    bool loadFile(const QString &);
+  ImageViewer();
+  bool loadFile(const QString &);
 
 private slots:
-    void open();
-    void saveAs();
-    void print();
+  void open();
+  void saveAs();
+  void print();
 
-    void rotate90CCW();
-    void showHistogramRed();
-    void showHistogramGreen();
-    void showHistogramBlue();
-    void showHistogram(Qt::GlobalColor colorCode);
+  void showMessage();
 
-    void copy();
-    void paste();
-    void zoomIn();
-    void zoomOut();
-    void normalSize();
-    void fitToWindow();
-    void about();
+  void rotate90CW();
+  void rotate90CCW();
+  void showHistogramRed();
+  void showHistogramGreen();
+  void showHistogramBlue();
+  void showHistogram(Qt::GlobalColor colorCode);
+
+  void copy();
+  void paste();
+  void zoomIn();
+  void zoomOut();
+  void normalSize();
+  void fitToWindow();
+  void about();
 
 private:
-    void createActions();
-    void createMenus();
-    void updateActions();
-    bool saveFile(const QString &fileName);
-    void setImage(const QImage &newImage);
-    void scaleImage(double factor);
-    void adjustScrollBar(QScrollBar *scrollBar, double factor);
+  void createActions();
+  void createMenus();
+  void updateActions();
+  bool saveFile(const QString &fileName);
+  void setImage(const QImage &newImage);
+  void scaleImage(double factor);
+  void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
-    QImage image;
-    Image* img;
-    QLabel *imageLabel;
-    QScrollArea *scrollArea;
-    double scaleFactor;
+  QImage image;
+  Image* img;
+  QString filename;
+  QLabel *imageLabel;
+  QScrollArea *scrollArea;
+  double scaleFactor;
 
 #ifndef QT_NO_PRINTER
-    QPrinter printer;
+  QPrinter printer;
 #endif
 
-    QAction *rotate90CCWAct;
-    QAction *redHistogramAct;
-    QAction *greenHistogramAct;
-    QAction *blueHistogramAct;
+  QAction *rotate90CWAct;
+  QAction *rotate90CCWAct;
+  QAction *redHistogramAct;
+  QAction *greenHistogramAct;
+  QAction *blueHistogramAct;
 
-    QAction *saveAsAct;
-    QAction *printAct;
-    QAction *copyAct;
-    QAction *zoomInAct;
-    QAction *zoomOutAct;
-    QAction *normalSizeAct;
-    QAction *fitToWindowAct;
+  QAction *saveAsAct;
+  QAction *printAct;
+  QAction *copyAct;
+  QAction *zoomInAct;
+  QAction *zoomOutAct;
+  QAction *normalSizeAct;
+  QAction *fitToWindowAct;
 };
 
 #endif
