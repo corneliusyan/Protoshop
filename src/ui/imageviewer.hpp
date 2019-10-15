@@ -39,6 +39,11 @@ private slots:
   void unbrighten();
   void rotate90CW();
   void rotate90CCW();
+  void translate();
+  void flipHorizontal();
+  void flipVertical();
+  void zoom2In();
+  void zoom2Out();
   void showHistogramRed();
   void showHistogramGreen();
   void showHistogramBlue();
@@ -76,6 +81,11 @@ private:
   QAction *unbrightenAct;
   QAction *rotate90CWAct;
   QAction *rotate90CCWAct;
+  QAction *translateAct;
+  QAction *flipHorizontalAct;
+  QAction *flipVerticalAct;
+  QAction *zoom2InAct;
+  QAction *zoom2OutAct;
   QAction *redHistogramAct;
   QAction *greenHistogramAct;
   QAction *blueHistogramAct;

@@ -248,6 +248,26 @@ void ImageViewer::rotate90CCW() {
   showMessage();
 }
 
+void ImageViewer::translate() {
+
+}
+
+void ImageViewer::flipHorizontal() {
+
+}
+
+void ImageViewer::flipVertical() {
+
+}
+
+void ImageViewer::zoom2In() {
+
+}
+
+void ImageViewer::zoom2Out() {
+
+}
+
 void ImageViewer::showHistogramRed() {
   showHistogram(Qt::red);
 }
@@ -381,6 +401,21 @@ void ImageViewer::createActions() {
   rotate90CCWAct = editMenu->addAction(tr("&Rotate 90CCW"), this, &ImageViewer::rotate90CCW);
   rotate90CCWAct->setEnabled(false);
 
+  translateAct = editMenu->addAction(tr("&Translate"), this, &ImageViewer::translate);
+  translateAct->setEnabled(false);
+
+  flipHorizontalAct = editMenu->addAction(tr("&Flip Horizontal"), this, &ImageViewer::flipHorizontal);
+  flipHorizontalAct->setEnabled(false);
+
+  flipVerticalAct = editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical);
+  flipVerticalAct->setEnabled(false);
+
+  zoom2InAct= editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In);
+  zoom2InAct->setEnabled(false);
+
+  zoom2OutAct= editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out);
+  zoom2OutAct->setEnabled(false);
+
   QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
 
   redHistogramAct = histogramMenu->addAction(tr("&Red"), this, &ImageViewer::showHistogramRed);
@@ -423,6 +458,12 @@ void ImageViewer::updateActions() {
   unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());
   rotate90CCWAct->setEnabled(!image.isNull());
+  translateAct->setEnabled(!image.isNull());
+  flipHorizontalAct->setEnabled(!image.isNull());
+  flipVerticalAct->setEnabled(!image.isNull());
+  zoom2InAct->setEnabled(!image.isNull());
+  zoom2OutAct->setEnabled(!image.isNull());
+  translateAct->setEnabled(!image.isNull());
   redHistogramAct->setEnabled(!image.isNull());
   greenHistogramAct->setEnabled(!image.isNull());
   blueHistogramAct->setEnabled(!image.isNull());
