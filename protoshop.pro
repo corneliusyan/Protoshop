@@ -1,3 +1,10 @@
+QT += core gui
+QT += charts
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+requires(qtConfig(filedialog))
+qtHaveModule(printsupport): QT += printsupport
+
 TEMPLATE = app
 TARGET = protoshop
 INCLUDEPATH += .
@@ -27,4 +34,3 @@ SOURCES += $$system(find src -name "*.cpp") \
 
 CONFIG += x11 thread c++11
 OBJECTS_DIR = bin
-QT += widgets printsupport
