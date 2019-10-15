@@ -8,11 +8,10 @@ void AdjustmentTranslate::apply(Image* target, int m, int n) {
     for (int j = 0; j < M; j++) {
       int target_row = i-m, target_column = j-n;
       if (target_row >= M || target_row < 0 || target_column >= N || target_column < 0) {
-        img->set_black(i, j);
+        target->set_black(i, j);
       } else {
-        img->set_pixel(i, j, target->get_pixel(target_row, target_column));
+        target->set_pixel(i, j, img->get_pixel(target_row, target_column));
       }
     }
   }
-  *target = *img;
 }

@@ -390,11 +390,17 @@ void ImageViewer::translate() {
 }
 
 void ImageViewer::flipHorizontal() {
-
+  AdjustmentFlip::horizontalFlip(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
 }
 
 void ImageViewer::flipVertical() {
-
+  AdjustmentFlip::verticalFlip(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
 }
 
 void ImageViewer::zoom2In() {
