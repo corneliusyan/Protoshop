@@ -33,7 +33,20 @@ private slots:
   void saveAs();
   void print();
 
-  void showMessage();
+  void imageAdd();
+  void imageMultiply();
+  void imageAnd();
+  void imageOr();
+  void loadSecondFile(int operation);
+  bool imageOperate(const QString &, int operation);
+
+  void scalarAdd();
+  void scalarSubstract();
+  void scalarMultiply();
+  void scalarDivide();
+  void scalarNot();
+  void scalarOperate(int operation, char *hint);
+  int scalarDialog(int operation, char *hint);
 
   void brighten();
   void unbrighten();
@@ -47,7 +60,11 @@ private slots:
   void showHistogramRed();
   void showHistogramGreen();
   void showHistogramBlue();
-  void showHistogram(Qt::GlobalColor colorCode);
+  void showNormalizedHistogramRed();
+  void showNormalizedHistogramGreen();
+  void showNormalizedHistogramBlue();
+  void showHistogram(Qt::GlobalColor colorCode, bool isNormalized);
+  void showMessage();
 
   void copy();
   void paste();
@@ -77,6 +94,16 @@ private:
   QPrinter printer;
 #endif
 
+  QAction *imageAddAct;
+  QAction *imageMultiplyAct;
+  QAction *imageAndAct;
+  QAction *imageOrAct;
+  QAction *scalarAddAct;
+  QAction *scalarSubstractAct;
+  QAction *scalarMultiplyAct;
+  QAction *scalarDivideAct;
+  QAction *scalarNotAct;
+
   QAction *brightenAct;
   QAction *unbrightenAct;
   QAction *rotate90CWAct;
@@ -89,6 +116,9 @@ private:
   QAction *redHistogramAct;
   QAction *greenHistogramAct;
   QAction *blueHistogramAct;
+  QAction *normalizedRedHistogramAct;
+  QAction *normalizedGreenHistogramAct;
+  QAction *normalizedBlueHistogramAct;
 
   QAction *saveAsAct;
   QAction *printAct;

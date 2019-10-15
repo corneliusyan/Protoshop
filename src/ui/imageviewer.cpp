@@ -220,18 +220,147 @@ void ImageViewer::showMessage() {
   statusBar()->showMessage(message);
 }
 
-void ImageViewer::brighten() {
-  AdjustmentBrighten::apply(img,25);
+int ImageViewer::scalarDialog(int operation, char *hint) {
+  bool ok;
+  int i = QInputDialog::getInt(this, tr(hint),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok)
+    return i;
+  else {
+    if (operation < 2)
+      return 0;
+    return 1;
+  }
+}
+
+void ImageViewer::scalarAdd() {
+  scalarOperate(0, "Scalar Add Operation");
+}
+
+void ImageViewer::scalarSubstract() {
+  scalarOperate(1, "Scalar Substract Operation");
+}
+
+void ImageViewer::scalarMultiply() {
+  scalarOperate(2, "Scalar Multiply Operation");
+}
+
+void ImageViewer::scalarDivide() {
+  scalarOperate(3, "Scalar Divide Operation");
+}
+
+void ImageViewer::scalarNot() {
+  scalarOperate(4, "Scalar Not Operation");
+}
+
+void ImageViewer::scalarOperate(int operation, char *hint) {
+  int value = 0;
+  if (operation != 4)
+    value = scalarDialog(operation, hint);
+
+  if (operation == 0) {
+    img = *img + value;
+  } else if (operation == 1) {
+    img = *img - value;
+  } else if (operation == 2) {
+    img = *img * value;
+  } else if (operation == 3) {
+    img  = *img / value;
+  } else if (operation == 4) {
+    img = !(*img);
+  }
+
   const QImage newImage = img->getQImage();
   setImage(newImage);
   showMessage();
 }
 
-void ImageViewer::unbrighten() {
-  AdjustmentBrighten::apply(img,-25);
+void ImageViewer::imageAdd() {
+  loadSecondFile(0);
+}
+
+void ImageViewer::imageMultiply() {
+  loadSecondFile(1);
+}
+
+void ImageViewer::imageAnd() {
+  loadSecondFile(2);
+}
+
+void ImageViewer::imageOr() {
+  loadSecondFile(3);
+}
+
+void ImageViewer::loadSecondFile(int operation) {
+  QFileDialog dialog(this, tr("Open File"));
+  initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
+  while (dialog.exec() == QDialog::Accepted && !imageOperate(dialog.selectedFiles().first(), operation)) {}
+}
+
+bool ImageViewer::imageOperate(const QString &fileName, int operation) {
+
+  Image *secondImg;
+  std::string rawFileName = fileName.toStdString();
+
+  try {
+    secondImg = Image::load(rawFileName);
+  } catch (ImageLoadException e) {
+    std::cout << e.get_message() << std::endl;
+    return false;
+  }
+
+  if (operation == 0) {
+    // operator+
+    Image *temp = *img + *secondImg;
+    img = temp;
+  } else if (operation == 1) {
+    // operator*
+    Image *temp = *img * *secondImg;
+    img = temp;
+  } else if (operation == 2) {
+    // operator&
+    Image *temp = *img & *secondImg;
+    img = temp;
+  } else if (operation == 3) {
+    // operator|
+    Image *temp = *img | *secondImg;
+    img = temp;
+  } else {
+    return false;
+  }
+
   const QImage newImage = img->getQImage();
+  if (newImage.isNull()) {
+    return false;
+  }
+
   setImage(newImage);
   showMessage();
+  return true;
+}
+
+void ImageViewer::brighten() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentBrighten::apply(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::unbrighten() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentBrighten::apply(img,-val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
 }
 
 void ImageViewer::rotate90CW() {
@@ -249,7 +378,15 @@ void ImageViewer::rotate90CCW() {
 }
 
 void ImageViewer::translate() {
-
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentTranslate::apply(img, val, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
 }
 
 void ImageViewer::flipHorizontal() {
@@ -269,22 +406,35 @@ void ImageViewer::zoom2Out() {
 }
 
 void ImageViewer::showHistogramRed() {
-  showHistogram(Qt::red);
+  showHistogram(Qt::red, false);
 }
 
 void ImageViewer::showHistogramGreen() {
-  showHistogram(Qt::green);
+  showHistogram(Qt::green, false);
 }
 
 void ImageViewer::showHistogramBlue() {
-  showHistogram(Qt::blue);
+  showHistogram(Qt::blue, false);
 }
 
-void ImageViewer::showHistogram(Qt::GlobalColor colorCode) {
-  int hist[256] = {0};
+void ImageViewer::showNormalizedHistogramRed() {
+  showHistogram(Qt::red, true);
+}
+
+void ImageViewer::showNormalizedHistogramGreen() {
+  showHistogram(Qt::green, true);
+}
+
+void ImageViewer::showNormalizedHistogramBlue() {
+  showHistogram(Qt::blue, true);
+}
+
+
+void ImageViewer::showHistogram(Qt::GlobalColor colorCode, bool isNormalized) {
+  double hist[256] = {0};
   int height = image.height();
   int width = image.width();
-  int max = 0;
+  double max = 0;
 
   for (int i = 0; i < width; i++) {
     for (int j = 0; j < height; j++) {
@@ -297,6 +447,14 @@ void ImageViewer::showHistogram(Qt::GlobalColor colorCode) {
 
       hist[value]++;
       if (hist[value] > max) max = hist[value];
+    }
+  }
+
+  if (isNormalized) {
+    max = 0;
+    for (int i = 0; i < 256; i++) {
+      hist[i] /= (width * height);
+      if (hist[i] > max) max = hist[i];
     }
   }
 
@@ -389,10 +547,41 @@ void ImageViewer::createActions() {
   QAction *pasteAct = editMenu->addAction(tr("&Paste"), this, &ImageViewer::paste);
   pasteAct->setShortcut(QKeySequence::Paste);
 
-  brightenAct = editMenu->addAction(tr("&brighten"), this, &ImageViewer::brighten);
+  QMenu *imageOperator = editMenu->addMenu(tr("&Image Operator"));
+
+  imageAddAct = imageOperator->addAction(tr("&Add"), this, &ImageViewer::imageAdd);
+  imageAddAct->setEnabled(false);
+
+  imageMultiplyAct = imageOperator->addAction(tr("&Multiply"), this, &ImageViewer::imageMultiply);
+  imageMultiplyAct->setEnabled(false);
+
+  imageAndAct = imageOperator->addAction(tr("&And"), this, &ImageViewer::imageAnd);
+  imageAndAct->setEnabled(false);
+
+  imageOrAct = imageOperator->addAction(tr("&Or"), this, &ImageViewer::imageOr);
+  imageOrAct->setEnabled(false);
+
+  QMenu *scalarOperator = editMenu->addMenu(tr("&Scalar Operator"));
+
+  scalarAddAct = scalarOperator->addAction(tr("&Add"), this, &ImageViewer::scalarAdd);
+  scalarAddAct->setEnabled(false);
+
+  scalarSubstractAct = scalarOperator->addAction(tr("&Substract"), this, &ImageViewer::scalarSubstract);
+  scalarSubstractAct->setEnabled(false);
+
+  scalarMultiplyAct = scalarOperator->addAction(tr("&Multiply"), this, &ImageViewer::scalarMultiply);
+  scalarMultiplyAct->setEnabled(false);
+
+  scalarDivideAct = scalarOperator->addAction(tr("&Divide"), this, &ImageViewer::scalarDivide);
+  scalarDivideAct->setEnabled(false);
+
+  scalarNotAct = scalarOperator->addAction(tr("&Not"), this, &ImageViewer::scalarNot);
+  scalarNotAct->setEnabled(false);
+
+  brightenAct = editMenu->addAction(tr("&Brighten"), this, &ImageViewer::brighten);
   brightenAct->setEnabled(false);
 
-  unbrightenAct = editMenu->addAction(tr("&unbrighten"), this, &ImageViewer::unbrighten);
+  unbrightenAct = editMenu->addAction(tr("&Unbrighten"), this, &ImageViewer::unbrighten);
   unbrightenAct->setEnabled(false);
 
   rotate90CWAct = editMenu->addAction(tr("&Rotate 90CW"), this, &ImageViewer::rotate90CW);
@@ -425,6 +614,15 @@ void ImageViewer::createActions() {
   blueHistogramAct = histogramMenu->addAction(tr("&Blue"), this, &ImageViewer::showHistogramBlue);
   blueHistogramAct->setEnabled(false);
 
+  QMenu *normalizedHistogramMenu = editMenu->addMenu(tr("&Show Normalized Histogram"));
+
+  normalizedRedHistogramAct = normalizedHistogramMenu->addAction(tr("&Red"), this, &ImageViewer::showNormalizedHistogramRed);
+  normalizedRedHistogramAct->setEnabled(false);
+  normalizedGreenHistogramAct = normalizedHistogramMenu->addAction(tr("&Green"), this, &ImageViewer::showNormalizedHistogramGreen);
+  normalizedGreenHistogramAct->setEnabled(false);
+  normalizedBlueHistogramAct = normalizedHistogramMenu->addAction(tr("&Blue"), this, &ImageViewer::showNormalizedHistogramBlue);
+  normalizedBlueHistogramAct->setEnabled(false);
+
   QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
   zoomInAct = viewMenu->addAction(tr("Zoom &In (25%)"), this, &ImageViewer::zoomIn);
@@ -454,7 +652,18 @@ void ImageViewer::createActions() {
 void ImageViewer::updateActions() {
   saveAsAct->setEnabled(!image.isNull());
   copyAct->setEnabled(!image.isNull());
+
+  imageAddAct->setEnabled(!image.isNull());
+  imageMultiplyAct->setEnabled(!image.isNull());
+  imageAndAct->setEnabled(!image.isNull());
+  imageOrAct->setEnabled(!image.isNull());
+  scalarAddAct->setEnabled(!image.isNull());
+  scalarSubstractAct->setEnabled(!image.isNull());
+  scalarMultiplyAct->setEnabled(!image.isNull());
+  scalarDivideAct->setEnabled(!image.isNull());
+  scalarNotAct->setEnabled(!image.isNull());
   brightenAct->setEnabled(!image.isNull());
+  
   unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());
   rotate90CCWAct->setEnabled(!image.isNull());
@@ -467,6 +676,10 @@ void ImageViewer::updateActions() {
   redHistogramAct->setEnabled(!image.isNull());
   greenHistogramAct->setEnabled(!image.isNull());
   blueHistogramAct->setEnabled(!image.isNull());
+  normalizedRedHistogramAct->setEnabled(!image.isNull());
+  normalizedGreenHistogramAct->setEnabled(!image.isNull());
+  normalizedBlueHistogramAct->setEnabled(!image.isNull());
+
   zoomInAct->setEnabled(!fitToWindowAct->isChecked());
   zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
   normalSizeAct->setEnabled(!fitToWindowAct->isChecked());

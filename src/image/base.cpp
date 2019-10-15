@@ -123,25 +123,22 @@ void Image::show() {
 }
 
 QImage Image::getQImage() {
-    if ((*this->qimg).isNull()) {
-        std::cout << "null ewe" << std::endl;
-    }
-    return (*this->qimg);
+  return (*this->qimg);
 }
 
 Image& Image::operator=(const Image& other) {
-    this->qimg = other.qimg;
-    this->width = other.width;
-    this->height = other.height;
-    this->imageType = other.imageType;
-    this->pixels = (pixel**) malloc(height * sizeof (pixel*));
-    for (int i = 0; i < height; i++) {
-      this->pixels[i] = (pixel*) malloc(width * sizeof (pixel));
-      for (int j = 0; j < width; j++) {
-        this->pixels[i][j] = other.pixels[i][j];
-      }
+  this->qimg = other.qimg;
+  this->width = other.width;
+  this->height = other.height;
+  this->imageType = other.imageType;
+  this->pixels = (pixel**) malloc(height * sizeof (pixel*));
+  for (int i = 0; i < height; i++) {
+    this->pixels[i] = (pixel*) malloc(width * sizeof (pixel));
+    for (int j = 0; j < width; j++) {
+      this->pixels[i][j] = other.pixels[i][j];
     }
-    return (*this);
+  }
+  return (*this);
 }
 
 Image* Image::operator+(const Image& other) {
