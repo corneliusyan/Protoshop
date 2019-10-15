@@ -404,11 +404,17 @@ void ImageViewer::flipVertical() {
 }
 
 void ImageViewer::zoom2In() {
-
+  AdjustmentZoom::zoomIn(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
 }
 
 void ImageViewer::zoom2Out() {
-
+  AdjustmentZoom::zoomOut(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
 }
 
 void ImageViewer::showHistogramRed() {
