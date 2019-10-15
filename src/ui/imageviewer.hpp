@@ -48,6 +48,8 @@ private slots:
   void scalarOperate(int operation, char *hint);
   int scalarDialog(int operation, char *hint);
 
+  void brighten();
+  void unbrighten();
   void rotate90CW();
   void rotate90CCW();
   void showHistogramRed();
@@ -97,6 +99,8 @@ private:
   QAction *scalarDivideAct;
   QAction *scalarNotAct;
 
+  QAction *brightenAct;
+  QAction *unbrightenAct;
   QAction *rotate90CWAct;
   QAction *rotate90CCWAct;
 

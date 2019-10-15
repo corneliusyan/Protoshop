@@ -275,6 +275,13 @@ void ImageViewer::scalarOperate(int operation, char *hint) {
   showMessage();
 }
 
+void ImageViewer::brighten() {
+  AdjustmentBrighten::apply(img,25);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::imageAdd() {
   loadSecondFile(0);
 }
@@ -337,6 +344,13 @@ bool ImageViewer::imageOperate(const QString &fileName, int operation) {
   setImage(newImage);
   showMessage();
   return true;
+}
+
+void ImageViewer::unbrighten() {
+  AdjustmentBrighten::apply(img,-25);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
 }
 
 void ImageViewer::rotate90CW() {
@@ -526,6 +540,12 @@ void ImageViewer::createActions() {
   scalarNotAct = scalarOperator->addAction(tr("&Not"), this, &ImageViewer::scalarNot);
   scalarNotAct->setEnabled(false);
 
+  brightenAct = editMenu->addAction(tr("&Brighten"), this, &ImageViewer::brighten);
+  brightenAct->setEnabled(false);
+
+  unbrightenAct = editMenu->addAction(tr("&Unbrighten"), this, &ImageViewer::unbrighten);
+  unbrightenAct->setEnabled(false);
+
   rotate90CWAct = editMenu->addAction(tr("&Rotate 90CW"), this, &ImageViewer::rotate90CW);
   rotate90CWAct->setEnabled(false);
 
@@ -589,6 +609,9 @@ void ImageViewer::updateActions() {
   scalarMultiplyAct->setEnabled(!image.isNull());
   scalarDivideAct->setEnabled(!image.isNull());
   scalarNotAct->setEnabled(!image.isNull());
+  brightenAct->setEnabled(!image.isNull());
+  
+  unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());
   rotate90CCWAct->setEnabled(!image.isNull());
 
