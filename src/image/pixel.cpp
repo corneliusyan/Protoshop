@@ -122,6 +122,13 @@ pixel& pixel::operator/(int scalar) {
   return *this;
 }
 
+pixel& pixel::operator^(double scalar) {
+  for (int i = 0; i < len; i++) {
+    in[i] = clip(round((double) pow(in[i], scalar)), 0, 255);
+  }
+  return *this;
+}
+
 pixel& pixel::operator&(const pixel& other) {
   for (int i = 0; i < len; i++)
     in[i] &= other.in[i];
