@@ -74,8 +74,11 @@ private slots:
   void normalSize();
   void fitToWindow();
 
-  void filterGaussian3();
+  void filterGeneral(KernelType kernelType);
+  void filterGaussian();
   void filterMedian();
+  void filterMax();
+  void filterMin();
 
   void about();
 
@@ -133,8 +136,7 @@ private:
   QAction *normalSizeAct;
   QAction *fitToWindowAct;
 
-  QAction *filterGaussian3Act;
-  QAction *filterMedianAct;
+  std::vector<QAction*> filtersAct;
 };
 
 #endif

@@ -27,10 +27,16 @@ Filter::Filter(KernelType kernelType) {
   }
 
   /** Non linear kernel **/
-  else if (kernelType == MEDIAN) {
+  else if (kernelType == MEDIAN || kernelType == MAX || kernelType == MIN) {
     switch (kernelType) {
       case MEDIAN:
         this->strategy = new FilterMedianStrategy(3);
+        break;
+      case MAX:
+        this->strategy = new FilterMaxStrategy(3);
+        break;
+      case MIN:
+        this->strategy = new FilterMinStrategy(3);
         break;
     }
   }

@@ -7,7 +7,9 @@
 
 enum KernelType {
   GAUSSIAN3,
-  MEDIAN
+  MEDIAN,
+  MAX,
+  MIN,
 };
 
 #endif

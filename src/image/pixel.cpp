@@ -228,3 +228,19 @@ pixel operator-(int scalar, const pixel& px) {
   }
   return res;
 }
+
+bool pixel::operator<(const pixel& px) {
+  return this->magnitude() < px.magnitude();
+}
+
+bool pixel::operator>(const pixel& px) {
+  return this->magnitude() > px.magnitude();
+}
+
+int pixel::magnitude() const {
+  int res = 0;
+  for (int i = 0; i < len; i++) {
+    res += in[i] * in[i];
+  }
+  return res;
+}

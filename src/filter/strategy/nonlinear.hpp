@@ -12,4 +12,20 @@ public:
   void apply(Image* target);
 };
 
+class FilterMaxStrategy : public FilterStrategyBase {
+private:
+  int size;
+public:
+  FilterMaxStrategy(int size);
+  void apply(Image* target);
+};
+
+class FilterMinStrategy : public FilterStrategyBase {
+private:
+  int size;
+public:
+  FilterMinStrategy(int size);
+  void apply(Image* target);
+};
+
 #endif

@@ -527,21 +527,18 @@ void ImageViewer::fitToWindow() {
   updateActions();
 }
 
-void ImageViewer::filterGaussian3() {
-  Filter* filter = new Filter(GAUSSIAN3);
+void ImageViewer::filterGeneral(KernelType kernelType) {
+  Filter* filter = new Filter(kernelType);
   filter->apply(img);
   const QImage newImage = img->getQImage();
   setImage(newImage);
   showMessage();
 }
 
-void ImageViewer::filterMedian() {
-  Filter* filter = new Filter(MEDIAN);
-  filter->apply(img);
-  const QImage newImage = img->getQImage();
-  setImage(newImage);
-  showMessage();
-}
+void ImageViewer::filterGaussian() { this->filterGeneral(GAUSSIAN3); }
+void ImageViewer::filterMedian() { this->filterGeneral(MEDIAN); }
+void ImageViewer::filterMax() { this->filterGeneral(MAX); }
+void ImageViewer::filterMin() { this->filterGeneral(MIN); }
 
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
@@ -673,11 +670,14 @@ void ImageViewer::createActions() {
   fitToWindowAct->setShortcut(tr("Ctrl+F"));
 
   QMenu *filterMenu = menuBar()->addMenu(tr("Fil&ter"));
-  filterGaussian3Act = filterMenu->addAction(tr("&Gaussian"), this, &ImageViewer::filterGaussian3);
-  filterGaussian3Act->setEnabled(false);
+  QMenu *lowPassFilterMenu = filterMenu->addMenu(tr("&Low Pass"));
+  QMenu *highPassFilterMenu = filterMenu->addMenu(tr("&High Pass"));
+  QMenu *nonLinearFilterMenu = filterMenu->addMenu(tr("&Non Linear"));
 
-  filterMedianAct = filterMenu->addAction(tr("&Median"), this, &ImageViewer::filterMedian);
-  filterMedianAct->setEnabled(false);
+  filtersAct.push_back(lowPassFilterMenu->addAction(tr("&Gaussian 3"), this, &ImageViewer::filterGaussian));
+  filtersAct.push_back(nonLinearFilterMenu->addAction(tr("M&edian"), this, &ImageViewer::filterMedian));
+  filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Ma&x"), this, &ImageViewer::filterMax));
+  filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Mi&n"), this, &ImageViewer::filterMin));
 
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
 
@@ -719,8 +719,9 @@ void ImageViewer::updateActions() {
   zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
   normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
 
-  filterGaussian3Act->setEnabled(!image.isNull());
-  filterMedianAct->setEnabled(!image.isNull());
+  for (auto act : filtersAct) {
+    act->setEnabled(!image.isNull());
+  }
 }
 
 void ImageViewer::scaleImage(double factor) {
