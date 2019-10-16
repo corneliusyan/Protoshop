@@ -336,6 +336,20 @@ bool ImageViewer::imageOperate(const QString &fileName, int operation) {
   return true;
 }
 
+void ImageViewer::inverse() {
+  AdjustmentInverse::apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::grayScale() {
+  AdjustmentGrayscale::apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::brighten() {
   bool ok;
   int val = QInputDialog::getInt(this, tr("input value"),
@@ -705,6 +719,8 @@ void ImageViewer::createActions() {
   imageActions.push_back(scalarOperator->addAction(tr("&Divide"), this, &ImageViewer::scalarDivide));
   imageActions.push_back(scalarOperator->addAction(tr("&Not"), this, &ImageViewer::scalarNot));
 
+  imageActions.push_back(editMenu->addAction(tr("&Inverse"), this, &ImageViewer::inverse));
+  imageActions.push_back(editMenu->addAction(tr("&Gray Scale"), this, &ImageViewer::grayScale));
   imageActions.push_back(editMenu->addAction(tr("&Brighten"), this, &ImageViewer::brighten));
   imageActions.push_back(editMenu->addAction(tr("&Unbrighten"), this, &ImageViewer::unbrighten));
   imageActions.push_back(editMenu->addAction(tr("&Rotate 90CW"), this, &ImageViewer::rotate90CW));

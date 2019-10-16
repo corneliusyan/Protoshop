@@ -52,6 +52,9 @@ private slots:
 
   void fourierTransform();
   void inverseFourierTransform();
+
+  void inverse();
+  void grayScale();
   void brighten();
   void unbrighten();
   void rotate90CW();
