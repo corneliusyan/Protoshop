@@ -447,11 +447,42 @@ void ImageViewer::zoom2Out() {
   showMessage();
 }
 
-void ImageViewer::equalize() {
+void ImageViewer::histogramEqualize() {
   AdjustmentHistogramEqualize::apply(img);
   const QImage newImage = img->getQImage();
   setImage(newImage);
   showMessage();
+}
+
+void ImageViewer::histogramSpecification() {
+  QFileDialog dialog(this, tr("Open File"));
+  initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
+
+  while (dialog.exec() == QDialog::Accepted) {}
+  const QString qfilename = dialog.selectedFiles().first();
+  std::string filename = qfilename.toStdString();
+
+  Image* newImg;
+  try {
+    newImg = Image::load(filename);
+  } catch (ImageLoadException e) {
+    std::cerr << e.get_message() << std::endl;
+    return;
+  }
+
+  const QImage newQImg = newImg->getQImage();
+  if (newQImg.isNull()) {
+    QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                             tr("Cannot load %1")
+                             .arg(QDir::toNativeSeparators(qfilename)));
+  }
+
+  AdjustmentHistogramSpecification::apply(img, newImg);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+
+  delete newImg;
 }
 
 void ImageViewer::brightenScale() {
@@ -737,7 +768,8 @@ void ImageViewer::createActions() {
   imageActions.push_back(editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical));
   imageActions.push_back(editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In));
   imageActions.push_back(editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out));
-  imageActions.push_back(editMenu->addAction(tr("&Equalize"), this, &ImageViewer::equalize));
+  imageActions.push_back(editMenu->addAction(tr("&Histogram Equalize"), this, &ImageViewer::histogramEqualize));
+  imageActions.push_back(editMenu->addAction(tr("&Histogram Spaceification"), this, &ImageViewer::histogramSpecification));
 
   imageActions.push_back(editMenu->addAction(tr("&Brighten Scale"), this, &ImageViewer::brightenScale));
   imageActions.push_back(editMenu->addAction(tr("&Contrast Stretch"), this, &ImageViewer::contrastStretch));

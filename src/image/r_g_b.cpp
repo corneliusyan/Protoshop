@@ -103,11 +103,19 @@ RGBImage* RGBImage::loadBMPBitmap(char* bytes, int size) {
   RGBImage* image = new RGBImage(height, width);
   for (int i = height - 1; i >= 0; i--) {
     for (int j = 0; j < width; j++) {
-      uchar b = bytes[pointer];
-      uchar g = bytes[pointer + 1];
-      uchar r = bytes[pointer + 2];
-      image->set_pixel(i, j, pixel(r, g, b));
-      pointer += 3;
+      if (bitCount == 24) {
+        uchar b = bytes[pointer];
+        uchar g = bytes[pointer + 1];
+        uchar r = bytes[pointer + 2];
+        image->set_pixel(i, j, pixel(r, g, b));
+        pointer += 3;
+      } else if (bitCount == 8) {
+        uchar b = bytes[pointer];
+        uchar g = bytes[pointer];
+        uchar r = bytes[pointer];
+        image->set_pixel(i, j, pixel(r, g, b));
+        pointer += 1;
+      }
     }
   }
   return image;

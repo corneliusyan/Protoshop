@@ -64,7 +64,8 @@ private slots:
   void flipVertical();
   void zoom2In();
   void zoom2Out();
-  void equalize();
+  void histogramEqualize();
+  void histogramSpecification();
 
   void brightenScale();
   void contrastStretch();
