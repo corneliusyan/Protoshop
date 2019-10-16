@@ -50,7 +50,7 @@ make
 - [ ] **E1** Adjustment: Perataan histogram (Yonas)
 - [ ] **E2** Adjustment: Spesifikasi histogram (Yonas)
 - [X] **F1** Filter: Perbaikan citra menggunakan median filter (Yonas)
-- [ ] **F2** Filter: Penapis lolos tinggi (Yonas)
+- [X] **F2** Filter: Penapis lolos tinggi (Yonas)
 - [ ] **F3** Filter: Unsharp masking (Yonas)
 - [ ] **F4** Filter: Highboost filter (Yonas)
 - [ ] **G1** Filter: Transformasi fourier (Hafizh)

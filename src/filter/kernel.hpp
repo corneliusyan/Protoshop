@@ -6,10 +6,19 @@
 #define Kernel std::vector<std::vector<double> >
 
 enum KernelType {
+  AVERAGE,
   GAUSSIAN3,
   MEDIAN,
   MAX,
   MIN,
+  HIGH_A,
+  HIGH_B,
+  HIGH_C,
+  HIGH_D,
+  HIGH_E,
+  HIGH_F
 };
+
+int kernelTypeHLN(KernelType kernelType);
 
 #endif

@@ -535,10 +535,17 @@ void ImageViewer::filterGeneral(KernelType kernelType) {
   showMessage();
 }
 
+void ImageViewer::filterAverage() { this->filterGeneral(AVERAGE); }
 void ImageViewer::filterGaussian() { this->filterGeneral(GAUSSIAN3); }
 void ImageViewer::filterMedian() { this->filterGeneral(MEDIAN); }
 void ImageViewer::filterMax() { this->filterGeneral(MAX); }
 void ImageViewer::filterMin() { this->filterGeneral(MIN); }
+void ImageViewer::filterHighA() { this->filterGeneral(HIGH_A); }
+void ImageViewer::filterHighB() { this->filterGeneral(HIGH_B); }
+void ImageViewer::filterHighC() { this->filterGeneral(HIGH_C); }
+void ImageViewer::filterHighD() { this->filterGeneral(HIGH_D); }
+void ImageViewer::filterHighE() { this->filterGeneral(HIGH_E); }
+void ImageViewer::filterHighF() { this->filterGeneral(HIGH_F); }
 
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
@@ -674,7 +681,14 @@ void ImageViewer::createActions() {
   QMenu *highPassFilterMenu = filterMenu->addMenu(tr("&High Pass"));
   QMenu *nonLinearFilterMenu = filterMenu->addMenu(tr("&Non Linear"));
 
+  filtersAct.push_back(lowPassFilterMenu->addAction(tr("&Average"), this, &ImageViewer::filterAverage));
   filtersAct.push_back(lowPassFilterMenu->addAction(tr("&Gaussian 3"), this, &ImageViewer::filterGaussian));
+  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &A"), this, &ImageViewer::filterHighA));
+  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &B"), this, &ImageViewer::filterHighB));
+  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &C"), this, &ImageViewer::filterHighC));
+  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &D"), this, &ImageViewer::filterHighD));
+  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &E"), this, &ImageViewer::filterHighE));
+  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &F"), this, &ImageViewer::filterHighF));
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("M&edian"), this, &ImageViewer::filterMedian));
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Ma&x"), this, &ImageViewer::filterMax));
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Mi&n"), this, &ImageViewer::filterMin));

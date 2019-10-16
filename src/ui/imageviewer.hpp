@@ -75,10 +75,17 @@ private slots:
   void fitToWindow();
 
   void filterGeneral(KernelType kernelType);
+  void filterAverage();
   void filterGaussian();
   void filterMedian();
   void filterMax();
   void filterMin();
+  void filterHighA();
+  void filterHighB();
+  void filterHighC();
+  void filterHighD();
+  void filterHighE();
+  void filterHighF();
 
   void about();
 
