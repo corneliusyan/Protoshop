@@ -86,6 +86,8 @@ private slots:
   void filterHighD();
   void filterHighE();
   void filterHighF();
+  void filterUnsharp();
+  void filterHighboost();
 
   void edgeDetectionGradient();
   void edgeDetection2ndDeriv();

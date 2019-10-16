@@ -3,8 +3,11 @@
 #include "strategy/strategy.hpp"
 
 Filter::Filter(KernelType kernelType) {
+  this->strategy = NULL;
+  int group = checkKernelGroup(kernelType);
+
   /** Convolutional kernel **/
-  if (kernelTypeHLN(kernelType) > 0) {
+  if (0 < group && group < 4) {
     Kernel kernel;
     int kernelSize;
     double _kernel[10][10];  // WARN: hardcoded kernel size of 19
@@ -103,7 +106,7 @@ Filter::Filter(KernelType kernelType) {
   }
 
   /** Non linear kernel **/
-  else if (kernelTypeHLN(kernelType) == 0) {
+  else if (group == 0) {
     switch (kernelType) {
       case MEDIAN:
         this->strategy = new FilterMedianStrategy(3);
@@ -116,8 +119,24 @@ Filter::Filter(KernelType kernelType) {
         break;
     }
   }
+
+  /** Complex kernel **/
+  else if (group == 4) {
+    switch(kernelType) {
+      case UNSHARP:
+        this->strategy = new FilterUnsharpStrategy();
+        break;
+      case HIGHBOOST:
+        this->strategy = new FilterHighboostStrategy(2.4);
+        break;
+    }
+  }
 }
 
 void Filter::apply(Image* target) {
-  this->strategy->apply(target);
+  if (this->strategy != NULL) {
+    this->strategy->apply(target);
+  } else {
+    std::cerr << "NULL Strategy" << std::endl;
+  }
 }

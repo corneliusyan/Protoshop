@@ -546,6 +546,8 @@ void ImageViewer::filterHighC() { this->filterGeneral(HIGH_C); }
 void ImageViewer::filterHighD() { this->filterGeneral(HIGH_D); }
 void ImageViewer::filterHighE() { this->filterGeneral(HIGH_E); }
 void ImageViewer::filterHighF() { this->filterGeneral(HIGH_F); }
+void ImageViewer::filterUnsharp() { this->filterGeneral(UNSHARP); }
+void ImageViewer::filterHighboost() { this->filterGeneral(HIGHBOOST); }
 
 void ImageViewer::edgeDetectionGradient() { this->filterGeneral(GRADIENT); }
 void ImageViewer::edgeDetection2ndDeriv() { this->filterGeneral(DERIV2); }
@@ -701,6 +703,8 @@ void ImageViewer::createActions() {
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("M&edian"), this, &ImageViewer::filterMedian));
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Ma&x"), this, &ImageViewer::filterMax));
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Mi&n"), this, &ImageViewer::filterMin));
+  filtersAct.push_back(filterMenu->addAction(tr("&Unsharp Masking"), this, &ImageViewer::filterUnsharp));
+  filtersAct.push_back(filterMenu->addAction(tr("&Highboost"), this, &ImageViewer::filterHighboost));
   for (auto act : filtersAct) { act->setEnabled(!image.isNull()); }
 
   QMenu *edgeDetectionMenu = menuBar()->addMenu(tr("Edge Detection"));

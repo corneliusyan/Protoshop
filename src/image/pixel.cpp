@@ -1,8 +1,9 @@
 #include <cstdlib>
-#include "pixel.hpp"
-#include "stdio.h"
+#include <cstdio>
 #include <iostream>
 #include <cmath>
+#include "pixel.hpp"
+#include "../utils/math.hpp"
 
 pixel::pixel() {
   len = 1;
@@ -56,64 +57,28 @@ pixel& pixel::operator=(const pixel& other) {
 
 pixel& pixel::operator+(const pixel& other) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] + other.in[i];
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip((int) in[i] + other.in[i], 0, 255);
   }
   return *this;
 }
 
 pixel& pixel::operator+=(const pixel& other) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] + other.in[i];
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip((int) in[i] + other.in[i], 0, 255);
   }
   return *this;
 }
 
 pixel& pixel::operator+(int scalar) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] + scalar;
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip((int) in[i] + scalar, 0, 255);
   }
   return *this;
 }
 
 pixel& pixel::operator-(const pixel& other) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] - other.in[i];
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip((int) in[i] - other.in[i], 0, 255);
   }
   return *this;
 }
@@ -124,80 +89,35 @@ pixel& pixel::operator-(int scalar) {
 
 pixel& pixel::operator*(const pixel& other) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] * other.in[i];
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip((int) in[i] * other.in[i], 0, 255);
   }
   return *this;
 }
 
 pixel& pixel::operator*(int scalar) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] * scalar;
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip((int) in[i] * scalar, 0, 255);
   }
   return *this;
 }
 
 pixel& pixel::operator*(double scalar) {
   for (int i = 0; i < len; i++) {
-    int temp = round(in[i] * scalar);
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip(round((int) in[i] + scalar), 0, 255);
   }
   return *this;
 }
 
 pixel& pixel::operator/(const pixel& other) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] / other.in[i];
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip(round((double) in[i] / other.in[i]), 0, 255);
   }
   return *this;
 }
 
 pixel& pixel::operator/(int scalar) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] / scalar;
-    if (temp < 0) {
-      in[i] = 0;
-    } else {
-      if (temp > 255) {
-        in[i] = 255;
-      } else {
-        in[i] = temp;
-      }
-    }
+    in[i] = clip(round((double) in[i] / scalar), 0, 255);
   }
   return *this;
 }
@@ -224,7 +144,7 @@ pixel& pixel::operator!(void) {
 pixel operator-(int scalar, const pixel& px) {
   pixel res(px);
   for (int i = 0; i < res.len; i++) {
-    res.in[i] = scalar - px.in[i];
+    res.in[i] = clip((int) scalar - px.in[i], 0, 255);
   }
   return res;
 }

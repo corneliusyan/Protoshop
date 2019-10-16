@@ -12,8 +12,7 @@ void FilterConvolutionStrategy::apply(Image* target) {
   for (int i = 0; i < target->height; i++) {
     for (int j = 0; j < target->width; j++) {
       std::vector<double> new_pixel;
-      for (int k = 0; k < temp->get_pixel(0, 0).len; k++) { new_pixel.push_back(0); 
-}
+      for (int k = 0; k < temp->get_pixel(0, 0).len; k++) { new_pixel.push_back(0); }
       int rowOffset = - (this->kernel.size() / 2);
       for (int i_k = 0; i_k < (int) this->kernel.size(); i_k++) {
         int colOffset = - (this->kernel[i_k].size() / 2);

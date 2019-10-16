@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImageViewer_t {
-    QByteArrayData data[70];
-    char stringdata0[899];
+    QByteArrayData data[72];
+    char stringdata0[929];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -92,15 +92,17 @@ QT_MOC_LITERAL(57, 683, 11), // "filterHighC"
 QT_MOC_LITERAL(58, 695, 11), // "filterHighD"
 QT_MOC_LITERAL(59, 707, 11), // "filterHighE"
 QT_MOC_LITERAL(60, 719, 11), // "filterHighF"
-QT_MOC_LITERAL(61, 731, 21), // "edgeDetectionGradient"
-QT_MOC_LITERAL(62, 753, 21), // "edgeDetection2ndDeriv"
-QT_MOC_LITERAL(63, 775, 20), // "edgeDetectionLaplace"
-QT_MOC_LITERAL(64, 796, 16), // "edgeDetectionLoG"
-QT_MOC_LITERAL(65, 813, 18), // "edgeDetectionSobel"
-QT_MOC_LITERAL(66, 832, 20), // "edgeDetectionPrewitt"
-QT_MOC_LITERAL(67, 853, 20), // "edgeDetectionRoberts"
-QT_MOC_LITERAL(68, 874, 18), // "edgeDetectionCanny"
-QT_MOC_LITERAL(69, 893, 5) // "about"
+QT_MOC_LITERAL(61, 731, 13), // "filterUnsharp"
+QT_MOC_LITERAL(62, 745, 15), // "filterHighboost"
+QT_MOC_LITERAL(63, 761, 21), // "edgeDetectionGradient"
+QT_MOC_LITERAL(64, 783, 21), // "edgeDetection2ndDeriv"
+QT_MOC_LITERAL(65, 805, 20), // "edgeDetectionLaplace"
+QT_MOC_LITERAL(66, 826, 16), // "edgeDetectionLoG"
+QT_MOC_LITERAL(67, 843, 18), // "edgeDetectionSobel"
+QT_MOC_LITERAL(68, 862, 20), // "edgeDetectionPrewitt"
+QT_MOC_LITERAL(69, 883, 20), // "edgeDetectionRoberts"
+QT_MOC_LITERAL(70, 904, 18), // "edgeDetectionCanny"
+QT_MOC_LITERAL(71, 923, 5) // "about"
 
     },
     "ImageViewer\0open\0\0saveAs\0print\0imageAdd\0"
@@ -123,11 +125,12 @@ QT_MOC_LITERAL(69, 893, 5) // "about"
     "filterGaussian\0filterMedian\0filterMax\0"
     "filterMin\0filterHighA\0filterHighB\0"
     "filterHighC\0filterHighD\0filterHighE\0"
-    "filterHighF\0edgeDetectionGradient\0"
-    "edgeDetection2ndDeriv\0edgeDetectionLaplace\0"
-    "edgeDetectionLoG\0edgeDetectionSobel\0"
-    "edgeDetectionPrewitt\0edgeDetectionRoberts\0"
-    "edgeDetectionCanny\0about"
+    "filterHighF\0filterUnsharp\0filterHighboost\0"
+    "edgeDetectionGradient\0edgeDetection2ndDeriv\0"
+    "edgeDetectionLaplace\0edgeDetectionLoG\0"
+    "edgeDetectionSobel\0edgeDetectionPrewitt\0"
+    "edgeDetectionRoberts\0edgeDetectionCanny\0"
+    "about"
 };
 #undef QT_MOC_LITERAL
 
@@ -137,7 +140,7 @@ static const uint qt_meta_data_ImageViewer[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      60,   14, // methods
+      62,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -145,66 +148,68 @@ static const uint qt_meta_data_ImageViewer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  314,    2, 0x08 /* Private */,
-       3,    0,  315,    2, 0x08 /* Private */,
-       4,    0,  316,    2, 0x08 /* Private */,
-       5,    0,  317,    2, 0x08 /* Private */,
-       6,    0,  318,    2, 0x08 /* Private */,
-       7,    0,  319,    2, 0x08 /* Private */,
-       8,    0,  320,    2, 0x08 /* Private */,
-       9,    1,  321,    2, 0x08 /* Private */,
-      11,    2,  324,    2, 0x08 /* Private */,
-      12,    0,  329,    2, 0x08 /* Private */,
-      13,    0,  330,    2, 0x08 /* Private */,
-      14,    0,  331,    2, 0x08 /* Private */,
-      15,    0,  332,    2, 0x08 /* Private */,
-      16,    0,  333,    2, 0x08 /* Private */,
-      17,    2,  334,    2, 0x08 /* Private */,
-      20,    2,  339,    2, 0x08 /* Private */,
-      21,    0,  344,    2, 0x08 /* Private */,
-      22,    0,  345,    2, 0x08 /* Private */,
-      23,    0,  346,    2, 0x08 /* Private */,
-      24,    0,  347,    2, 0x08 /* Private */,
-      25,    0,  348,    2, 0x08 /* Private */,
-      26,    0,  349,    2, 0x08 /* Private */,
-      27,    0,  350,    2, 0x08 /* Private */,
-      28,    0,  351,    2, 0x08 /* Private */,
-      29,    0,  352,    2, 0x08 /* Private */,
-      30,    0,  353,    2, 0x08 /* Private */,
-      31,    0,  354,    2, 0x08 /* Private */,
-      32,    0,  355,    2, 0x08 /* Private */,
-      33,    0,  356,    2, 0x08 /* Private */,
-      34,    0,  357,    2, 0x08 /* Private */,
-      35,    0,  358,    2, 0x08 /* Private */,
-      36,    2,  359,    2, 0x08 /* Private */,
-      40,    0,  364,    2, 0x08 /* Private */,
-      41,    0,  365,    2, 0x08 /* Private */,
-      42,    0,  366,    2, 0x08 /* Private */,
-      43,    0,  367,    2, 0x08 /* Private */,
-      44,    0,  368,    2, 0x08 /* Private */,
-      45,    0,  369,    2, 0x08 /* Private */,
-      46,    0,  370,    2, 0x08 /* Private */,
-      47,    1,  371,    2, 0x08 /* Private */,
-      50,    0,  374,    2, 0x08 /* Private */,
-      51,    0,  375,    2, 0x08 /* Private */,
-      52,    0,  376,    2, 0x08 /* Private */,
-      53,    0,  377,    2, 0x08 /* Private */,
-      54,    0,  378,    2, 0x08 /* Private */,
-      55,    0,  379,    2, 0x08 /* Private */,
-      56,    0,  380,    2, 0x08 /* Private */,
-      57,    0,  381,    2, 0x08 /* Private */,
-      58,    0,  382,    2, 0x08 /* Private */,
-      59,    0,  383,    2, 0x08 /* Private */,
-      60,    0,  384,    2, 0x08 /* Private */,
-      61,    0,  385,    2, 0x08 /* Private */,
-      62,    0,  386,    2, 0x08 /* Private */,
-      63,    0,  387,    2, 0x08 /* Private */,
-      64,    0,  388,    2, 0x08 /* Private */,
-      65,    0,  389,    2, 0x08 /* Private */,
-      66,    0,  390,    2, 0x08 /* Private */,
-      67,    0,  391,    2, 0x08 /* Private */,
-      68,    0,  392,    2, 0x08 /* Private */,
-      69,    0,  393,    2, 0x08 /* Private */,
+       1,    0,  324,    2, 0x08 /* Private */,
+       3,    0,  325,    2, 0x08 /* Private */,
+       4,    0,  326,    2, 0x08 /* Private */,
+       5,    0,  327,    2, 0x08 /* Private */,
+       6,    0,  328,    2, 0x08 /* Private */,
+       7,    0,  329,    2, 0x08 /* Private */,
+       8,    0,  330,    2, 0x08 /* Private */,
+       9,    1,  331,    2, 0x08 /* Private */,
+      11,    2,  334,    2, 0x08 /* Private */,
+      12,    0,  339,    2, 0x08 /* Private */,
+      13,    0,  340,    2, 0x08 /* Private */,
+      14,    0,  341,    2, 0x08 /* Private */,
+      15,    0,  342,    2, 0x08 /* Private */,
+      16,    0,  343,    2, 0x08 /* Private */,
+      17,    2,  344,    2, 0x08 /* Private */,
+      20,    2,  349,    2, 0x08 /* Private */,
+      21,    0,  354,    2, 0x08 /* Private */,
+      22,    0,  355,    2, 0x08 /* Private */,
+      23,    0,  356,    2, 0x08 /* Private */,
+      24,    0,  357,    2, 0x08 /* Private */,
+      25,    0,  358,    2, 0x08 /* Private */,
+      26,    0,  359,    2, 0x08 /* Private */,
+      27,    0,  360,    2, 0x08 /* Private */,
+      28,    0,  361,    2, 0x08 /* Private */,
+      29,    0,  362,    2, 0x08 /* Private */,
+      30,    0,  363,    2, 0x08 /* Private */,
+      31,    0,  364,    2, 0x08 /* Private */,
+      32,    0,  365,    2, 0x08 /* Private */,
+      33,    0,  366,    2, 0x08 /* Private */,
+      34,    0,  367,    2, 0x08 /* Private */,
+      35,    0,  368,    2, 0x08 /* Private */,
+      36,    2,  369,    2, 0x08 /* Private */,
+      40,    0,  374,    2, 0x08 /* Private */,
+      41,    0,  375,    2, 0x08 /* Private */,
+      42,    0,  376,    2, 0x08 /* Private */,
+      43,    0,  377,    2, 0x08 /* Private */,
+      44,    0,  378,    2, 0x08 /* Private */,
+      45,    0,  379,    2, 0x08 /* Private */,
+      46,    0,  380,    2, 0x08 /* Private */,
+      47,    1,  381,    2, 0x08 /* Private */,
+      50,    0,  384,    2, 0x08 /* Private */,
+      51,    0,  385,    2, 0x08 /* Private */,
+      52,    0,  386,    2, 0x08 /* Private */,
+      53,    0,  387,    2, 0x08 /* Private */,
+      54,    0,  388,    2, 0x08 /* Private */,
+      55,    0,  389,    2, 0x08 /* Private */,
+      56,    0,  390,    2, 0x08 /* Private */,
+      57,    0,  391,    2, 0x08 /* Private */,
+      58,    0,  392,    2, 0x08 /* Private */,
+      59,    0,  393,    2, 0x08 /* Private */,
+      60,    0,  394,    2, 0x08 /* Private */,
+      61,    0,  395,    2, 0x08 /* Private */,
+      62,    0,  396,    2, 0x08 /* Private */,
+      63,    0,  397,    2, 0x08 /* Private */,
+      64,    0,  398,    2, 0x08 /* Private */,
+      65,    0,  399,    2, 0x08 /* Private */,
+      66,    0,  400,    2, 0x08 /* Private */,
+      67,    0,  401,    2, 0x08 /* Private */,
+      68,    0,  402,    2, 0x08 /* Private */,
+      69,    0,  403,    2, 0x08 /* Private */,
+      70,    0,  404,    2, 0x08 /* Private */,
+      71,    0,  405,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -247,6 +252,8 @@ static const uint qt_meta_data_ImageViewer[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 48,   49,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -330,15 +337,17 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 48: _t->filterHighD(); break;
         case 49: _t->filterHighE(); break;
         case 50: _t->filterHighF(); break;
-        case 51: _t->edgeDetectionGradient(); break;
-        case 52: _t->edgeDetection2ndDeriv(); break;
-        case 53: _t->edgeDetectionLaplace(); break;
-        case 54: _t->edgeDetectionLoG(); break;
-        case 55: _t->edgeDetectionSobel(); break;
-        case 56: _t->edgeDetectionPrewitt(); break;
-        case 57: _t->edgeDetectionRoberts(); break;
-        case 58: _t->edgeDetectionCanny(); break;
-        case 59: _t->about(); break;
+        case 51: _t->filterUnsharp(); break;
+        case 52: _t->filterHighboost(); break;
+        case 53: _t->edgeDetectionGradient(); break;
+        case 54: _t->edgeDetection2ndDeriv(); break;
+        case 55: _t->edgeDetectionLaplace(); break;
+        case 56: _t->edgeDetectionLoG(); break;
+        case 57: _t->edgeDetectionSobel(); break;
+        case 58: _t->edgeDetectionPrewitt(); break;
+        case 59: _t->edgeDetectionRoberts(); break;
+        case 60: _t->edgeDetectionCanny(); break;
+        case 61: _t->about(); break;
         default: ;
         }
     }
@@ -373,13 +382,13 @@ int ImageViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 60)
+        if (_id < 62)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 60;
+        _id -= 62;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 60)
+        if (_id < 62)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 60;
+        _id -= 62;
     }
     return _id;
 }

@@ -24,9 +24,11 @@ enum KernelType {
   SOBEL,
   PREWITT,
   ROBERTS,
-  CANNY
+  CANNY,
+  UNSHARP,
+  HIGHBOOST
 };
 
-int kernelTypeHLN(KernelType kernelType);
+int checkKernelGroup(KernelType kernelType);
 
 #endif

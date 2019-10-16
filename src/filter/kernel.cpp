@@ -1,6 +1,6 @@
 #include "kernel.hpp"
 
-int kernelTypeHLN(KernelType kernelType) {
+int checkKernelGroup(KernelType kernelType) {
   switch (kernelType) {
     case AVERAGE:
     case GAUSSIAN3:
@@ -21,6 +21,9 @@ int kernelTypeHLN(KernelType kernelType) {
     case ROBERTS:
     case CANNY:
       return 3;
+    case UNSHARP:
+    case HIGHBOOST:
+      return 4;
     case MEDIAN:
     case MAX:
     case MIN:
