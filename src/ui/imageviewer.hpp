@@ -50,6 +50,7 @@ private slots:
   int scalarDialog(int operation, char *hint);
 
   void fourierTransform();
+  void inverseFourierTransform();
   void brighten();
   void unbrighten();
   void rotate90CW();
@@ -100,6 +101,7 @@ private:
 #endif
 
   QAction *fourierTransformAct;
+  QAction *inverseFourierTransformAct;
 
   QAction *imageAddAct;
   QAction *imageMultiplyAct;

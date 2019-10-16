@@ -16,6 +16,7 @@ Image::Image() {
   this->imageType = ImageType::RGB;
   this->height = 32;
   this->width = 32;
+  this->isFourierEmpty = true;
 
   this->pixels = (pixel**) malloc(height * sizeof (pixel*));
   for (int i = 0; i < height; i++) {
@@ -32,6 +33,7 @@ Image::Image(ImageType imageType, int height, int width) {
   this->imageType = imageType;
   this->height = height;
   this->width = width;
+  this->isFourierEmpty = true;
 
   this->pixels = (pixel**) malloc(height * sizeof (pixel*));
   for (int i = 0; i < height; i++) {
@@ -109,7 +111,7 @@ void Image::set_pixel(int row, int col, pixel px) {
       (*this->qimg).setPixel(col, row, value);
   } else {
       value = qRgb(px.in[0], px.in[1], px.in[2]);
-      // std::cout << px.in[0] << " " << px.in[1] << " " << px.in[2] << std::endl;
+//      std::cout <<  px.in[0] << " - " << px.in[1] << " - " << px.in[2] << std::endl;
       (*this->qimg).setPixel(col, row, value);
   }
 }

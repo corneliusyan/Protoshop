@@ -22,6 +22,10 @@ public:
   ImageType imageType;
   int height;
   int width;
+  bool isFourierEmpty;
+
+  double **imaginer;
+  double **real;
 
   /**
    * @constructor

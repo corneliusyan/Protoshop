@@ -13,6 +13,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
 HEADERS += $$system(find src -name "\*.hpp")
+
 SOURCES += $$system(find src -name "\*.cpp")
 
 CONFIG += x11 thread c++11

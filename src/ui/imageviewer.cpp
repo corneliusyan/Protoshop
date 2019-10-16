@@ -364,7 +364,19 @@ void ImageViewer::unbrighten() {
 }
 
 void ImageViewer::fourierTransform() {
-  
+  FilterFourier *filter = new FilterFourier();
+  filter->apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::inverseFourierTransform() {
+  FilterFourier *filter = new FilterFourier();
+  filter->applyInverse(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
 }
 
 void ImageViewer::rotate90CW() {
@@ -444,7 +456,6 @@ void ImageViewer::showNormalizedHistogramGreen() {
 void ImageViewer::showNormalizedHistogramBlue() {
   showHistogram(Qt::blue, true);
 }
-
 
 void ImageViewer::showHistogram(Qt::GlobalColor colorCode, bool isNormalized) {
   double hist[256] = {0};
@@ -616,6 +627,9 @@ void ImageViewer::createActions() {
 
   fourierTransformAct = editMenu->addAction(tr("&Fourier Transform"), this, &ImageViewer::fourierTransform);
   fourierTransformAct->setEnabled(false);
+
+  inverseFourierTransformAct = editMenu->addAction(tr("&Inverse Fourier Transform"), this, &ImageViewer::inverseFourierTransform);
+  inverseFourierTransformAct->setEnabled(false);
   
   translateAct = editMenu->addAction(tr("&Translate"), this, &ImageViewer::translate);
   translateAct->setEnabled(false);
@@ -695,6 +709,7 @@ void ImageViewer::updateActions() {
   scalarNotAct->setEnabled(!image.isNull());
   brightenAct->setEnabled(!image.isNull());
   fourierTransformAct->setEnabled(!image.isNull());
+  inverseFourierTransformAct->setEnabled(!image.isNull());
 
   unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());
