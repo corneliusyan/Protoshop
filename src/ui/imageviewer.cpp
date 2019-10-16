@@ -446,7 +446,7 @@ void ImageViewer::log() {
   double val = QInputDialog::getDouble(this, tr("input value"),
                                 tr("Scalar Value:"), 0, -255, 255, 1, &ok);
   if (ok) {
-    AdjustmentEnhancement::log(img, val);
+    AdjustmentEnhancement::logTransform(img, val);
     const QImage newImage = img->getQImage();
     setImage(newImage);
     showMessage();

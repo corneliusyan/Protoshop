@@ -7,7 +7,7 @@ class AdjustmentEnhancement : public Adjustment {
 public:
   static void brighten(Image* target, double multiplier);
   static void contrastStretch(Image* target, int rMin, int rMax);
-  static void log(Image* target, double c);
+  static void logTransform(Image* target, double c);
   static void inverseLog(Image* target, double c);
   static void power(Image* target, double c);
   static void graySlicing(Image* target, int rMin, int rMax);
