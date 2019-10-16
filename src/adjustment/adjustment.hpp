@@ -7,3 +7,4 @@
 #include "flip.hpp"
 #include "zoom.hpp"
 #include "enhancement.hpp"
+#include "equalize.hpp"

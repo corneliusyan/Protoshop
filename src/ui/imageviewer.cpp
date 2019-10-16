@@ -449,6 +449,13 @@ void ImageViewer::zoom2Out() {
   showMessage();
 }
 
+void ImageViewer::equalize() {
+  AdjustmentHistogramEqualize::apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::brightenScale() {
   bool ok;
   double val = QInputDialog::getDouble(this, tr("input value"),
@@ -732,6 +739,7 @@ void ImageViewer::createActions() {
   imageActions.push_back(editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical));
   imageActions.push_back(editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In));
   imageActions.push_back(editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out));
+  imageActions.push_back(editMenu->addAction(tr("&Equalize"), this, &ImageViewer::equalize));
 
   imageActions.push_back(editMenu->addAction(tr("&Brighten Scale"), this, &ImageViewer::brightenScale));
   imageActions.push_back(editMenu->addAction(tr("&Contrast Stretch"), this, &ImageViewer::contrastStretch));
