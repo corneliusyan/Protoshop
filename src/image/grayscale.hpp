@@ -14,6 +14,7 @@ public:
    * @param {std::string} filename the name of the file to be loaded
    */
   static GrayscaleImage* loadPGM(std::string filename);
+  static GrayscaleImage* loadRAW(std::string filename);
 };
 
 #endif

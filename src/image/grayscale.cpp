@@ -74,3 +74,35 @@ GrayscaleImage* GrayscaleImage::loadPGM(std::string filename) {
     throw ImageLoadException("Cannot open image file");
   }
 }
+
+GrayscaleImage* GrayscaleImage::loadRAW(std::string filename) {
+  std::ifstream image_file;
+  image_file.open(filename, std::ios::in | std::ios::binary);
+  if (image_file.is_open()) {
+    // retrieving file size
+    image_file.seekg(0, std::ios::end);
+    std::streampos size = image_file.tellg();
+    image_file.seekg(0, std::ios::beg);
+
+    char* bytes = new char[size];
+    image_file.read(bytes, size);
+    image_file.close();
+
+    int pointer = 0;
+    int width = nextInt(bytes, size, &pointer);
+    int height = nextInt(bytes, size, &pointer);
+
+    GrayscaleImage* image = new GrayscaleImage(height, width);
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        uchar gray = nextInt(bytes, size, &pointer);
+        image->set_pixel(i, j, pixel(gray));
+      }
+    }
+
+    delete[] bytes;
+    return image;
+  } else {
+    throw ImageLoadException("Cannot open image file");
+  }
+}
