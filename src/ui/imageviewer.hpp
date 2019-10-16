@@ -120,42 +120,9 @@ private:
   QPrinter printer;
 #endif
 
-  QAction *imageAddAct;
-  QAction *imageMultiplyAct;
-  QAction *imageAndAct;
-  QAction *imageOrAct;
-  QAction *scalarAddAct;
-  QAction *scalarSubstractAct;
-  QAction *scalarMultiplyAct;
-  QAction *scalarDivideAct;
-  QAction *scalarNotAct;
-
-  QAction *brightenAct;
-  QAction *unbrightenAct;
-  QAction *rotate90CWAct;
-  QAction *rotate90CCWAct;
-  QAction *translateAct;
-  QAction *flipHorizontalAct;
-  QAction *flipVerticalAct;
-  QAction *zoom2InAct;
-  QAction *zoom2OutAct;
-  QAction *redHistogramAct;
-  QAction *greenHistogramAct;
-  QAction *blueHistogramAct;
-  QAction *normalizedRedHistogramAct;
-  QAction *normalizedGreenHistogramAct;
-  QAction *normalizedBlueHistogramAct;
-
-  QAction *saveAsAct;
-  QAction *printAct;
-  QAction *copyAct;
-  QAction *zoomInAct;
-  QAction *zoomOutAct;
-  QAction *normalSizeAct;
   QAction *fitToWindowAct;
-
-  std::vector<QAction*> filtersAct;
-  std::vector<QAction*> edgeDetectionAct;
+  std::vector<QAction*> imageActions;
+  std::vector<QAction*> unfitToWindowActions;
 };
 
 #endif

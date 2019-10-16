@@ -67,10 +67,7 @@ void ImageViewer::setImage(const QImage &newImage) {
   image = newImage;
   imageLabel->setPixmap(QPixmap::fromImage(image));
   scaleFactor = 1.0;
-
   scrollArea->setVisible(true);
-  printAct->setEnabled(true);
-  fitToWindowAct->setEnabled(true);
   updateActions();
 
   if (!fitToWindowAct->isChecked())
@@ -566,15 +563,12 @@ void ImageViewer::about() {
 void ImageViewer::createActions() {
   QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
 
-  QAction *openAct = fileMenu->addAction(tr("&Open..."), this, &ImageViewer::open);
+  QAction* openAct = fileMenu->addAction(tr("&Open..."), this, &ImageViewer::open);
   openAct->setShortcut(QKeySequence::Open);
-
-  saveAsAct = fileMenu->addAction(tr("&Save As..."), this, &ImageViewer::saveAs);
-  saveAsAct->setEnabled(false);
-
-  printAct = fileMenu->addAction(tr("&Print..."), this, &ImageViewer::print);
-  printAct->setShortcut(QKeySequence::Print);
-  printAct->setEnabled(false);
+  imageActions.push_back(fileMenu->addAction(tr("&Save As..."), this, &ImageViewer::saveAs));
+  imageActions.back()->setShortcut(QKeySequence::Save);
+  imageActions.push_back(fileMenu->addAction(tr("&Print..."), this, &ImageViewer::print));
+  imageActions.back()->setShortcut(QKeySequence::Print);
 
   fileMenu->addSeparator();
 
@@ -583,183 +577,99 @@ void ImageViewer::createActions() {
 
   QMenu *editMenu = menuBar()->addMenu(tr("&Edit"));
 
-  copyAct = editMenu->addAction(tr("&Copy"), this, &ImageViewer::copy);
-  copyAct->setShortcut(QKeySequence::Copy);
-  copyAct->setEnabled(false);
-
-  QAction *pasteAct = editMenu->addAction(tr("&Paste"), this, &ImageViewer::paste);
-  pasteAct->setShortcut(QKeySequence::Paste);
+  imageActions.push_back(editMenu->addAction(tr("&Copy"), this, &ImageViewer::copy));
+  imageActions.back()->setShortcut(QKeySequence::Copy);
+  imageActions.push_back(editMenu->addAction(tr("&Paste"), this, &ImageViewer::paste));
+  imageActions.back()->setShortcut(QKeySequence::Paste);
 
   QMenu *imageOperator = editMenu->addMenu(tr("&Image Operator"));
-
-  imageAddAct = imageOperator->addAction(tr("&Add"), this, &ImageViewer::imageAdd);
-  imageAddAct->setEnabled(false);
-
-  imageMultiplyAct = imageOperator->addAction(tr("&Multiply"), this, &ImageViewer::imageMultiply);
-  imageMultiplyAct->setEnabled(false);
-
-  imageAndAct = imageOperator->addAction(tr("&And"), this, &ImageViewer::imageAnd);
-  imageAndAct->setEnabled(false);
-
-  imageOrAct = imageOperator->addAction(tr("&Or"), this, &ImageViewer::imageOr);
-  imageOrAct->setEnabled(false);
+  imageActions.push_back(imageOperator->addAction(tr("&Add"), this, &ImageViewer::imageAdd));
+  imageActions.push_back(imageOperator->addAction(tr("&Multiply"), this, &ImageViewer::imageMultiply));
+  imageActions.push_back(imageOperator->addAction(tr("&And"), this, &ImageViewer::imageAnd));
+  imageActions.push_back(imageOperator->addAction(tr("&Or"), this, &ImageViewer::imageOr));
 
   QMenu *scalarOperator = editMenu->addMenu(tr("&Scalar Operator"));
+  imageActions.push_back(scalarOperator->addAction(tr("&Add"), this, &ImageViewer::scalarAdd));
+  imageActions.push_back(scalarOperator->addAction(tr("&Substract"), this, &ImageViewer::scalarSubstract));
+  imageActions.push_back(scalarOperator->addAction(tr("&Multiply"), this, &ImageViewer::scalarMultiply));
+  imageActions.push_back(scalarOperator->addAction(tr("&Divide"), this, &ImageViewer::scalarDivide));
+  imageActions.push_back(scalarOperator->addAction(tr("&Not"), this, &ImageViewer::scalarNot));
 
-  scalarAddAct = scalarOperator->addAction(tr("&Add"), this, &ImageViewer::scalarAdd);
-  scalarAddAct->setEnabled(false);
-
-  scalarSubstractAct = scalarOperator->addAction(tr("&Substract"), this, &ImageViewer::scalarSubstract);
-  scalarSubstractAct->setEnabled(false);
-
-  scalarMultiplyAct = scalarOperator->addAction(tr("&Multiply"), this, &ImageViewer::scalarMultiply);
-  scalarMultiplyAct->setEnabled(false);
-
-  scalarDivideAct = scalarOperator->addAction(tr("&Divide"), this, &ImageViewer::scalarDivide);
-  scalarDivideAct->setEnabled(false);
-
-  scalarNotAct = scalarOperator->addAction(tr("&Not"), this, &ImageViewer::scalarNot);
-  scalarNotAct->setEnabled(false);
-
-  brightenAct = editMenu->addAction(tr("&Brighten"), this, &ImageViewer::brighten);
-  brightenAct->setEnabled(false);
-
-  unbrightenAct = editMenu->addAction(tr("&Unbrighten"), this, &ImageViewer::unbrighten);
-  unbrightenAct->setEnabled(false);
-
-  rotate90CWAct = editMenu->addAction(tr("&Rotate 90CW"), this, &ImageViewer::rotate90CW);
-  rotate90CWAct->setEnabled(false);
-
-  rotate90CCWAct = editMenu->addAction(tr("&Rotate 90CCW"), this, &ImageViewer::rotate90CCW);
-  rotate90CCWAct->setEnabled(false);
-
-  translateAct = editMenu->addAction(tr("&Translate"), this, &ImageViewer::translate);
-  translateAct->setEnabled(false);
-
-  flipHorizontalAct = editMenu->addAction(tr("&Flip Horizontal"), this, &ImageViewer::flipHorizontal);
-  flipHorizontalAct->setEnabled(false);
-
-  flipVerticalAct = editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical);
-  flipVerticalAct->setEnabled(false);
-
-  zoom2InAct= editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In);
-  zoom2InAct->setEnabled(false);
-
-  zoom2OutAct= editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out);
-  zoom2OutAct->setEnabled(false);
+  imageActions.push_back(editMenu->addAction(tr("&Brighten"), this, &ImageViewer::brighten));
+  imageActions.push_back(editMenu->addAction(tr("&Unbrighten"), this, &ImageViewer::unbrighten));
+  imageActions.push_back(editMenu->addAction(tr("&Rotate 90CW"), this, &ImageViewer::rotate90CW));
+  imageActions.push_back(editMenu->addAction(tr("&Rotate 90CCW"), this, &ImageViewer::rotate90CCW));
+  imageActions.push_back(editMenu->addAction(tr("&Translate"), this, &ImageViewer::translate));
+  imageActions.push_back(editMenu->addAction(tr("&Flip Horizontal"), this, &ImageViewer::flipHorizontal));
+  imageActions.push_back(editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical));
+  imageActions.push_back(editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In));
+  imageActions.push_back(editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out));
 
   QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
-
-  redHistogramAct = histogramMenu->addAction(tr("&Red"), this, &ImageViewer::showHistogramRed);
-  redHistogramAct->setEnabled(false);
-  greenHistogramAct = histogramMenu->addAction(tr("&Green"), this, &ImageViewer::showHistogramGreen);
-  greenHistogramAct->setEnabled(false);
-  blueHistogramAct = histogramMenu->addAction(tr("&Blue"), this, &ImageViewer::showHistogramBlue);
-  blueHistogramAct->setEnabled(false);
+  imageActions.push_back(histogramMenu->addAction(tr("&Red"), this, &ImageViewer::showHistogramRed));
+  imageActions.push_back(histogramMenu->addAction(tr("&Green"), this, &ImageViewer::showHistogramGreen));
+  imageActions.push_back(histogramMenu->addAction(tr("&Blue"), this, &ImageViewer::showHistogramBlue));
 
   QMenu *normalizedHistogramMenu = editMenu->addMenu(tr("&Show Normalized Histogram"));
 
-  normalizedRedHistogramAct = normalizedHistogramMenu->addAction(tr("&Red"), this, &ImageViewer::showNormalizedHistogramRed);
-  normalizedRedHistogramAct->setEnabled(false);
-  normalizedGreenHistogramAct = normalizedHistogramMenu->addAction(tr("&Green"), this, &ImageViewer::showNormalizedHistogramGreen);
-  normalizedGreenHistogramAct->setEnabled(false);
-  normalizedBlueHistogramAct = normalizedHistogramMenu->addAction(tr("&Blue"), this, &ImageViewer::showNormalizedHistogramBlue);
-  normalizedBlueHistogramAct->setEnabled(false);
+  imageActions.push_back(normalizedHistogramMenu->addAction(tr("&Red"), this, &ImageViewer::showNormalizedHistogramRed));
+  imageActions.push_back(normalizedHistogramMenu->addAction(tr("&Green"), this, &ImageViewer::showNormalizedHistogramGreen));
+  imageActions.push_back(normalizedHistogramMenu->addAction(tr("&Blue"), this, &ImageViewer::showNormalizedHistogramBlue));
 
   QMenu *viewMenu = menuBar()->addMenu(tr("&View"));
 
-  zoomInAct = viewMenu->addAction(tr("Zoom &In (25%)"), this, &ImageViewer::zoomIn);
-  zoomInAct->setShortcut(QKeySequence::ZoomIn);
-  zoomInAct->setEnabled(false);
-
-  zoomOutAct = viewMenu->addAction(tr("Zoom &Out (25%)"), this, &ImageViewer::zoomOut);
-  zoomOutAct->setShortcut(QKeySequence::ZoomOut);
-  zoomOutAct->setEnabled(false);
-
-  normalSizeAct = viewMenu->addAction(tr("&Normal Size"), this, &ImageViewer::normalSize);
-  normalSizeAct->setShortcut(tr("Ctrl+S"));
-  normalSizeAct->setEnabled(false);
+  unfitToWindowActions.push_back(viewMenu->addAction(tr("Zoom &In (25%)"), this, &ImageViewer::zoomIn));
+  unfitToWindowActions.back()->setShortcut(QKeySequence::ZoomIn);
+  unfitToWindowActions.push_back(viewMenu->addAction(tr("Zoom &Out (25%)"), this, &ImageViewer::zoomOut));
+  unfitToWindowActions.back()->setShortcut(QKeySequence::ZoomOut);
+  unfitToWindowActions.push_back(viewMenu->addAction(tr("&Normal Size"), this, &ImageViewer::normalSize));
+  unfitToWindowActions.back()->setShortcut(tr("Ctrl+S"));
 
   viewMenu->addSeparator();
 
   fitToWindowAct = viewMenu->addAction(tr("&Fit to Window"), this, &ImageViewer::fitToWindow);
-  fitToWindowAct->setEnabled(false);
-  fitToWindowAct->setCheckable(true);
-  fitToWindowAct->setShortcut(tr("Ctrl+F"));
+  imageActions.push_back(fitToWindowAct);
+  imageActions.back()->setCheckable(true);
+  imageActions.back()->setShortcut(tr("Ctrl+F"));
 
   QMenu *filterMenu = menuBar()->addMenu(tr("Fil&ter"));
   QMenu *lowPassFilterMenu = filterMenu->addMenu(tr("&Low Pass"));
   QMenu *highPassFilterMenu = filterMenu->addMenu(tr("&High Pass"));
   QMenu *nonLinearFilterMenu = filterMenu->addMenu(tr("&Non Linear"));
 
-  filtersAct.push_back(lowPassFilterMenu->addAction(tr("&Average"), this, &ImageViewer::filterAverage));
-  filtersAct.push_back(lowPassFilterMenu->addAction(tr("&Gaussian 3"), this, &ImageViewer::filterGaussian));
-  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &A"), this, &ImageViewer::filterHighA));
-  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &B"), this, &ImageViewer::filterHighB));
-  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &C"), this, &ImageViewer::filterHighC));
-  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &D"), this, &ImageViewer::filterHighD));
-  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &E"), this, &ImageViewer::filterHighE));
-  filtersAct.push_back(highPassFilterMenu->addAction(tr("High &F"), this, &ImageViewer::filterHighF));
-  filtersAct.push_back(nonLinearFilterMenu->addAction(tr("M&edian"), this, &ImageViewer::filterMedian));
-  filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Ma&x"), this, &ImageViewer::filterMax));
-  filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Mi&n"), this, &ImageViewer::filterMin));
-  filtersAct.push_back(filterMenu->addAction(tr("&Unsharp Masking"), this, &ImageViewer::filterUnsharp));
-  filtersAct.push_back(filterMenu->addAction(tr("&Highboost"), this, &ImageViewer::filterHighboost));
-  for (auto act : filtersAct) { act->setEnabled(!image.isNull()); }
+  imageActions.push_back(lowPassFilterMenu->addAction(tr("&Average"), this, &ImageViewer::filterAverage));
+  imageActions.push_back(lowPassFilterMenu->addAction(tr("&Gaussian 3"), this, &ImageViewer::filterGaussian));
+  imageActions.push_back(highPassFilterMenu->addAction(tr("High &A"), this, &ImageViewer::filterHighA));
+  imageActions.push_back(highPassFilterMenu->addAction(tr("High &B"), this, &ImageViewer::filterHighB));
+  imageActions.push_back(highPassFilterMenu->addAction(tr("High &C"), this, &ImageViewer::filterHighC));
+  imageActions.push_back(highPassFilterMenu->addAction(tr("High &D"), this, &ImageViewer::filterHighD));
+  imageActions.push_back(highPassFilterMenu->addAction(tr("High &E"), this, &ImageViewer::filterHighE));
+  imageActions.push_back(highPassFilterMenu->addAction(tr("High &F"), this, &ImageViewer::filterHighF));
+  imageActions.push_back(nonLinearFilterMenu->addAction(tr("M&edian"), this, &ImageViewer::filterMedian));
+  imageActions.push_back(nonLinearFilterMenu->addAction(tr("Ma&x"), this, &ImageViewer::filterMax));
+  imageActions.push_back(nonLinearFilterMenu->addAction(tr("Mi&n"), this, &ImageViewer::filterMin));
+  imageActions.push_back(filterMenu->addAction(tr("&Unsharp Masking"), this, &ImageViewer::filterUnsharp));
+  imageActions.push_back(filterMenu->addAction(tr("&Highboost"), this, &ImageViewer::filterHighboost));
 
   QMenu *edgeDetectionMenu = menuBar()->addMenu(tr("Edge Detection"));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Gradient"), this, &ImageViewer::edgeDetectionGradient));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("2nd Deriv"), this, &ImageViewer::edgeDetection2ndDeriv));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Laplace"), this, &ImageViewer::edgeDetectionLaplace));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("LoG"), this, &ImageViewer::edgeDetectionLoG));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Sobel"), this, &ImageViewer::edgeDetectionSobel));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Prewitt"), this, &ImageViewer::edgeDetectionPrewitt));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Roberts"), this, &ImageViewer::edgeDetectionRoberts));
-  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Canny"), this, &ImageViewer::edgeDetectionCanny));
-  for (auto act : edgeDetectionAct) { act->setEnabled(!image.isNull()); }
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Gradient"), this, &ImageViewer::edgeDetectionGradient));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("2nd Deriv"), this, &ImageViewer::edgeDetection2ndDeriv));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Laplace"), this, &ImageViewer::edgeDetectionLaplace));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("LoG"), this, &ImageViewer::edgeDetectionLoG));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Sobel"), this, &ImageViewer::edgeDetectionSobel));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Prewitt"), this, &ImageViewer::edgeDetectionPrewitt));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Roberts"), this, &ImageViewer::edgeDetectionRoberts));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Canny"), this, &ImageViewer::edgeDetectionCanny));
 
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
-
   helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
+
+  this->updateActions();
 }
 
 void ImageViewer::updateActions() {
-  saveAsAct->setEnabled(!image.isNull());
-  copyAct->setEnabled(!image.isNull());
-
-  imageAddAct->setEnabled(!image.isNull());
-  imageMultiplyAct->setEnabled(!image.isNull());
-  imageAndAct->setEnabled(!image.isNull());
-  imageOrAct->setEnabled(!image.isNull());
-  scalarAddAct->setEnabled(!image.isNull());
-  scalarSubstractAct->setEnabled(!image.isNull());
-  scalarMultiplyAct->setEnabled(!image.isNull());
-  scalarDivideAct->setEnabled(!image.isNull());
-  scalarNotAct->setEnabled(!image.isNull());
-  brightenAct->setEnabled(!image.isNull());
-
-  unbrightenAct->setEnabled(!image.isNull());
-  rotate90CWAct->setEnabled(!image.isNull());
-  rotate90CCWAct->setEnabled(!image.isNull());
-  translateAct->setEnabled(!image.isNull());
-  flipHorizontalAct->setEnabled(!image.isNull());
-  flipVerticalAct->setEnabled(!image.isNull());
-  zoom2InAct->setEnabled(!image.isNull());
-  zoom2OutAct->setEnabled(!image.isNull());
-  translateAct->setEnabled(!image.isNull());
-  redHistogramAct->setEnabled(!image.isNull());
-  greenHistogramAct->setEnabled(!image.isNull());
-  blueHistogramAct->setEnabled(!image.isNull());
-  normalizedRedHistogramAct->setEnabled(!image.isNull());
-  normalizedGreenHistogramAct->setEnabled(!image.isNull());
-  normalizedBlueHistogramAct->setEnabled(!image.isNull());
-
-  zoomInAct->setEnabled(!fitToWindowAct->isChecked());
-  zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
-  normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
-
-  for (auto act : filtersAct) { act->setEnabled(!image.isNull()); }
-  for (auto act : edgeDetectionAct) { act->setEnabled(!image.isNull()); }
+  for (auto act : imageActions) { act->setEnabled(!image.isNull()); }
+  for (auto act : unfitToWindowActions) { act->setEnabled(!fitToWindowAct->isChecked()); }
 }
 
 void ImageViewer::scaleImage(double factor) {
@@ -770,8 +680,10 @@ void ImageViewer::scaleImage(double factor) {
   adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
   adjustScrollBar(scrollArea->verticalScrollBar(), factor);
 
-  zoomInAct->setEnabled(scaleFactor < 3.0);
-  zoomOutAct->setEnabled(scaleFactor > 0.333);
+  if (unfitToWindowActions.size() > 1) {
+    unfitToWindowActions[0]->setEnabled(scaleFactor < 3.0); // ZOOM IN
+    unfitToWindowActions[1]->setEnabled(scaleFactor > 0.333); // ZOOM OUT
+  }
 }
 
 void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor) {
