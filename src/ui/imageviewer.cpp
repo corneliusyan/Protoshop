@@ -275,13 +275,6 @@ void ImageViewer::scalarOperate(int operation, char *hint) {
   showMessage();
 }
 
-void ImageViewer::brighten() {
-  AdjustmentBrighten::apply(img,25);
-  const QImage newImage = img->getQImage();
-  setImage(newImage);
-  showMessage();
-}
-
 void ImageViewer::imageAdd() {
   loadSecondFile(0);
 }
@@ -346,11 +339,28 @@ bool ImageViewer::imageOperate(const QString &fileName, int operation) {
   return true;
 }
 
+void ImageViewer::brighten() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentBrighten::apply(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
 void ImageViewer::unbrighten() {
-  AdjustmentBrighten::apply(img,-25);
-  const QImage newImage = img->getQImage();
-  setImage(newImage);
-  showMessage();
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentBrighten::apply(img,-val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
 }
 
 void ImageViewer::fourierTransform() {
@@ -366,6 +376,46 @@ void ImageViewer::rotate90CW() {
 
 void ImageViewer::rotate90CCW() {
   AdjustmentRotate::rotate90CCW(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::translate() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentTranslate::apply(img, val, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::flipHorizontal() {
+  AdjustmentFlip::horizontalFlip(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::flipVertical() {
+  AdjustmentFlip::verticalFlip(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::zoom2In() {
+  AdjustmentZoom::zoomIn(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::zoom2Out() {
+  AdjustmentZoom::zoomOut(img);
   const QImage newImage = img->getQImage();
   setImage(newImage);
   showMessage();
@@ -481,6 +531,14 @@ void ImageViewer::fitToWindow() {
   updateActions();
 }
 
+void ImageViewer::filterGaussian() {
+  FilterGaussian* filter = new FilterGaussian();
+  filter->apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
           tr("<p>Protoshop by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
@@ -558,6 +616,21 @@ void ImageViewer::createActions() {
 
   fourierTransformAct = editMenu->addAction(tr("&Fourier Transform"), this, &ImageViewer::fourierTransform);
   fourierTransformAct->setEnabled(false);
+  
+  translateAct = editMenu->addAction(tr("&Translate"), this, &ImageViewer::translate);
+  translateAct->setEnabled(false);
+
+  flipHorizontalAct = editMenu->addAction(tr("&Flip Horizontal"), this, &ImageViewer::flipHorizontal);
+  flipHorizontalAct->setEnabled(false);
+
+  flipVerticalAct = editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical);
+  flipVerticalAct->setEnabled(false);
+
+  zoom2InAct= editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In);
+  zoom2InAct->setEnabled(false);
+
+  zoom2OutAct= editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out);
+  zoom2OutAct->setEnabled(false);
 
   QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
 
@@ -598,6 +671,10 @@ void ImageViewer::createActions() {
   fitToWindowAct->setCheckable(true);
   fitToWindowAct->setShortcut(tr("Ctrl+F"));
 
+  QMenu *filterMenu = menuBar()->addMenu(tr("&Filter"));
+  filterGaussianAct = filterMenu->addAction(tr("&Gaussian"), this, &ImageViewer::filterGaussian);
+  filterGaussianAct->setEnabled(false);
+
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
 
   helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
@@ -618,11 +695,16 @@ void ImageViewer::updateActions() {
   scalarNotAct->setEnabled(!image.isNull());
   brightenAct->setEnabled(!image.isNull());
   fourierTransformAct->setEnabled(!image.isNull());
-  
+
   unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());
   rotate90CCWAct->setEnabled(!image.isNull());
-
+  translateAct->setEnabled(!image.isNull());
+  flipHorizontalAct->setEnabled(!image.isNull());
+  flipVerticalAct->setEnabled(!image.isNull());
+  zoom2InAct->setEnabled(!image.isNull());
+  zoom2OutAct->setEnabled(!image.isNull());
+  translateAct->setEnabled(!image.isNull());
   redHistogramAct->setEnabled(!image.isNull());
   greenHistogramAct->setEnabled(!image.isNull());
   blueHistogramAct->setEnabled(!image.isNull());
@@ -633,6 +715,8 @@ void ImageViewer::updateActions() {
   zoomInAct->setEnabled(!fitToWindowAct->isChecked());
   zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
   normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
+
+  filterGaussianAct->setEnabled(!image.isNull());
 }
 
 void ImageViewer::scaleImage(double factor) {

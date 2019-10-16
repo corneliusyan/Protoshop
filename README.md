@@ -37,7 +37,7 @@ make
 - [X] **B3** Adjustment: Image brightening (Cornel)
 - [X] **B4** Adjustment: Operasi aritmatika dua buah citra (Cornel)
 - [X] **B5** Adjustment: Operasi boolean pada citra (Cornel)
-- [ ] **B6** Transform: Operasi geometri (Cornel)
+- [X] **B6** Transform: Operasi geometri (Cornel)
 - [X] **C1** Image: Menampilkan histogram citra normal (Hafizh)
 - [ ] **C2** Image: Menampilkan histogram citra ternormalisasi (Hafizh)
 - [X] **C3** Image: Menampilkan statistik (rata-rata, variansi, deviasi) (Hafizh)

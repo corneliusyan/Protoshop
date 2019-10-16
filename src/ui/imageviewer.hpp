@@ -10,6 +10,7 @@
 #include "src/image/image.hpp"
 #include "src/image/exception.hpp"
 #include "src/adjustment/adjustment.hpp"
+#include "src/filter/filter.hpp"
 #include <iostream>
 
 QT_BEGIN_NAMESPACE
@@ -53,6 +54,11 @@ private slots:
   void unbrighten();
   void rotate90CW();
   void rotate90CCW();
+  void translate();
+  void flipHorizontal();
+  void flipVertical();
+  void zoom2In();
+  void zoom2Out();
   void showHistogramRed();
   void showHistogramGreen();
   void showHistogramBlue();
@@ -68,6 +74,9 @@ private slots:
   void zoomOut();
   void normalSize();
   void fitToWindow();
+
+  void filterGaussian();
+
   void about();
 
 private:
@@ -106,7 +115,11 @@ private:
   QAction *unbrightenAct;
   QAction *rotate90CWAct;
   QAction *rotate90CCWAct;
-
+  QAction *translateAct;
+  QAction *flipHorizontalAct;
+  QAction *flipVerticalAct;
+  QAction *zoom2InAct;
+  QAction *zoom2OutAct;
   QAction *redHistogramAct;
   QAction *greenHistogramAct;
   QAction *blueHistogramAct;
@@ -121,6 +134,8 @@ private:
   QAction *zoomOutAct;
   QAction *normalSizeAct;
   QAction *fitToWindowAct;
+
+  QAction *filterGaussianAct;
 };
 
 #endif
