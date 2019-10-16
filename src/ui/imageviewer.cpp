@@ -336,6 +336,20 @@ bool ImageViewer::imageOperate(const QString &fileName, int operation) {
   return true;
 }
 
+void ImageViewer::inverse() {
+  AdjustmentInverse::apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
+void ImageViewer::grayScale() {
+  AdjustmentGrayscale::apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::brighten() {
   bool ok;
   int val = QInputDialog::getInt(this, tr("input value"),
@@ -454,10 +468,12 @@ void ImageViewer::brightenScale() {
 
 void ImageViewer::contrastStretch() {
   bool ok;
-  int val = QInputDialog::getInt(this, tr("input value"),
-                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  int rMin = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMin:"), 0, -255, 255, 1, &ok);
+  int rMax = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMax:"), 0, -255, 255, 1, &ok);
   if (ok) {
-    AdjustmentEnhancement::contrastStretch(img, val, 255);
+    AdjustmentEnhancement::contrastStretch(img, rMin, rMax);
     const QImage newImage = img->getQImage();
     setImage(newImage);
     showMessage();
@@ -502,10 +518,12 @@ void ImageViewer::power() {
 
 void ImageViewer::graySlicing() {
   bool ok;
-  int val = QInputDialog::getInt(this, tr("input value"),
-                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  int rMin = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMin:"), 0, -255, 255, 1, &ok);
+  int rMax = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMax:"), 0, -255, 255, 1, &ok);
   if (ok) {
-    AdjustmentEnhancement::graySlicing(img, val, 255);
+    AdjustmentEnhancement::graySlicing(img, rMin, rMax);
     const QImage newImage = img->getQImage();
     setImage(newImage);
     showMessage();
@@ -513,10 +531,15 @@ void ImageViewer::graySlicing() {
 }
 
 void ImageViewer::bitSlicing() {
-  AdjustmentEnhancement::bitSlicing(img);
-  const QImage newImage = img->getQImage();
-  setImage(newImage);
-  showMessage();
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Bit-plane:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::bitSlicing(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
 }
 
 void ImageViewer::showHistogramRed() {
@@ -703,6 +726,8 @@ void ImageViewer::createActions() {
   imageActions.push_back(scalarOperator->addAction(tr("&Divide"), this, &ImageViewer::scalarDivide));
   imageActions.push_back(scalarOperator->addAction(tr("&Not"), this, &ImageViewer::scalarNot));
 
+  imageActions.push_back(editMenu->addAction(tr("&Inverse"), this, &ImageViewer::inverse));
+  imageActions.push_back(editMenu->addAction(tr("&Gray Scale"), this, &ImageViewer::grayScale));
   imageActions.push_back(editMenu->addAction(tr("&Brighten"), this, &ImageViewer::brighten));
   imageActions.push_back(editMenu->addAction(tr("&Unbrighten"), this, &ImageViewer::unbrighten));
   imageActions.push_back(editMenu->addAction(tr("&Rotate 90CW"), this, &ImageViewer::rotate90CW));
