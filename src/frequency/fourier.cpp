@@ -2,7 +2,7 @@
 #include "fourier.hpp"
 #include "src/adjustment/adjustment.hpp"
 
-void FilterFourier::apply(Image* target) {
+void Fourier::transform(Image* target) {
 
   double PI = 3.1415926535897932384626433832795;
 
@@ -49,7 +49,7 @@ void FilterFourier::apply(Image* target) {
   target->isFourierEmpty = false;
 }
 
-void FilterFourier::applyInverse(Image* target) {
+void Fourier::inverse(Image* target) {
   double PI = 3.1415926535897932384626433832795;
 
   if (!(target->isFourierEmpty)) {

@@ -361,16 +361,14 @@ void ImageViewer::unbrighten() {
 }
 
 void ImageViewer::fourierTransform() {
-  FilterFourier *filter = new FilterFourier();
-  filter->apply(img);
+  Fourier::transform(img);
   const QImage newImage = img->getQImage();
   setImage(newImage);
   showMessage();
 }
 
 void ImageViewer::inverseFourierTransform() {
-  FilterFourier *filter = new FilterFourier();
-  filter->applyInverse(img);
+  Fourier::inverse(img);
   const QImage newImage = img->getQImage();
   setImage(newImage);
   showMessage();
@@ -711,6 +709,9 @@ void ImageViewer::createActions() {
   imageActions.push_back(editMenu->addAction(tr("&Gray Slicing"), this, &ImageViewer::graySlicing));
   imageActions.push_back(editMenu->addAction(tr("&Bit Slicing"), this, &ImageViewer::bitSlicing));
 
+  imageActions.push_back(editMenu->addAction(tr("&Fourier Transform"), this, &ImageViewer::fourierTransform));
+  imageActions.push_back(editMenu->addAction(tr("&Inverse Fourier Transform"), this, &ImageViewer::inverseFourierTransform));
+
   QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
   imageActions.push_back(histogramMenu->addAction(tr("&Red"), this, &ImageViewer::showHistogramRed));
   imageActions.push_back(histogramMenu->addAction(tr("&Green"), this, &ImageViewer::showHistogramGreen));
@@ -789,3 +790,14 @@ void ImageViewer::scaleImage(double factor) {
 
   adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
   adjustScrollBar(scrollArea->verticalScrollBar(), factor);
+
+  if (unfitToWindowActions.size() > 1) {
+    unfitToWindowActions[0]->setEnabled(scaleFactor < 3.0); // ZOOM IN
+    unfitToWindowActions[1]->setEnabled(scaleFactor > 0.333); // ZOOM OUT
+  }
+}
+
+void ImageViewer::adjustScrollBar(QScrollBar *scrollBar, double factor) {
+  scrollBar->setValue(int(factor * scrollBar->value()
+                          + ((factor - 1) * scrollBar->pageStep()/2)));
+}

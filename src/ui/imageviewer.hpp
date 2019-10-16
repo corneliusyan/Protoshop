@@ -11,6 +11,7 @@
 #include "src/image/exception.hpp"
 #include "src/adjustment/adjustment.hpp"
 #include "src/filter/filter.hpp"
+#include "src/frequency/fourier.hpp"
 #include <iostream>
 
 QT_BEGIN_NAMESPACE
