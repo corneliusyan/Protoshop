@@ -546,13 +546,17 @@ void ImageViewer::filterHighF() { this->filterGeneral(HIGH_F); }
 void ImageViewer::filterUnsharp() { this->filterGeneral(UNSHARP); }
 void ImageViewer::filterHighboost() { this->filterGeneral(HIGHBOOST); }
 
-void ImageViewer::edgeDetectionGradient() { this->filterGeneral(GRADIENT); }
+void ImageViewer::edgeDetectionGradientX() { this->filterGeneral(GRADIENT_X); }
+void ImageViewer::edgeDetectionGradientY() { this->filterGeneral(GRADIENT_Y); }
 void ImageViewer::edgeDetection2ndDeriv() { this->filterGeneral(DERIV2); }
 void ImageViewer::edgeDetectionLaplace() { this->filterGeneral(LAPLACE); }
 void ImageViewer::edgeDetectionLoG() { this->filterGeneral(LOG); }
-void ImageViewer::edgeDetectionSobel() { this->filterGeneral(SOBEL); }
-void ImageViewer::edgeDetectionPrewitt() { this->filterGeneral(PREWITT); }
-void ImageViewer::edgeDetectionRoberts() { this->filterGeneral(ROBERTS); }
+void ImageViewer::edgeDetectionSobelX() { this->filterGeneral(SOBEL_X); }
+void ImageViewer::edgeDetectionSobelY() { this->filterGeneral(SOBEL_Y); }
+void ImageViewer::edgeDetectionPrewittX() { this->filterGeneral(PREWITT_X); }
+void ImageViewer::edgeDetectionPrewittY() { this->filterGeneral(PREWITT_Y); }
+void ImageViewer::edgeDetectionRoberts1() { this->filterGeneral(ROBERTS_1); }
+void ImageViewer::edgeDetectionRoberts2() { this->filterGeneral(ROBERTS_2); }
 void ImageViewer::edgeDetectionCanny() { this->filterGeneral(CANNY); }
 
 void ImageViewer::about() {
@@ -652,13 +656,17 @@ void ImageViewer::createActions() {
   imageActions.push_back(filterMenu->addAction(tr("&Highboost"), this, &ImageViewer::filterHighboost));
 
   QMenu *edgeDetectionMenu = menuBar()->addMenu(tr("Edge Detection"));
-  imageActions.push_back(edgeDetectionMenu->addAction(tr("Gradient"), this, &ImageViewer::edgeDetectionGradient));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Gradient X"), this, &ImageViewer::edgeDetectionGradientX));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Gradient Y"), this, &ImageViewer::edgeDetectionGradientY));
   imageActions.push_back(edgeDetectionMenu->addAction(tr("2nd Deriv"), this, &ImageViewer::edgeDetection2ndDeriv));
   imageActions.push_back(edgeDetectionMenu->addAction(tr("Laplace"), this, &ImageViewer::edgeDetectionLaplace));
   imageActions.push_back(edgeDetectionMenu->addAction(tr("LoG"), this, &ImageViewer::edgeDetectionLoG));
-  imageActions.push_back(edgeDetectionMenu->addAction(tr("Sobel"), this, &ImageViewer::edgeDetectionSobel));
-  imageActions.push_back(edgeDetectionMenu->addAction(tr("Prewitt"), this, &ImageViewer::edgeDetectionPrewitt));
-  imageActions.push_back(edgeDetectionMenu->addAction(tr("Roberts"), this, &ImageViewer::edgeDetectionRoberts));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Sobel X"), this, &ImageViewer::edgeDetectionSobelX));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Sobel Y"), this, &ImageViewer::edgeDetectionSobelY));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Prewitt X"), this, &ImageViewer::edgeDetectionPrewittX));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Prewitt Y"), this, &ImageViewer::edgeDetectionPrewittY));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Roberts 1"), this, &ImageViewer::edgeDetectionRoberts1));
+  imageActions.push_back(edgeDetectionMenu->addAction(tr("Roberts 2"), this, &ImageViewer::edgeDetectionRoberts2));
   imageActions.push_back(edgeDetectionMenu->addAction(tr("Canny"), this, &ImageViewer::edgeDetectionCanny));
 
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));

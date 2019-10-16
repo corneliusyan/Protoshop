@@ -12,13 +12,17 @@ int checkKernelGroup(KernelType kernelType) {
     case HIGH_E:
     case HIGH_F:
       return 2;
-    case GRADIENT:
+    case GRADIENT_X:
+    case GRADIENT_Y:
     case DERIV2:
     case LAPLACE:
     case LOG:
-    case SOBEL:
-    case PREWITT:
-    case ROBERTS:
+    case SOBEL_X:
+    case SOBEL_Y:
+    case PREWITT_X:
+    case PREWITT_Y:
+    case ROBERTS_1:
+    case ROBERTS_2:
     case CANNY:
       return 3;
     case UNSHARP:

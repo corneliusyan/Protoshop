@@ -89,13 +89,17 @@ private slots:
   void filterUnsharp();
   void filterHighboost();
 
-  void edgeDetectionGradient();
+  void edgeDetectionGradientX();
+  void edgeDetectionGradientY();
   void edgeDetection2ndDeriv();
   void edgeDetectionLaplace();
   void edgeDetectionLoG();
-  void edgeDetectionSobel();
-  void edgeDetectionPrewitt();
-  void edgeDetectionRoberts();
+  void edgeDetectionSobelX();
+  void edgeDetectionSobelY();
+  void edgeDetectionPrewittX();
+  void edgeDetectionPrewittY();
+  void edgeDetectionRoberts1();
+  void edgeDetectionRoberts2();
   void edgeDetectionCanny();
 
   void about();

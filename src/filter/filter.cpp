@@ -52,10 +52,15 @@ Filter::Filter(KernelType kernelType) {
       _kernel[0][0] =  0; _kernel[0][1] =  1; _kernel[0][2] =  0;
       _kernel[1][0] =  1; _kernel[1][1] = -4; _kernel[1][2] =  1;
       _kernel[2][0] =  0; _kernel[2][1] =  1; _kernel[2][2] =  0;
-    } else if (kernelType == GRADIENT) {
+    } else if (kernelType == GRADIENT_X) {
+      kernelSize = 3;
+      _kernel[0][0] =  0; _kernel[0][1] =  0; _kernel[0][2] =  0;
+      _kernel[1][0] = -1; _kernel[1][1] =  0; _kernel[1][2] =  1;
+      _kernel[2][0] =  0; _kernel[2][1] =  0; _kernel[2][2] =  0;
+    } else if (kernelType == GRADIENT_Y) {
       kernelSize = 3;
       _kernel[0][0] =  0; _kernel[0][1] = -1; _kernel[0][2] =  0;
-      _kernel[1][0] = -1; _kernel[1][1] =  0; _kernel[1][2] =  1;
+      _kernel[1][0] =  0; _kernel[1][1] =  0; _kernel[1][2] =  0;
       _kernel[2][0] =  0; _kernel[2][1] =  1; _kernel[2][2] =  0;
     } else if (kernelType == DERIV2) {
       kernelSize = 3;
@@ -74,20 +79,34 @@ Filter::Filter(KernelType kernelType) {
       _kernel[2][0] = -1; _kernel[2][1] = -2; _kernel[2][2] = 16; _kernel[2][3] = -2; _kernel[2][4] = -1;
       _kernel[3][0] =  0; _kernel[3][1] = -1; _kernel[3][3] = -2; _kernel[3][3] = -1; _kernel[3][4] =  0;
       _kernel[4][0] =  0; _kernel[4][1] =  0; _kernel[4][4] = -1; _kernel[4][3] =  0; _kernel[4][4] =  0;
-    } else if (kernelType == SOBEL) {
+    } else if (kernelType == SOBEL_X) {
       kernelSize = 3;
       _kernel[0][0] = -1; _kernel[0][1] =  0; _kernel[0][2] =  1;
       _kernel[1][0] = -2; _kernel[1][1] =  0; _kernel[1][2] =  2;
       _kernel[2][0] = -1; _kernel[2][1] =  0; _kernel[2][2] =  1;
-    } else if (kernelType == PREWITT) {
+    } else if (kernelType == SOBEL_Y) {
+      kernelSize = 3;
+      _kernel[0][0] = -1; _kernel[0][1] = -2; _kernel[0][2] = -1;
+      _kernel[1][0] =  0; _kernel[1][1] =  0; _kernel[1][2] =  0;
+      _kernel[2][0] =  1; _kernel[2][1] =  2; _kernel[2][2] =  1;
+    } else if (kernelType == PREWITT_X) {
       kernelSize = 3;
       _kernel[0][0] = -1; _kernel[0][1] =  0; _kernel[0][2] =  1;
       _kernel[1][0] = -1; _kernel[1][1] =  0; _kernel[1][2] =  1;
       _kernel[2][0] = -1; _kernel[2][1] =  0; _kernel[2][2] =  1;
-    } else if (kernelType == ROBERTS) {
+    } else if (kernelType == PREWITT_Y) {
+      kernelSize = 3;
+      _kernel[0][0] = -1; _kernel[0][1] = -1; _kernel[0][2] = -1;
+      _kernel[1][0] =  0; _kernel[1][1] =  0; _kernel[1][2] =  0;
+      _kernel[2][0] =  1; _kernel[2][1] =  1; _kernel[2][2] =  1;
+    } else if (kernelType == ROBERTS_1) {
       kernelSize = 2;
       _kernel[0][0] =  1; _kernel[0][1] =  0;
       _kernel[1][0] =  0; _kernel[1][1] = -1;
+    } else if (kernelType == ROBERTS_2) {
+      kernelSize = 2;
+      _kernel[0][0] =  0; _kernel[0][1] =  1;
+      _kernel[1][0] = -1; _kernel[1][1] =  0;
     } else if (kernelType == CANNY) {
       kernelSize = 3;
       _kernel[0][0] =  0; _kernel[0][1] =  1; _kernel[0][2] =  0;
