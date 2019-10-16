@@ -24,8 +24,12 @@ public:
   int width;
   bool isFourierEmpty;
 
-  double **imaginer;
-  double **real;
+  double **r_imaginer;
+  double **r_real;
+  double **g_imaginer;
+  double **g_real;
+  double **b_imaginer;
+  double **b_real;
 
   /**
    * @constructor
