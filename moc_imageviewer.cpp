@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImageViewer_t {
     QByteArrayData data[49];
-    char stringdata0[582];
+    char stringdata0[583];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -78,8 +78,8 @@ QT_MOC_LITERAL(43, 523, 6), // "zoomIn"
 QT_MOC_LITERAL(44, 530, 7), // "zoomOut"
 QT_MOC_LITERAL(45, 538, 10), // "normalSize"
 QT_MOC_LITERAL(46, 549, 11), // "fitToWindow"
-QT_MOC_LITERAL(47, 561, 14), // "filterGaussian"
-QT_MOC_LITERAL(48, 576, 5) // "about"
+QT_MOC_LITERAL(47, 561, 15), // "filterGaussian3"
+QT_MOC_LITERAL(48, 577, 5) // "about"
 
     },
     "ImageViewer\0open\0\0saveAs\0print\0imageAdd\0"
@@ -97,7 +97,7 @@ QT_MOC_LITERAL(48, 576, 5) // "about"
     "showNormalizedHistogramBlue\0showHistogram\0"
     "Qt::GlobalColor\0colorCode\0isNormalized\0"
     "showMessage\0copy\0paste\0zoomIn\0zoomOut\0"
-    "normalSize\0fitToWindow\0filterGaussian\0"
+    "normalSize\0fitToWindow\0filterGaussian3\0"
     "about"
 };
 #undef QT_MOC_LITERAL
@@ -251,7 +251,7 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 36: _t->zoomOut(); break;
         case 37: _t->normalSize(); break;
         case 38: _t->fitToWindow(); break;
-        case 39: _t->filterGaussian(); break;
+        case 39: _t->filterGaussian3(); break;
         case 40: _t->about(); break;
         default: ;
         }

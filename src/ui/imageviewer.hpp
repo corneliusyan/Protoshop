@@ -74,7 +74,7 @@ private slots:
   void normalSize();
   void fitToWindow();
 
-  void filterGaussian();
+  void filterGaussian3();
 
   void about();
 
@@ -132,7 +132,7 @@ private:
   QAction *normalSizeAct;
   QAction *fitToWindowAct;
 
-  QAction *filterGaussianAct;
+  QAction *filterGaussian3Act;
 };
 
 #endif

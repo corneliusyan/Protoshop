@@ -527,8 +527,8 @@ void ImageViewer::fitToWindow() {
   updateActions();
 }
 
-void ImageViewer::filterGaussian() {
-  FilterGaussian* filter = new FilterGaussian();
+void ImageViewer::filterGaussian3() {
+  Filter* filter = new Filter(GAUSSIAN3);
   filter->apply(img);
   const QImage newImage = img->getQImage();
   setImage(newImage);
@@ -664,9 +664,9 @@ void ImageViewer::createActions() {
   fitToWindowAct->setCheckable(true);
   fitToWindowAct->setShortcut(tr("Ctrl+F"));
 
-  QMenu *filterMenu = menuBar()->addMenu(tr("&Filter"));
-  filterGaussianAct = filterMenu->addAction(tr("&Gaussian"), this, &ImageViewer::filterGaussian);
-  filterGaussianAct->setEnabled(false);
+  QMenu *filterMenu = menuBar()->addMenu(tr("Fil&ter"));
+  filterGaussian3Act = filterMenu->addAction(tr("&Gaussian"), this, &ImageViewer::filterGaussian3);
+  filterGaussian3Act->setEnabled(false);
 
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
 
@@ -708,7 +708,7 @@ void ImageViewer::updateActions() {
   zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
   normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
 
-  filterGaussianAct->setEnabled(!image.isNull());
+  filterGaussian3Act->setEnabled(!image.isNull());
 }
 
 void ImageViewer::scaleImage(double factor) {
