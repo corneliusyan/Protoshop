@@ -29,6 +29,7 @@ struct pixel {
   pixel& operator*(double scalar);
   pixel& operator/(const pixel& other);
   pixel& operator/(int scalar);
+  pixel& operator^(double scalar);
   pixel& operator&(const pixel& other);
   pixel& operator|(const pixel& other);
   pixel& operator!(void);

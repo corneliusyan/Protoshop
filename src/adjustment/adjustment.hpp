@@ -6,4 +6,4 @@
 #include "rotate.hpp"
 #include "flip.hpp"
 #include "zoom.hpp"
-#include "enhancement.h"
+#include "enhancement.hpp"
