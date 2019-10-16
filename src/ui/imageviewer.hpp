@@ -58,6 +58,15 @@ private slots:
   void flipVertical();
   void zoom2In();
   void zoom2Out();
+
+  void brightenScale();
+  void contrastStretch();
+  void log();
+  void inverseLog();
+  void power();
+  void graySlicing();
+  void bitSlicing();
+
   void showHistogramRed();
   void showHistogramGreen();
   void showHistogramBlue();
@@ -137,6 +146,15 @@ private:
   QAction *flipVerticalAct;
   QAction *zoom2InAct;
   QAction *zoom2OutAct;
+
+  QAction *brightenScaleAct;
+  QAction *contrastStretchAct;
+  QAction *logAct;
+  QAction *inverseLogAct;
+  QAction *powerAct;
+  QAction *graySlicingAct;
+  QAction *bitSlicingAct;
+
   QAction *redHistogramAct;
   QAction *greenHistogramAct;
   QAction *blueHistogramAct;

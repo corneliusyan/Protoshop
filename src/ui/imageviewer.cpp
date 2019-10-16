@@ -417,6 +417,85 @@ void ImageViewer::zoom2Out() {
   showMessage();
 }
 
+void ImageViewer::brightenScale() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::brighten(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::contrastStretch() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::contrastStretch(img, val, 255);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::log() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::log(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::inverseLog() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::inverseLog(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::power() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::power(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::graySlicing() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::graySlicing(img, val, 255);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::bitSlicing() {
+  AdjustmentEnhancement::bitSlicing(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::showHistogramRed() {
   showHistogram(Qt::red, false);
 }
@@ -640,11 +719,26 @@ void ImageViewer::createActions() {
   flipVerticalAct = editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical);
   flipVerticalAct->setEnabled(false);
 
-  zoom2InAct= editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In);
+  zoom2InAct = editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In);
   zoom2InAct->setEnabled(false);
 
-  zoom2OutAct= editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out);
+  zoom2OutAct = editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out);
   zoom2OutAct->setEnabled(false);
+
+  brightenScaleAct = editMenu->addAction(tr("&Brighten Scale"), this, &ImageViewer::brightenScale);
+  brightenScaleAct->setEnabled(false);
+  contrastStretchAct = editMenu->addAction(tr("&Contrast Stretch"), this, &ImageViewer::contrastStretch);
+  contrastStretchAct->setEnabled(false);
+  logAct = editMenu->addAction(tr("&Log"), this, &ImageViewer::log);
+  logAct->setEnabled(false);
+  inverseLogAct = editMenu->addAction(tr("&Inverse Log"), this, &ImageViewer::inverseLog);
+  inverseLogAct->setEnabled(false);
+  powerAct = editMenu->addAction(tr("&Power"), this, &ImageViewer::power);
+  powerAct->setEnabled(false);
+  graySlicingAct = editMenu->addAction(tr("&Gray Slicing"), this, &ImageViewer::graySlicing);
+  graySlicingAct->setEnabled(false);
+  bitSlicingAct = editMenu->addAction(tr("&Bit Slicing"), this, &ImageViewer::bitSlicing);
+  bitSlicingAct->setEnabled(false);
 
   QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
 
@@ -742,6 +836,15 @@ void ImageViewer::updateActions() {
   flipVerticalAct->setEnabled(!image.isNull());
   zoom2InAct->setEnabled(!image.isNull());
   zoom2OutAct->setEnabled(!image.isNull());
+
+  brightenScaleAct->setEnabled(!image.isNull());
+  contrastStretchAct->setEnabled(!image.isNull());
+  logAct->setEnabled(!image.isNull());
+  inverseLogAct->setEnabled(!image.isNull());
+  powerAct->setEnabled(!image.isNull());
+  graySlicingAct->setEnabled(!image.isNull());
+  bitSlicingAct->setEnabled(!image.isNull());
+
   translateAct->setEnabled(!image.isNull());
   redHistogramAct->setEnabled(!image.isNull());
   greenHistogramAct->setEnabled(!image.isNull());
