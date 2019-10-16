@@ -75,6 +75,7 @@ private slots:
   void fitToWindow();
 
   void filterGaussian3();
+  void filterMedian();
 
   void about();
 
@@ -133,6 +134,7 @@ private:
   QAction *fitToWindowAct;
 
   QAction *filterGaussian3Act;
+  QAction *filterMedianAct;
 };
 
 #endif

@@ -2,12 +2,12 @@
 #define PROTOSHOP_FILTER
 
 #include "../image/image.hpp"
+#include "strategy/strategy.hpp"
 #include "kernel.hpp"
-#include "strategy.hpp"
 
 class Filter {
 private:
-  FilterStrategy* strategy;
+  FilterStrategyBase* strategy;
 public:
   Filter(KernelType kernelType);
 

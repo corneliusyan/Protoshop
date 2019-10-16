@@ -2,6 +2,7 @@
 #include "pixel.hpp"
 #include "stdio.h"
 #include <iostream>
+#include <cmath>
 
 pixel::pixel() {
   len = 1;
@@ -155,7 +156,7 @@ pixel& pixel::operator*(int scalar) {
 
 pixel& pixel::operator*(double scalar) {
   for (int i = 0; i < len; i++) {
-    int temp = in[i] * scalar;
+    int temp = round(in[i] * scalar);
     if (temp < 0) {
       in[i] = 0;
     } else {

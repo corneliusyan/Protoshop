@@ -535,6 +535,14 @@ void ImageViewer::filterGaussian3() {
   showMessage();
 }
 
+void ImageViewer::filterMedian() {
+  Filter* filter = new Filter(MEDIAN);
+  filter->apply(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
           tr("<p>Protoshop by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
@@ -668,6 +676,9 @@ void ImageViewer::createActions() {
   filterGaussian3Act = filterMenu->addAction(tr("&Gaussian"), this, &ImageViewer::filterGaussian3);
   filterGaussian3Act->setEnabled(false);
 
+  filterMedianAct = filterMenu->addAction(tr("&Median"), this, &ImageViewer::filterMedian);
+  filterMedianAct->setEnabled(false);
+
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
 
   helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
@@ -709,6 +720,7 @@ void ImageViewer::updateActions() {
   normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
 
   filterGaussian3Act->setEnabled(!image.isNull());
+  filterMedianAct->setEnabled(!image.isNull());
 }
 
 void ImageViewer::scaleImage(double factor) {
