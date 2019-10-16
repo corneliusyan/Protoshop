@@ -34,5 +34,6 @@ enum KernelType {
 };
 
 int checkKernelGroup(KernelType kernelType);
+Kernel loadKernel(std::string filename);
 
 #endif
