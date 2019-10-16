@@ -62,4 +62,4 @@ make
 - [X] **H4** Filter: Operator LoG (Yonas)
 - [X] **H5** Filter: Operator Prewitt (Yonas)
 - [X] **H6** Filter: Operator Roberts (Yonas)
-- [ ] **H7** Filter: Operator Canny (YOnas)
+- [X] **H7** Filter: Operator Canny (YOnas)

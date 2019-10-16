@@ -17,4 +17,9 @@ public:
   void apply(Image* target);
 };
 
+class FilterCannyStrategy : public FilterStrategyBase {
+public:
+  void apply(Image* target);
+};
+
 #endif

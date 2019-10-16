@@ -162,5 +162,5 @@ int pixel::magnitude() const {
   for (int i = 0; i < len; i++) {
     res += in[i] * in[i];
   }
-  return res;
+  return res / len;
 }

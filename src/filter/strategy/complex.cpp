@@ -73,3 +73,39 @@ void FilterHighboostStrategy::apply(Image* target) {
 
   delete lowPass;
 }
+
+void FilterCannyStrategy::apply(Image* target) {
+  Kernel kenrelGaussian7 = loadKernel("gaussian7");
+  Kernel kenrelSobelX = loadKernel("sobelX");
+  Kernel kenrelSobelY = loadKernel("sobelY");
+
+  Image* smoothed = new Image(*target);
+  FilterConvolutionStrategy* lowpassStrategy = new FilterConvolutionStrategy(kenrelGaussian7);
+  lowpassStrategy->apply(smoothed);
+
+  Image* sobelX = new Image(*smoothed);
+  FilterConvolutionStrategy* sobelXStrategy = new FilterConvolutionStrategy(kenrelSobelX);
+  sobelXStrategy->apply(sobelX);
+
+  Image* sobelY = new Image(*smoothed);
+  FilterConvolutionStrategy* sobelYStrategy = new FilterConvolutionStrategy(kenrelSobelY);
+  sobelYStrategy->apply(sobelY);
+
+  pixel black = pixel(0, 0, 0);
+  pixel white = pixel(255, 255, 255);
+  for (int i = 0; i < target->height; i++) {
+    for (int j = 0; j < target->width; j++) {
+      int magnitudeX = sobelX->get_pixel(i, j).magnitude();
+      int magnitudeY = sobelY->get_pixel(i, j).magnitude();
+      if (magnitudeX + magnitudeY > 128 * 128) {
+        target->set_pixel(i, j, white);
+      } else {
+        target->set_pixel(i, j, black);
+      }
+    }
+  }
+
+  delete smoothed;
+  delete sobelX;
+  delete sobelY;
+}
