@@ -414,6 +414,85 @@ void ImageViewer::zoom2Out() {
   showMessage();
 }
 
+void ImageViewer::brightenScale() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::brighten(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::contrastStretch() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::contrastStretch(img, val, 255);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::log() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::logTransform(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::inverseLog() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::inverseLog(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::power() {
+  bool ok;
+  double val = QInputDialog::getDouble(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::power(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::graySlicing() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::graySlicing(img, val, 255);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::bitSlicing() {
+  AdjustmentEnhancement::bitSlicing(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::showHistogramRed() {
   showHistogram(Qt::red, false);
 }
@@ -608,6 +687,14 @@ void ImageViewer::createActions() {
   imageActions.push_back(editMenu->addAction(tr("&Flip Vertical"), this, &ImageViewer::flipVertical));
   imageActions.push_back(editMenu->addAction(tr("&Zoom In 2"), this, &ImageViewer::zoom2In));
   imageActions.push_back(editMenu->addAction(tr("&Zoom Out 2"), this, &ImageViewer::zoom2Out));
+
+  imageActions.push_back(editMenu->addAction(tr("&Brighten Scale"), this, &ImageViewer::brightenScale));
+  imageActions.push_back(editMenu->addAction(tr("&Contrast Stretch"), this, &ImageViewer::contrastStretch));
+  imageActions.push_back(editMenu->addAction(tr("&Log"), this, &ImageViewer::log));
+  imageActions.push_back(editMenu->addAction(tr("&Inverse Log"), this, &ImageViewer::inverseLog));
+  imageActions.push_back(editMenu->addAction(tr("&Power"), this, &ImageViewer::power));
+  imageActions.push_back(editMenu->addAction(tr("&Gray Slicing"), this, &ImageViewer::graySlicing));
+  imageActions.push_back(editMenu->addAction(tr("&Bit Slicing"), this, &ImageViewer::bitSlicing));
 
   QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
   imageActions.push_back(histogramMenu->addAction(tr("&Red"), this, &ImageViewer::showHistogramRed));

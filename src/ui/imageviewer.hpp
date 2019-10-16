@@ -58,6 +58,15 @@ private slots:
   void flipVertical();
   void zoom2In();
   void zoom2Out();
+
+  void brightenScale();
+  void contrastStretch();
+  void log();
+  void inverseLog();
+  void power();
+  void graySlicing();
+  void bitSlicing();
+
   void showHistogramRed();
   void showHistogramGreen();
   void showHistogramBlue();
