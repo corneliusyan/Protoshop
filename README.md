@@ -48,7 +48,7 @@ make
 - [X] **D5** Adjustment: Gray-level slicing (Cornel)
 - [X] **D6** Adjustment: Bit-plane slicing (Cornel)
 - [X] **E1** Adjustment: Perataan histogram (Yonas)
-- [ ] **E2** Adjustment: Spesifikasi histogram (Yonas)
+- [X] **E2** Adjustment: Spesifikasi histogram (Yonas)
 - [X] **F1** Filter: Perbaikan citra menggunakan median filter (Yonas)
 - [X] **F2** Filter: Penapis lolos tinggi (Yonas)
 - [X] **F3** Filter: Unsharp masking (Yonas)
