@@ -16,7 +16,15 @@ enum KernelType {
   HIGH_C,
   HIGH_D,
   HIGH_E,
-  HIGH_F
+  HIGH_F,
+  GRADIENT,
+  DERIV2,
+  LAPLACE,
+  LOG,
+  SOBEL,
+  PREWITT,
+  ROBERTS,
+  CANNY
 };
 
 int kernelTypeHLN(KernelType kernelType);

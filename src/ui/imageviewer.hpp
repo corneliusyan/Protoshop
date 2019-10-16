@@ -87,6 +87,15 @@ private slots:
   void filterHighE();
   void filterHighF();
 
+  void edgeDetectionGradient();
+  void edgeDetection2ndDeriv();
+  void edgeDetectionLaplace();
+  void edgeDetectionLoG();
+  void edgeDetectionSobel();
+  void edgeDetectionPrewitt();
+  void edgeDetectionRoberts();
+  void edgeDetectionCanny();
+
   void about();
 
 private:
@@ -144,6 +153,7 @@ private:
   QAction *fitToWindowAct;
 
   std::vector<QAction*> filtersAct;
+  std::vector<QAction*> edgeDetectionAct;
 };
 
 #endif

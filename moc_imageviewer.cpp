@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImageViewer_t {
-    QByteArrayData data[62];
-    char stringdata0[737];
+    QByteArrayData data[70];
+    char stringdata0[899];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -92,7 +92,15 @@ QT_MOC_LITERAL(57, 683, 11), // "filterHighC"
 QT_MOC_LITERAL(58, 695, 11), // "filterHighD"
 QT_MOC_LITERAL(59, 707, 11), // "filterHighE"
 QT_MOC_LITERAL(60, 719, 11), // "filterHighF"
-QT_MOC_LITERAL(61, 731, 5) // "about"
+QT_MOC_LITERAL(61, 731, 21), // "edgeDetectionGradient"
+QT_MOC_LITERAL(62, 753, 21), // "edgeDetection2ndDeriv"
+QT_MOC_LITERAL(63, 775, 20), // "edgeDetectionLaplace"
+QT_MOC_LITERAL(64, 796, 16), // "edgeDetectionLoG"
+QT_MOC_LITERAL(65, 813, 18), // "edgeDetectionSobel"
+QT_MOC_LITERAL(66, 832, 20), // "edgeDetectionPrewitt"
+QT_MOC_LITERAL(67, 853, 20), // "edgeDetectionRoberts"
+QT_MOC_LITERAL(68, 874, 18), // "edgeDetectionCanny"
+QT_MOC_LITERAL(69, 893, 5) // "about"
 
     },
     "ImageViewer\0open\0\0saveAs\0print\0imageAdd\0"
@@ -115,7 +123,11 @@ QT_MOC_LITERAL(61, 731, 5) // "about"
     "filterGaussian\0filterMedian\0filterMax\0"
     "filterMin\0filterHighA\0filterHighB\0"
     "filterHighC\0filterHighD\0filterHighE\0"
-    "filterHighF\0about"
+    "filterHighF\0edgeDetectionGradient\0"
+    "edgeDetection2ndDeriv\0edgeDetectionLaplace\0"
+    "edgeDetectionLoG\0edgeDetectionSobel\0"
+    "edgeDetectionPrewitt\0edgeDetectionRoberts\0"
+    "edgeDetectionCanny\0about"
 };
 #undef QT_MOC_LITERAL
 
@@ -125,7 +137,7 @@ static const uint qt_meta_data_ImageViewer[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      52,   14, // methods
+      60,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -133,58 +145,66 @@ static const uint qt_meta_data_ImageViewer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  274,    2, 0x08 /* Private */,
-       3,    0,  275,    2, 0x08 /* Private */,
-       4,    0,  276,    2, 0x08 /* Private */,
-       5,    0,  277,    2, 0x08 /* Private */,
-       6,    0,  278,    2, 0x08 /* Private */,
-       7,    0,  279,    2, 0x08 /* Private */,
-       8,    0,  280,    2, 0x08 /* Private */,
-       9,    1,  281,    2, 0x08 /* Private */,
-      11,    2,  284,    2, 0x08 /* Private */,
-      12,    0,  289,    2, 0x08 /* Private */,
-      13,    0,  290,    2, 0x08 /* Private */,
-      14,    0,  291,    2, 0x08 /* Private */,
-      15,    0,  292,    2, 0x08 /* Private */,
-      16,    0,  293,    2, 0x08 /* Private */,
-      17,    2,  294,    2, 0x08 /* Private */,
-      20,    2,  299,    2, 0x08 /* Private */,
-      21,    0,  304,    2, 0x08 /* Private */,
-      22,    0,  305,    2, 0x08 /* Private */,
-      23,    0,  306,    2, 0x08 /* Private */,
-      24,    0,  307,    2, 0x08 /* Private */,
-      25,    0,  308,    2, 0x08 /* Private */,
-      26,    0,  309,    2, 0x08 /* Private */,
-      27,    0,  310,    2, 0x08 /* Private */,
-      28,    0,  311,    2, 0x08 /* Private */,
-      29,    0,  312,    2, 0x08 /* Private */,
-      30,    0,  313,    2, 0x08 /* Private */,
-      31,    0,  314,    2, 0x08 /* Private */,
-      32,    0,  315,    2, 0x08 /* Private */,
-      33,    0,  316,    2, 0x08 /* Private */,
-      34,    0,  317,    2, 0x08 /* Private */,
-      35,    0,  318,    2, 0x08 /* Private */,
-      36,    2,  319,    2, 0x08 /* Private */,
-      40,    0,  324,    2, 0x08 /* Private */,
-      41,    0,  325,    2, 0x08 /* Private */,
-      42,    0,  326,    2, 0x08 /* Private */,
-      43,    0,  327,    2, 0x08 /* Private */,
-      44,    0,  328,    2, 0x08 /* Private */,
-      45,    0,  329,    2, 0x08 /* Private */,
-      46,    0,  330,    2, 0x08 /* Private */,
-      47,    1,  331,    2, 0x08 /* Private */,
-      50,    0,  334,    2, 0x08 /* Private */,
-      51,    0,  335,    2, 0x08 /* Private */,
-      52,    0,  336,    2, 0x08 /* Private */,
-      53,    0,  337,    2, 0x08 /* Private */,
-      54,    0,  338,    2, 0x08 /* Private */,
-      55,    0,  339,    2, 0x08 /* Private */,
-      56,    0,  340,    2, 0x08 /* Private */,
-      57,    0,  341,    2, 0x08 /* Private */,
-      58,    0,  342,    2, 0x08 /* Private */,
-      59,    0,  343,    2, 0x08 /* Private */,
-      60,    0,  344,    2, 0x08 /* Private */,
-      61,    0,  345,    2, 0x08 /* Private */,
+       1,    0,  314,    2, 0x08 /* Private */,
+       3,    0,  315,    2, 0x08 /* Private */,
+       4,    0,  316,    2, 0x08 /* Private */,
+       5,    0,  317,    2, 0x08 /* Private */,
+       6,    0,  318,    2, 0x08 /* Private */,
+       7,    0,  319,    2, 0x08 /* Private */,
+       8,    0,  320,    2, 0x08 /* Private */,
+       9,    1,  321,    2, 0x08 /* Private */,
+      11,    2,  324,    2, 0x08 /* Private */,
+      12,    0,  329,    2, 0x08 /* Private */,
+      13,    0,  330,    2, 0x08 /* Private */,
+      14,    0,  331,    2, 0x08 /* Private */,
+      15,    0,  332,    2, 0x08 /* Private */,
+      16,    0,  333,    2, 0x08 /* Private */,
+      17,    2,  334,    2, 0x08 /* Private */,
+      20,    2,  339,    2, 0x08 /* Private */,
+      21,    0,  344,    2, 0x08 /* Private */,
+      22,    0,  345,    2, 0x08 /* Private */,
+      23,    0,  346,    2, 0x08 /* Private */,
+      24,    0,  347,    2, 0x08 /* Private */,
+      25,    0,  348,    2, 0x08 /* Private */,
+      26,    0,  349,    2, 0x08 /* Private */,
+      27,    0,  350,    2, 0x08 /* Private */,
+      28,    0,  351,    2, 0x08 /* Private */,
+      29,    0,  352,    2, 0x08 /* Private */,
+      30,    0,  353,    2, 0x08 /* Private */,
+      31,    0,  354,    2, 0x08 /* Private */,
+      32,    0,  355,    2, 0x08 /* Private */,
+      33,    0,  356,    2, 0x08 /* Private */,
+      34,    0,  357,    2, 0x08 /* Private */,
+      35,    0,  358,    2, 0x08 /* Private */,
+      36,    2,  359,    2, 0x08 /* Private */,
+      40,    0,  364,    2, 0x08 /* Private */,
+      41,    0,  365,    2, 0x08 /* Private */,
+      42,    0,  366,    2, 0x08 /* Private */,
+      43,    0,  367,    2, 0x08 /* Private */,
+      44,    0,  368,    2, 0x08 /* Private */,
+      45,    0,  369,    2, 0x08 /* Private */,
+      46,    0,  370,    2, 0x08 /* Private */,
+      47,    1,  371,    2, 0x08 /* Private */,
+      50,    0,  374,    2, 0x08 /* Private */,
+      51,    0,  375,    2, 0x08 /* Private */,
+      52,    0,  376,    2, 0x08 /* Private */,
+      53,    0,  377,    2, 0x08 /* Private */,
+      54,    0,  378,    2, 0x08 /* Private */,
+      55,    0,  379,    2, 0x08 /* Private */,
+      56,    0,  380,    2, 0x08 /* Private */,
+      57,    0,  381,    2, 0x08 /* Private */,
+      58,    0,  382,    2, 0x08 /* Private */,
+      59,    0,  383,    2, 0x08 /* Private */,
+      60,    0,  384,    2, 0x08 /* Private */,
+      61,    0,  385,    2, 0x08 /* Private */,
+      62,    0,  386,    2, 0x08 /* Private */,
+      63,    0,  387,    2, 0x08 /* Private */,
+      64,    0,  388,    2, 0x08 /* Private */,
+      65,    0,  389,    2, 0x08 /* Private */,
+      66,    0,  390,    2, 0x08 /* Private */,
+      67,    0,  391,    2, 0x08 /* Private */,
+      68,    0,  392,    2, 0x08 /* Private */,
+      69,    0,  393,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -227,6 +247,14 @@ static const uint qt_meta_data_ImageViewer[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 48,   49,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -302,7 +330,15 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 48: _t->filterHighD(); break;
         case 49: _t->filterHighE(); break;
         case 50: _t->filterHighF(); break;
-        case 51: _t->about(); break;
+        case 51: _t->edgeDetectionGradient(); break;
+        case 52: _t->edgeDetection2ndDeriv(); break;
+        case 53: _t->edgeDetectionLaplace(); break;
+        case 54: _t->edgeDetectionLoG(); break;
+        case 55: _t->edgeDetectionSobel(); break;
+        case 56: _t->edgeDetectionPrewitt(); break;
+        case 57: _t->edgeDetectionRoberts(); break;
+        case 58: _t->edgeDetectionCanny(); break;
+        case 59: _t->about(); break;
         default: ;
         }
     }
@@ -337,13 +373,13 @@ int ImageViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 52)
+        if (_id < 60)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 52;
+        _id -= 60;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 52)
+        if (_id < 60)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 52;
+        _id -= 60;
     }
     return _id;
 }

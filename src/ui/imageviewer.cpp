@@ -547,6 +547,15 @@ void ImageViewer::filterHighD() { this->filterGeneral(HIGH_D); }
 void ImageViewer::filterHighE() { this->filterGeneral(HIGH_E); }
 void ImageViewer::filterHighF() { this->filterGeneral(HIGH_F); }
 
+void ImageViewer::edgeDetectionGradient() { this->filterGeneral(GRADIENT); }
+void ImageViewer::edgeDetection2ndDeriv() { this->filterGeneral(DERIV2); }
+void ImageViewer::edgeDetectionLaplace() { this->filterGeneral(LAPLACE); }
+void ImageViewer::edgeDetectionLoG() { this->filterGeneral(LOG); }
+void ImageViewer::edgeDetectionSobel() { this->filterGeneral(SOBEL); }
+void ImageViewer::edgeDetectionPrewitt() { this->filterGeneral(PREWITT); }
+void ImageViewer::edgeDetectionRoberts() { this->filterGeneral(ROBERTS); }
+void ImageViewer::edgeDetectionCanny() { this->filterGeneral(CANNY); }
+
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
           tr("<p>Protoshop by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
@@ -692,6 +701,18 @@ void ImageViewer::createActions() {
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("M&edian"), this, &ImageViewer::filterMedian));
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Ma&x"), this, &ImageViewer::filterMax));
   filtersAct.push_back(nonLinearFilterMenu->addAction(tr("Mi&n"), this, &ImageViewer::filterMin));
+  for (auto act : filtersAct) { act->setEnabled(!image.isNull()); }
+
+  QMenu *edgeDetectionMenu = menuBar()->addMenu(tr("Edge Detection"));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Gradient"), this, &ImageViewer::edgeDetectionGradient));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("2nd Deriv"), this, &ImageViewer::edgeDetection2ndDeriv));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Laplace"), this, &ImageViewer::edgeDetectionLaplace));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("LoG"), this, &ImageViewer::edgeDetectionLoG));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Sobel"), this, &ImageViewer::edgeDetectionSobel));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Prewitt"), this, &ImageViewer::edgeDetectionPrewitt));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Roberts"), this, &ImageViewer::edgeDetectionRoberts));
+  edgeDetectionAct.push_back(edgeDetectionMenu->addAction(tr("Canny"), this, &ImageViewer::edgeDetectionCanny));
+  for (auto act : edgeDetectionAct) { act->setEnabled(!image.isNull()); }
 
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
 
@@ -733,9 +754,8 @@ void ImageViewer::updateActions() {
   zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
   normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
 
-  for (auto act : filtersAct) {
-    act->setEnabled(!image.isNull());
-  }
+  for (auto act : filtersAct) { act->setEnabled(!image.isNull()); }
+  for (auto act : edgeDetectionAct) { act->setEnabled(!image.isNull()); }
 }
 
 void ImageViewer::scaleImage(double factor) {

@@ -12,11 +12,20 @@ int kernelTypeHLN(KernelType kernelType) {
     case HIGH_E:
     case HIGH_F:
       return 2;
+    case GRADIENT:
+    case DERIV2:
+    case LAPLACE:
+    case LOG:
+    case SOBEL:
+    case PREWITT:
+    case ROBERTS:
+    case CANNY:
+      return 3;
     case MEDIAN:
     case MAX:
     case MIN:
-      return 3;
-    default:
       return 0;
+    default:
+      return -1;
   }
 }
