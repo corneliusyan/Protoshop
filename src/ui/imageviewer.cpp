@@ -447,10 +447,12 @@ void ImageViewer::brightenScale() {
 
 void ImageViewer::contrastStretch() {
   bool ok;
-  int val = QInputDialog::getInt(this, tr("input value"),
-                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  int rMin = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMin:"), 0, -255, 255, 1, &ok);
+  int rMax = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMax:"), 0, -255, 255, 1, &ok);
   if (ok) {
-    AdjustmentEnhancement::contrastStretch(img, val, 255);
+    AdjustmentEnhancement::contrastStretch(img, rMin, rMax);
     const QImage newImage = img->getQImage();
     setImage(newImage);
     showMessage();
@@ -495,10 +497,12 @@ void ImageViewer::power() {
 
 void ImageViewer::graySlicing() {
   bool ok;
-  int val = QInputDialog::getInt(this, tr("input value"),
-                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  int rMin = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMin:"), 0, -255, 255, 1, &ok);
+  int rMax = QInputDialog::getInt(this, tr("input value"),
+                                tr("rMax:"), 0, -255, 255, 1, &ok);
   if (ok) {
-    AdjustmentEnhancement::graySlicing(img, val, 255);
+    AdjustmentEnhancement::graySlicing(img, rMin, rMax);
     const QImage newImage = img->getQImage();
     setImage(newImage);
     showMessage();
@@ -508,7 +512,7 @@ void ImageViewer::graySlicing() {
 void ImageViewer::bitSlicing() {
   bool ok;
   int val = QInputDialog::getInt(this, tr("input value"),
-                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+                                tr("Bit-plane:"), 0, -255, 255, 1, &ok);
   if (ok) {
     AdjustmentEnhancement::bitSlicing(img, val);
     const QImage newImage = img->getQImage();
