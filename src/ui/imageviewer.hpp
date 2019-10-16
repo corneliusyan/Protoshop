@@ -61,6 +61,7 @@ private slots:
   void flipVertical();
   void zoom2In();
   void zoom2Out();
+  void equalize();
 
   void brightenScale();
   void contrastStretch();
