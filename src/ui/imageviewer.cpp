@@ -389,14 +389,19 @@ void ImageViewer::rotate90CCW() {
 }
 
 void ImageViewer::translate() {
-  bool ok;
-  int val = QInputDialog::getInt(this, tr("input value"),
-                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
-  if (ok) {
-    AdjustmentTranslate::apply(img, val, val);
-    const QImage newImage = img->getQImage();
-    setImage(newImage);
-    showMessage();
+  bool ok_x;
+  int val_x = QInputDialog::getInt(this, tr("Input Value"),
+                                tr("X Value:"), 0, -255, 255, 1, &ok_x);
+  if (ok_x) {
+    bool ok_y;
+    int val_y = QInputDialog::getInt(this, tr("Input Value"),
+                                  tr("Y Value:"), 0, -255, 255, 1, &ok_y);
+    if (ok_y) {
+      AdjustmentTranslate::apply(img, val_x, val_y);
+      const QImage newImage = img->getQImage();
+      setImage(newImage);
+      showMessage();
+    }
   }
 }
 
