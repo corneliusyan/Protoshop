@@ -13,19 +13,19 @@
 #include "r_g_b.hpp"
 
 Image::Image() {
-    this->imageType = ImageType::RGB;
-    this->height = 32;
-    this->width = 32;
+  this->imageType = ImageType::RGB;
+  this->height = 32;
+  this->width = 32;
 
-    this->pixels = (pixel**) malloc(height * sizeof (pixel*));
-    for (int i = 0; i < height; i++) {
-      this->pixels[i] = (pixel*) malloc(width * sizeof (pixel));
-      for (int j = 0; j < width; j++) {
-        this->pixels[i][j] = pixel(0, 0, 0, 0);
-      }
+  this->pixels = (pixel**) malloc(height * sizeof (pixel*));
+  for (int i = 0; i < height; i++) {
+    this->pixels[i] = (pixel*) malloc(width * sizeof (pixel));
+    for (int j = 0; j < width; j++) {
+      this->pixels[i][j] = pixel(0, 0, 0, 0);
     }
+  }
 
-    this->qimg = new QImage();
+  this->qimg = new QImage();
 }
 
 Image::Image(ImageType imageType, int height, int width) {

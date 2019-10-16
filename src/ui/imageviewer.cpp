@@ -353,6 +353,10 @@ void ImageViewer::unbrighten() {
   showMessage();
 }
 
+void ImageViewer::fourierTransform() {
+  
+}
+
 void ImageViewer::rotate90CW() {
   AdjustmentRotate::rotate90CW(img);
   const QImage newImage = img->getQImage();
@@ -552,6 +556,9 @@ void ImageViewer::createActions() {
   rotate90CCWAct = editMenu->addAction(tr("&Rotate 90CCW"), this, &ImageViewer::rotate90CCW);
   rotate90CCWAct->setEnabled(false);
 
+  fourierTransformAct = editMenu->addAction(tr("&Fourier Transform"), this, &ImageViewer::fourierTransform);
+  fourierTransformAct->setEnabled(false);
+
   QMenu *histogramMenu = editMenu->addMenu(tr("&Show Histogram"));
 
   redHistogramAct = histogramMenu->addAction(tr("&Red"), this, &ImageViewer::showHistogramRed);
@@ -610,6 +617,7 @@ void ImageViewer::updateActions() {
   scalarDivideAct->setEnabled(!image.isNull());
   scalarNotAct->setEnabled(!image.isNull());
   brightenAct->setEnabled(!image.isNull());
+  fourierTransformAct->setEnabled(!image.isNull());
   
   unbrightenAct->setEnabled(!image.isNull());
   rotate90CWAct->setEnabled(!image.isNull());

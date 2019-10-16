@@ -48,6 +48,7 @@ private slots:
   void scalarOperate(int operation, char *hint);
   int scalarDialog(int operation, char *hint);
 
+  void fourierTransform();
   void brighten();
   void unbrighten();
   void rotate90CW();
@@ -88,6 +89,8 @@ private:
 #ifndef QT_NO_PRINTER
   QPrinter printer;
 #endif
+
+  QAction *fourierTransformAct;
 
   QAction *imageAddAct;
   QAction *imageMultiplyAct;
