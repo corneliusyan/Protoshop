@@ -49,7 +49,7 @@ make
 - [ ] **D6** Adjustment: Bit-plane slicing ()
 - [ ] **E1** Adjustment: Perataan histogram (Yonas)
 - [ ] **E2** Adjustment: Spesifikasi histogram (Yonas)
-- [ ] **F1** Filter: Perbaikan citra menggunakan median filter (Yonas)
+- [X] **F1** Filter: Perbaikan citra menggunakan median filter (Yonas)
 - [ ] **F2** Filter: Penapis lolos tinggi (Yonas)
 - [ ] **F3** Filter: Unsharp masking (Yonas)
 - [ ] **F4** Filter: Highboost filter (Yonas)
