@@ -25,10 +25,8 @@ GrayscaleImage* GrayscaleImage::loadPGMBinary(char *bytes, int size) {
   int pointer = 0;
   std::string signature = nextString(bytes, size, &pointer);
   int width = nextInt(bytes, size, &pointer);
-  std::cout << width << std::endl;
   int height = nextInt(bytes, size, &pointer);
   int maxValue = nextInt(bytes, size, &pointer);
-  std::cout << maxValue << std::endl;
 
   GrayscaleImage* image = new GrayscaleImage(height, width);
   for (int i = 0; i < height; i++) {
@@ -61,7 +59,6 @@ GrayscaleImage* GrayscaleImage::loadPGM(std::string filename) {
       image = loadPGMAscii(bytes, size);
       headerRecogized = true;
     } else if (bytes[0] == 'P' && bytes[1] == '5') {
-      std::cout << "binary" << std::endl;
       image = loadPGMBinary(bytes, size);
       headerRecogized = true;
     }
