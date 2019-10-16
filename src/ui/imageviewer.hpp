@@ -60,6 +60,15 @@ private slots:
   void flipVertical();
   void zoom2In();
   void zoom2Out();
+
+  void brightenScale();
+  void contrastStretch();
+  void log();
+  void inverseLog();
+  void power();
+  void graySlicing();
+  void bitSlicing();
+
   void showHistogramRed();
   void showHistogramGreen();
   void showHistogramBlue();
@@ -76,7 +85,33 @@ private slots:
   void normalSize();
   void fitToWindow();
 
+  void filterGeneral(KernelType kernelType);
+  void filterAverage();
   void filterGaussian();
+  void filterMedian();
+  void filterMax();
+  void filterMin();
+  void filterHighA();
+  void filterHighB();
+  void filterHighC();
+  void filterHighD();
+  void filterHighE();
+  void filterHighF();
+  void filterUnsharp();
+  void filterHighboost();
+
+  void edgeDetectionGradientX();
+  void edgeDetectionGradientY();
+  void edgeDetection2ndDeriv();
+  void edgeDetectionLaplace();
+  void edgeDetectionLoG();
+  void edgeDetectionSobelX();
+  void edgeDetectionSobelY();
+  void edgeDetectionPrewittX();
+  void edgeDetectionPrewittY();
+  void edgeDetectionRoberts1();
+  void edgeDetectionRoberts2();
+  void edgeDetectionCanny();
 
   void about();
 
@@ -100,44 +135,9 @@ private:
   QPrinter printer;
 #endif
 
-  QAction *fourierTransformAct;
-  QAction *inverseFourierTransformAct;
-
-  QAction *imageAddAct;
-  QAction *imageMultiplyAct;
-  QAction *imageAndAct;
-  QAction *imageOrAct;
-  QAction *scalarAddAct;
-  QAction *scalarSubstractAct;
-  QAction *scalarMultiplyAct;
-  QAction *scalarDivideAct;
-  QAction *scalarNotAct;
-
-  QAction *brightenAct;
-  QAction *unbrightenAct;
-  QAction *rotate90CWAct;
-  QAction *rotate90CCWAct;
-  QAction *translateAct;
-  QAction *flipHorizontalAct;
-  QAction *flipVerticalAct;
-  QAction *zoom2InAct;
-  QAction *zoom2OutAct;
-  QAction *redHistogramAct;
-  QAction *greenHistogramAct;
-  QAction *blueHistogramAct;
-  QAction *normalizedRedHistogramAct;
-  QAction *normalizedGreenHistogramAct;
-  QAction *normalizedBlueHistogramAct;
-
-  QAction *saveAsAct;
-  QAction *printAct;
-  QAction *copyAct;
-  QAction *zoomInAct;
-  QAction *zoomOutAct;
-  QAction *normalSizeAct;
   QAction *fitToWindowAct;
-
-  QAction *filterGaussianAct;
+  std::vector<QAction*> imageActions;
+  std::vector<QAction*> unfitToWindowActions;
 };
 
 #endif

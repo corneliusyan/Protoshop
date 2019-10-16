@@ -32,6 +32,10 @@ struct pixel {
   pixel& operator&(const pixel& other);
   pixel& operator|(const pixel& other);
   pixel& operator!(void);
+  bool operator<(const pixel& other);
+  bool operator>(const pixel& other);
+
+  int magnitude() const;
 };
 
 pixel operator-(int scalar, const pixel& px);
