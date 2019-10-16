@@ -12,8 +12,7 @@ INCLUDEPATH += .
 DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
-HEADERS += $$system(find src -name "\*.hpp") \
-    $$system(find src -name "\*.h")
+HEADERS += $$system(find src -name "\*.hpp")
 
 SOURCES += $$system(find src -name "\*.cpp")
 
