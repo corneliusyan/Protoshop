@@ -8,12 +8,35 @@ bool isWhitespace(const char& c) {
   return c == ' ' || c == '\n';
 }
 
+bool isNewline(const char& c) {
+  return c == '\n';
+}
+
+bool isSpace(const char& c) {
+  return c == ' ';
+}
+
+bool isComment(const char& c) {
+  return c == '#';
+}
+
 bool isPrintableCharacter(const char& c) {
   return '!' <= c && c <= '~';
 }
 
 int nextInt(char* bytes, int size, int* pointer) {
   int result = 0;
+  char check = bytes[*pointer];
+
+  // ignore comment
+  while (isComment(check)) {
+    while (*pointer < size && !isNewline(bytes[*pointer])) {
+      (*pointer)++;
+    }
+    (*pointer)++;
+    check = bytes[*pointer];
+  }
+
   while (*pointer < size && isNumber(bytes[*pointer])) {
     result *= 10;
     result += bytes[*pointer] - '0';

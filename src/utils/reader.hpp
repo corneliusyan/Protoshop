@@ -14,6 +14,12 @@ bool isNumber(const char& c);
  */
 bool isWhitespace(const char& c);
 
+bool isNewline(const char& c);
+
+bool isSpace(const char& c);
+
+bool isComment(const char& c);
+
 /**
  * return true if the character is printable ascii
  * character, non whitespace (has ascii dec value 33 - 126)
