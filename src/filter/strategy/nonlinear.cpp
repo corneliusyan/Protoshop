@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "nonlinear.hpp"
 
 FilterMedianStrategy::FilterMedianStrategy(int size) : FilterStrategyBase() {
@@ -18,6 +19,7 @@ void FilterMedianStrategy::apply(Image* target) {
           pixels.push_back(temp->get_pixel(i_target, j_target));
         }
       }
+      sort(pixels.begin(), pixels.end());
       target->set_pixel(i, j, pixels[pixels.size() / 2]);
     }
   }
