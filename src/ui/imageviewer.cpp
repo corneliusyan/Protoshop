@@ -74,28 +74,23 @@ void ImageViewer::setImage(const QImage &newImage) {
     imageLabel->adjustSize();
 }
 
-bool ImageViewer::saveFile(const QString &fileName) {
-  QImageWriter writer(fileName);
+bool ImageViewer::saveFile() {
+  QImageWriter writer(filename);
 
   if (!writer.write(image)) {
     QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
                        tr("Cannot write %1: %2")
-                       .arg(QDir::toNativeSeparators(fileName)), writer.errorString());
+                       .arg(QDir::toNativeSeparators(filename)), writer.errorString());
     return false;
   }
-  const QString message = tr("Wrote \"%1\"").arg(QDir::toNativeSeparators(fileName));
+  const QString message = tr("Wrote \"%1\"").arg(QDir::toNativeSeparators(filename));
   statusBar()->showMessage(message);
   return true;
 }
 
 static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
-  static bool firstDialog = true;
-
-  if (firstDialog) {
-    firstDialog = false;
-    const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-    dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
-  }
+  const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+  dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
 }
 
 void ImageViewer::open()
@@ -104,15 +99,6 @@ void ImageViewer::open()
   initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
 
   while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
-}
-//! [1]
-
-void ImageViewer::saveAs()
-{
-  QFileDialog dialog(this, tr("Save File As"));
-  initializeImageFileDialog(dialog, QFileDialog::AcceptSave);
-
-  while (dialog.exec() == QDialog::Accepted && !saveFile(dialog.selectedFiles().first())) {}
 }
 
 void ImageViewer::print() {
@@ -727,7 +713,7 @@ void ImageViewer::createActions() {
 
   QAction* openAct = fileMenu->addAction(tr("&Open..."), this, &ImageViewer::open);
   openAct->setShortcut(QKeySequence::Open);
-  imageActions.push_back(fileMenu->addAction(tr("&Save As..."), this, &ImageViewer::saveAs));
+  imageActions.push_back(fileMenu->addAction(tr("&Save Image"), this, &ImageViewer::saveFile));
   imageActions.back()->setShortcut(QKeySequence::Save);
   imageActions.push_back(fileMenu->addAction(tr("&Print..."), this, &ImageViewer::print));
   imageActions.back()->setShortcut(QKeySequence::Print);

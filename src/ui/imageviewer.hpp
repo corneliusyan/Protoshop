@@ -32,7 +32,6 @@ public:
 
 private slots:
   void open();
-  void saveAs();
   void print();
 
   void imageAdd();
@@ -125,7 +124,7 @@ private:
   void createActions();
   void createMenus();
   void updateActions();
-  bool saveFile(const QString &fileName);
+  bool saveFile();
   void setImage(const QImage &newImage);
   void scaleImage(double factor);
   void adjustScrollBar(QScrollBar *scrollBar, double factor);
