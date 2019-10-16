@@ -93,22 +93,6 @@ static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMo
   dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
 }
 
-static void saveImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode) {
-  const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-  dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
-
-  QStringList mimeTypeFilters;
-  const QByteArrayList supportedMimeTypes = acceptMode == QFileDialog::AcceptOpen
-    ? QImageReader::supportedMimeTypes() : QImageWriter::supportedMimeTypes();
-  for (const QByteArray &mimeTypeName : supportedMimeTypes)
-    mimeTypeFilters.append(mimeTypeName);
-  mimeTypeFilters.sort();
-  dialog.setMimeTypeFilters(mimeTypeFilters);
-  dialog.selectMimeTypeFilter("image/jpeg");
-  if (acceptMode == QFileDialog::AcceptSave)
-    dialog.setDefaultSuffix("jpg");
-}
-
 void ImageViewer::open()
 {
   QFileDialog dialog(this, tr("Open File"));
