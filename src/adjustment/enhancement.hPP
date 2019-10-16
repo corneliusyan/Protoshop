@@ -11,7 +11,7 @@ public:
   static void inverseLog(Image* target, double c);
   static void power(Image* target, double c);
   static void graySlicing(Image* target, int rMin, int rMax);
-  static void bitSlicing(Image* target);
+  static void bitSlicing(Image* target, int bit);
 };
 
 #endif // ENHANCEMENT_H

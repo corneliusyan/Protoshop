@@ -506,10 +506,15 @@ void ImageViewer::graySlicing() {
 }
 
 void ImageViewer::bitSlicing() {
-  AdjustmentEnhancement::bitSlicing(img);
-  const QImage newImage = img->getQImage();
-  setImage(newImage);
-  showMessage();
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentEnhancement::bitSlicing(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
 }
 
 void ImageViewer::showHistogramRed() {
