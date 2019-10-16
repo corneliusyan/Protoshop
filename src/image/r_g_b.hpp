@@ -45,6 +45,8 @@ public:
    * @return {RGBImage*} Image loaded from the file
    */
   static RGBImage* loadBMP(std::string filename);
+
+  static RGBImage* loadRAW(std::string filename);
 };
 
 #endif

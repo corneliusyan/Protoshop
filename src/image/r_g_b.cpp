@@ -145,3 +145,32 @@ RGBImage* RGBImage::loadBMP(std::string filename) {
     throw ImageLoadException("Cannot open image file");
   }
 }
+
+RGBImage* RGBImage::loadRAW(std::string filename) {
+  std::ifstream image_file;
+  image_file.open(filename, std::ios::in | std::ios::binary);
+  if (image_file.is_open()) {
+    // retrieving file size
+    image_file.seekg(0, std::ios::end);
+    std::streampos size = image_file.tellg();
+    image_file.seekg(0, std::ios::beg);
+
+    char* bytes = new char[size];
+    image_file.read(bytes, size);
+    image_file.close();
+
+    RGBImage* image;
+    bool headerRecogized = false;
+
+    delete[] bytes;
+
+    if (!headerRecogized) {
+      throw ImageLoadException("Image header not recognized");
+    }
+
+    return image;
+  } else {
+    throw ImageLoadException("Cannot open image file");
+  }
+}
+

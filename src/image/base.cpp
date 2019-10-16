@@ -85,6 +85,8 @@ Image* Image::load(std::string filename) {
     return RGBImage::loadPPM(filename);
   } else if (hasEnding(filename, ".bmp")) {
     return RGBImage::loadBMP(filename);
+  } else if (hasEnding(filename, ".raw")) {
+    return RGBImage::loadRAW(filename);
   } else {
     throw ImageLoadException("format not supported");
   }
