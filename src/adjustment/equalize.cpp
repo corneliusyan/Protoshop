@@ -79,7 +79,7 @@ void AdjustmentHistogramSpecification::apply(Image* target, Image* specification
   int dimen = target->width * target->height;
   for (int k = 0; k < pxlen; k++) {
     for (int i = 0; i < 256; i++) {
-      int newValSpecification = clip((int) probsSpecification[0][i] * 255 / dimen, 0, 255);
+      int newValSpecification = clip((int) probsSpecification[k][i] * 255 / dimen, 0, 255);
       conversionSpecification[k][newValSpecification] = i;
     }
     for (int i = 1; i < 256; i++) {
