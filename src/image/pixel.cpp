@@ -156,11 +156,11 @@ pixel operator-(int scalar, const pixel& px) {
   return res;
 }
 
-bool pixel::operator<(const pixel& px) {
+bool pixel::operator<(const pixel& px) const {
   return this->magnitude() < px.magnitude();
 }
 
-bool pixel::operator>(const pixel& px) {
+bool pixel::operator>(const pixel& px) const {
   return this->magnitude() > px.magnitude();
 }
 
