@@ -9,6 +9,13 @@ struct t_corner {
   t_point bl; // bottom left
   t_point br; // bottom right
 
+  t_corner() {
+    tl = t_point();
+    tr = t_point();
+    bl = t_point();
+    br = t_point();
+  }
+
   t_corner(t_point _tl, t_point _tr, t_point _br, t_point _bl) { // ordered clockwise
     tl = _tl;
     tr = _tr;

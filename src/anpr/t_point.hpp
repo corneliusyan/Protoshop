@@ -7,6 +7,11 @@ struct t_point {
   int r;
   int c;
 
+  t_point() {
+    r = 0;
+    c = 0;
+  }
+
   t_point(int _r, int _c) {
     r = _r;
     c = _c;

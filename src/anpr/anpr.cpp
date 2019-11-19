@@ -10,7 +10,7 @@ std::string ANPR(Image* img) {
   t_corner corner = plateDetection(img);
   Image* wrappedImage = warpByCorner(img, corner);
   BWImage* thresholdImage = autoThreshold(wrappedImage);
-  std::string result =  numberRecognition(wrappedImage)
+  std::string result =  numberRecognition(thresholdImage);
   delete wrappedImage;
   delete thresholdImage;
   return result;
