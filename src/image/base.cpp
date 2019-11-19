@@ -64,7 +64,7 @@ Image::Image(ImageType imageType, int height, int width) {
 Image::Image(const Image& other) : Image(other.imageType, other.height, other.width){
   for (int i = 0; i < this->height; i++) {
     for (int j = 0; j < this->width; j++) {
-      this->pixels[i][j] = other.pixels[i][j];
+      this->set_pixel(i, j, other.pixels[i][j]);
     }
   }
 }
@@ -74,6 +74,7 @@ Image::~Image() {
     free(this->pixels[i]);
   }
   free(this->pixels);
+  std::cout << "destructed" << std::endl;
 }
 
 Image* Image::load(std::string filename) {
@@ -110,12 +111,10 @@ void Image::set_pixel(int row, int col, pixel px) {
 
   if (px.len == 1) {
       value = qRgb(px.in[0], px.in[0], px.in[0]);
-      (*this->qimg).setPixel(col, row, value);
   } else {
       value = qRgb(px.in[0], px.in[1], px.in[2]);
-//      std::cout <<  px.in[0] << " - " << px.in[1] << " - " << px.in[2] << std::endl;
-      (*this->qimg).setPixel(col, row, value);
   }
+  (*this->qimg).setPixel(col, row, value);
 }
 
 pixel Image::get_pixel(int row, int col) {

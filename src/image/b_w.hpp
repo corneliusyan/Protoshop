@@ -6,6 +6,7 @@
 class BWImage : public Image {
 private:
   static BWImage* loadPBMAscii(char* bytes, int size);
+  static BWImage* loadPBMBinary(char* bytes, int size);
 
 public:
   BWImage(int height, int width) : Image(BLACKWHITE, height, width) { }

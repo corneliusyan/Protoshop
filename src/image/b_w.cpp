@@ -24,6 +24,33 @@ BWImage* BWImage::loadPBMAscii(char *bytes, int size) {
   return image;
 }
 
+BWImage* BWImage::loadPBMBinary(char *bytes, int size) {
+  int pointer = 0;
+  std::string signature = nextString(bytes, size, &pointer);
+  int width = nextInt(bytes, size, &pointer);
+  int height = nextInt(bytes, size, &pointer);
+
+  BWImage* image = new BWImage(height, width);
+  int bitPos = 7;
+  for (int i = 0; i < height; i++) {
+    if (bitPos != 7) {
+      bitPos = 7;
+      pointer += 1;
+    }
+    for (int j = 0; j < width; j++) {
+      uchar byte = bytes[pointer];
+      image->set_pixel(i, j, (byte & (1 << bitPos)) ? pixel(0) : pixel(255));
+      if (bitPos == 0) {
+        bitPos = 7;
+        pointer += 1;
+      } else {
+        bitPos--;
+      }
+    }
+  }
+  return image;
+}
+
 BWImage* BWImage::loadPBM(std::string filename) {
   std::ifstream image_file;
   image_file.open(filename, std::ios::in | std::ios::binary);
@@ -42,6 +69,9 @@ BWImage* BWImage::loadPBM(std::string filename) {
 
     if (bytes[0] == 'P' && bytes[1] == '1') {
       image = loadPBMAscii(bytes, size);
+      headerRecogized = true;
+    } else if (bytes[0] == 'P' && bytes[1] == '4') {
+      image = loadPBMBinary(bytes, size);
       headerRecogized = true;
     }
 

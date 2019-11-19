@@ -78,7 +78,7 @@ public:
    */
   void show();
 
-  ~Image();
+  virtual ~Image();
 
   QImage getQImage();
   Image& operator=(const Image& other);
