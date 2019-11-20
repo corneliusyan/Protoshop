@@ -548,13 +548,6 @@ namespace nr {
   std::vector<character> makeSuperPixel(int numBlob, int** mark, t_bound* bounds, bool* isNoise) {
     int height = 9;
     int width = 5;
-    int** superPixel = new int*[height];
-    for (int i = 0; i < height; i++) {
-      superPixel[i] = new int[width];
-      for (int j = 0; j < width; j++) {
-        superPixel[i][j] = -1;
-      }
-    }
 
     std::vector<character> res;
     for (int blob = 0; blob < numBlob; blob++) {
@@ -625,7 +618,6 @@ std::string numberRecognition(BWImage* img) {
   // this is heuristic and fragile assumption
   nr::determineBlob(numBlob, bounds, isNoise, std::min(5, imgCopy.width / 20), imgCopy.width / 6, imgCopy.height / 3, imgCopy.height );
   nr::removeUnwantedBlob(&imgCopy, mark, isNoise);
-  std::cout << numBlob << std::endl;
   std::vector<nr::character> characters = nr::makeSuperPixel(numBlob, mark, bounds, isNoise);
   std::string res = "";
   for (int i = 0; i < characters.size(); i++) {

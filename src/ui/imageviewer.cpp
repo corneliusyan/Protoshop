@@ -706,6 +706,7 @@ void ImageViewer::edgeDetectionCanny() { this->filterGeneral(CANNY); }
 void ImageViewer::sandboxNumberRecognition() {
   BWImage* bwImage = dynamic_cast<BWImage*>(this->img);
   std::string result = numberRecognition(bwImage);
+  QMessageBox::information(this, QGuiApplication::applicationDisplayName(), tr(result.c_str()));
   delete bwImage;
 }
 
