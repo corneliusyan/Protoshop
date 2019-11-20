@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImageViewer_t {
     QByteArrayData data[88];
-    char stringdata0[1187];
+    char stringdata0[1200];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -83,42 +83,42 @@ QT_MOC_LITERAL(48, 614, 13), // "showHistogram"
 QT_MOC_LITERAL(49, 628, 15), // "Qt::GlobalColor"
 QT_MOC_LITERAL(50, 644, 9), // "colorCode"
 QT_MOC_LITERAL(51, 654, 12), // "isNormalized"
-QT_MOC_LITERAL(52, 667, 11), // "showMessage"
-QT_MOC_LITERAL(53, 679, 4), // "copy"
-QT_MOC_LITERAL(54, 684, 5), // "paste"
-QT_MOC_LITERAL(55, 690, 6), // "zoomIn"
-QT_MOC_LITERAL(56, 697, 7), // "zoomOut"
-QT_MOC_LITERAL(57, 705, 10), // "normalSize"
-QT_MOC_LITERAL(58, 716, 11), // "fitToWindow"
-QT_MOC_LITERAL(59, 728, 13), // "filterGeneral"
-QT_MOC_LITERAL(60, 742, 10), // "KernelType"
-QT_MOC_LITERAL(61, 753, 10), // "kernelType"
-QT_MOC_LITERAL(62, 764, 13), // "filterAverage"
-QT_MOC_LITERAL(63, 778, 14), // "filterGaussian"
-QT_MOC_LITERAL(64, 793, 12), // "filterMedian"
-QT_MOC_LITERAL(65, 806, 9), // "filterMax"
-QT_MOC_LITERAL(66, 816, 9), // "filterMin"
-QT_MOC_LITERAL(67, 826, 11), // "filterHighA"
-QT_MOC_LITERAL(68, 838, 11), // "filterHighB"
-QT_MOC_LITERAL(69, 850, 11), // "filterHighC"
-QT_MOC_LITERAL(70, 862, 11), // "filterHighD"
-QT_MOC_LITERAL(71, 874, 11), // "filterHighE"
-QT_MOC_LITERAL(72, 886, 11), // "filterHighF"
-QT_MOC_LITERAL(73, 898, 13), // "filterUnsharp"
-QT_MOC_LITERAL(74, 912, 15), // "filterHighboost"
-QT_MOC_LITERAL(75, 928, 22), // "edgeDetectionGradientX"
-QT_MOC_LITERAL(76, 951, 22), // "edgeDetectionGradientY"
-QT_MOC_LITERAL(77, 974, 21), // "edgeDetection2ndDeriv"
-QT_MOC_LITERAL(78, 996, 20), // "edgeDetectionLaplace"
-QT_MOC_LITERAL(79, 1017, 16), // "edgeDetectionLoG"
-QT_MOC_LITERAL(80, 1034, 19), // "edgeDetectionSobelX"
-QT_MOC_LITERAL(81, 1054, 19), // "edgeDetectionSobelY"
-QT_MOC_LITERAL(82, 1074, 21), // "edgeDetectionPrewittX"
-QT_MOC_LITERAL(83, 1096, 21), // "edgeDetectionPrewittY"
-QT_MOC_LITERAL(84, 1118, 21), // "edgeDetectionRoberts1"
-QT_MOC_LITERAL(85, 1140, 21), // "edgeDetectionRoberts2"
-QT_MOC_LITERAL(86, 1162, 18), // "edgeDetectionCanny"
-QT_MOC_LITERAL(87, 1181, 5) // "about"
+QT_MOC_LITERAL(52, 667, 4), // "copy"
+QT_MOC_LITERAL(53, 672, 5), // "paste"
+QT_MOC_LITERAL(54, 678, 6), // "zoomIn"
+QT_MOC_LITERAL(55, 685, 7), // "zoomOut"
+QT_MOC_LITERAL(56, 693, 10), // "normalSize"
+QT_MOC_LITERAL(57, 704, 11), // "fitToWindow"
+QT_MOC_LITERAL(58, 716, 13), // "filterGeneral"
+QT_MOC_LITERAL(59, 730, 10), // "KernelType"
+QT_MOC_LITERAL(60, 741, 10), // "kernelType"
+QT_MOC_LITERAL(61, 752, 13), // "filterAverage"
+QT_MOC_LITERAL(62, 766, 14), // "filterGaussian"
+QT_MOC_LITERAL(63, 781, 12), // "filterMedian"
+QT_MOC_LITERAL(64, 794, 9), // "filterMax"
+QT_MOC_LITERAL(65, 804, 9), // "filterMin"
+QT_MOC_LITERAL(66, 814, 11), // "filterHighA"
+QT_MOC_LITERAL(67, 826, 11), // "filterHighB"
+QT_MOC_LITERAL(68, 838, 11), // "filterHighC"
+QT_MOC_LITERAL(69, 850, 11), // "filterHighD"
+QT_MOC_LITERAL(70, 862, 11), // "filterHighE"
+QT_MOC_LITERAL(71, 874, 11), // "filterHighF"
+QT_MOC_LITERAL(72, 886, 13), // "filterUnsharp"
+QT_MOC_LITERAL(73, 900, 15), // "filterHighboost"
+QT_MOC_LITERAL(74, 916, 22), // "edgeDetectionGradientX"
+QT_MOC_LITERAL(75, 939, 22), // "edgeDetectionGradientY"
+QT_MOC_LITERAL(76, 962, 21), // "edgeDetection2ndDeriv"
+QT_MOC_LITERAL(77, 984, 20), // "edgeDetectionLaplace"
+QT_MOC_LITERAL(78, 1005, 16), // "edgeDetectionLoG"
+QT_MOC_LITERAL(79, 1022, 19), // "edgeDetectionSobelX"
+QT_MOC_LITERAL(80, 1042, 19), // "edgeDetectionSobelY"
+QT_MOC_LITERAL(81, 1062, 21), // "edgeDetectionPrewittX"
+QT_MOC_LITERAL(82, 1084, 21), // "edgeDetectionPrewittY"
+QT_MOC_LITERAL(83, 1106, 21), // "edgeDetectionRoberts1"
+QT_MOC_LITERAL(84, 1128, 21), // "edgeDetectionRoberts2"
+QT_MOC_LITERAL(85, 1150, 18), // "edgeDetectionCanny"
+QT_MOC_LITERAL(86, 1169, 24), // "sandboxNumberRecognition"
+QT_MOC_LITERAL(87, 1194, 5) // "about"
 
     },
     "ImageViewer\0open\0\0print\0imageAdd\0"
@@ -139,20 +139,20 @@ QT_MOC_LITERAL(87, 1181, 5) // "about"
     "showNormalizedHistogramGreen\0"
     "showNormalizedHistogramBlue\0showHistogram\0"
     "Qt::GlobalColor\0colorCode\0isNormalized\0"
-    "showMessage\0copy\0paste\0zoomIn\0zoomOut\0"
-    "normalSize\0fitToWindow\0filterGeneral\0"
-    "KernelType\0kernelType\0filterAverage\0"
-    "filterGaussian\0filterMedian\0filterMax\0"
-    "filterMin\0filterHighA\0filterHighB\0"
-    "filterHighC\0filterHighD\0filterHighE\0"
-    "filterHighF\0filterUnsharp\0filterHighboost\0"
+    "copy\0paste\0zoomIn\0zoomOut\0normalSize\0"
+    "fitToWindow\0filterGeneral\0KernelType\0"
+    "kernelType\0filterAverage\0filterGaussian\0"
+    "filterMedian\0filterMax\0filterMin\0"
+    "filterHighA\0filterHighB\0filterHighC\0"
+    "filterHighD\0filterHighE\0filterHighF\0"
+    "filterUnsharp\0filterHighboost\0"
     "edgeDetectionGradientX\0edgeDetectionGradientY\0"
     "edgeDetection2ndDeriv\0edgeDetectionLaplace\0"
     "edgeDetectionLoG\0edgeDetectionSobelX\0"
     "edgeDetectionSobelY\0edgeDetectionPrewittX\0"
     "edgeDetectionPrewittY\0edgeDetectionRoberts1\0"
     "edgeDetectionRoberts2\0edgeDetectionCanny\0"
-    "about"
+    "sandboxNumberRecognition\0about"
 };
 #undef QT_MOC_LITERAL
 
@@ -220,8 +220,8 @@ static const uint qt_meta_data_ImageViewer[] = {
       55,    0,  469,    2, 0x08 /* Private */,
       56,    0,  470,    2, 0x08 /* Private */,
       57,    0,  471,    2, 0x08 /* Private */,
-      58,    0,  472,    2, 0x08 /* Private */,
-      59,    1,  473,    2, 0x08 /* Private */,
+      58,    1,  472,    2, 0x08 /* Private */,
+      61,    0,  475,    2, 0x08 /* Private */,
       62,    0,  476,    2, 0x08 /* Private */,
       63,    0,  477,    2, 0x08 /* Private */,
       64,    0,  478,    2, 0x08 /* Private */,
@@ -300,8 +300,8 @@ static const uint qt_meta_data_ImageViewer[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 59,   60,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 60,   61,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -384,39 +384,39 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 41: _t->showNormalizedHistogramGreen(); break;
         case 42: _t->showNormalizedHistogramBlue(); break;
         case 43: _t->showHistogram((*reinterpret_cast< Qt::GlobalColor(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 44: _t->showMessage(); break;
-        case 45: _t->copy(); break;
-        case 46: _t->paste(); break;
-        case 47: _t->zoomIn(); break;
-        case 48: _t->zoomOut(); break;
-        case 49: _t->normalSize(); break;
-        case 50: _t->fitToWindow(); break;
-        case 51: _t->filterGeneral((*reinterpret_cast< KernelType(*)>(_a[1]))); break;
-        case 52: _t->filterAverage(); break;
-        case 53: _t->filterGaussian(); break;
-        case 54: _t->filterMedian(); break;
-        case 55: _t->filterMax(); break;
-        case 56: _t->filterMin(); break;
-        case 57: _t->filterHighA(); break;
-        case 58: _t->filterHighB(); break;
-        case 59: _t->filterHighC(); break;
-        case 60: _t->filterHighD(); break;
-        case 61: _t->filterHighE(); break;
-        case 62: _t->filterHighF(); break;
-        case 63: _t->filterUnsharp(); break;
-        case 64: _t->filterHighboost(); break;
-        case 65: _t->edgeDetectionGradientX(); break;
-        case 66: _t->edgeDetectionGradientY(); break;
-        case 67: _t->edgeDetection2ndDeriv(); break;
-        case 68: _t->edgeDetectionLaplace(); break;
-        case 69: _t->edgeDetectionLoG(); break;
-        case 70: _t->edgeDetectionSobelX(); break;
-        case 71: _t->edgeDetectionSobelY(); break;
-        case 72: _t->edgeDetectionPrewittX(); break;
-        case 73: _t->edgeDetectionPrewittY(); break;
-        case 74: _t->edgeDetectionRoberts1(); break;
-        case 75: _t->edgeDetectionRoberts2(); break;
-        case 76: _t->edgeDetectionCanny(); break;
+        case 44: _t->copy(); break;
+        case 45: _t->paste(); break;
+        case 46: _t->zoomIn(); break;
+        case 47: _t->zoomOut(); break;
+        case 48: _t->normalSize(); break;
+        case 49: _t->fitToWindow(); break;
+        case 50: _t->filterGeneral((*reinterpret_cast< KernelType(*)>(_a[1]))); break;
+        case 51: _t->filterAverage(); break;
+        case 52: _t->filterGaussian(); break;
+        case 53: _t->filterMedian(); break;
+        case 54: _t->filterMax(); break;
+        case 55: _t->filterMin(); break;
+        case 56: _t->filterHighA(); break;
+        case 57: _t->filterHighB(); break;
+        case 58: _t->filterHighC(); break;
+        case 59: _t->filterHighD(); break;
+        case 60: _t->filterHighE(); break;
+        case 61: _t->filterHighF(); break;
+        case 62: _t->filterUnsharp(); break;
+        case 63: _t->filterHighboost(); break;
+        case 64: _t->edgeDetectionGradientX(); break;
+        case 65: _t->edgeDetectionGradientY(); break;
+        case 66: _t->edgeDetection2ndDeriv(); break;
+        case 67: _t->edgeDetectionLaplace(); break;
+        case 68: _t->edgeDetectionLoG(); break;
+        case 69: _t->edgeDetectionSobelX(); break;
+        case 70: _t->edgeDetectionSobelY(); break;
+        case 71: _t->edgeDetectionPrewittX(); break;
+        case 72: _t->edgeDetectionPrewittY(); break;
+        case 73: _t->edgeDetectionRoberts1(); break;
+        case 74: _t->edgeDetectionRoberts2(); break;
+        case 75: _t->edgeDetectionCanny(); break;
+        case 76: _t->sandboxNumberRecognition(); break;
         case 77: _t->about(); break;
         default: ;
         }

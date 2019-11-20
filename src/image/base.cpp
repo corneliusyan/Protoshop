@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "../utils/string.hpp"
+#include "../ui/imageviewer.hpp"
 #include "b_w.hpp"
 #include "base.hpp"
 #include "exception.hpp"
@@ -74,7 +75,6 @@ Image::~Image() {
     free(this->pixels[i]);
   }
   free(this->pixels);
-  std::cout << "destructed" << std::endl;
 }
 
 Image* Image::load(std::string filename) {
@@ -122,7 +122,14 @@ pixel Image::get_pixel(int row, int col) {
 }
 
 void Image::show() {
+  ImageViewer* imageViewer = new ImageViewer();
 
+  const QImage newImage = this->getQImage();
+
+  imageViewer->setImage(newImage);
+  imageViewer->setWindowFilePath(".");
+  imageViewer->showMessage();
+  imageViewer->show();
 }
 
 QImage Image::getQImage() {

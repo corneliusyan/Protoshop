@@ -703,6 +703,12 @@ void ImageViewer::edgeDetectionRoberts1() { this->filterGeneral(ROBERTS_1); }
 void ImageViewer::edgeDetectionRoberts2() { this->filterGeneral(ROBERTS_2); }
 void ImageViewer::edgeDetectionCanny() { this->filterGeneral(CANNY); }
 
+void ImageViewer::sandboxNumberRecognition() {
+  BWImage* bwImage = dynamic_cast<BWImage*>(this->img);
+  std::string result = numberRecognition(bwImage);
+  delete bwImage;
+}
+
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
           tr("<p>Protoshop by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
@@ -827,6 +833,9 @@ void ImageViewer::createActions() {
   imageActions.push_back(edgeDetectionMenu->addAction(tr("Roberts 1"), this, &ImageViewer::edgeDetectionRoberts1));
   imageActions.push_back(edgeDetectionMenu->addAction(tr("Roberts 2"), this, &ImageViewer::edgeDetectionRoberts2));
   imageActions.push_back(edgeDetectionMenu->addAction(tr("Canny"), this, &ImageViewer::edgeDetectionCanny));
+
+  QMenu *sandboxMenu = menuBar()->addMenu(tr("Sandbox"));
+  imageActions.push_back(sandboxMenu->addAction(tr("NumberRecognition"), this, &ImageViewer::sandboxNumberRecognition));
 
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
   helpMenu->addAction(tr("&About"), this, &ImageViewer::about);

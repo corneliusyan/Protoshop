@@ -12,6 +12,7 @@
 #include "src/adjustment/adjustment.hpp"
 #include "src/filter/filter.hpp"
 #include "src/frequency/fourier.hpp"
+#include "src/anpr/anpr.hpp"
 #include <iostream>
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +30,8 @@ class ImageViewer : public QMainWindow
 public:
   ImageViewer();
   bool loadFile(const QString &);
+  void setImage(const QImage &newImage);
+  void showMessage();
 
 private slots:
   void open();
@@ -81,7 +84,6 @@ private slots:
   void showNormalizedHistogramGreen();
   void showNormalizedHistogramBlue();
   void showHistogram(Qt::GlobalColor colorCode, bool isNormalized);
-  void showMessage();
 
   void copy();
   void paste();
@@ -118,6 +120,8 @@ private slots:
   void edgeDetectionRoberts2();
   void edgeDetectionCanny();
 
+  void sandboxNumberRecognition();
+
   void about();
 
 private:
@@ -125,7 +129,6 @@ private:
   void createMenus();
   void updateActions();
   bool saveFile();
-  void setImage(const QImage &newImage);
   void scaleImage(double factor);
   void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
