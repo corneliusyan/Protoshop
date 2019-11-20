@@ -445,15 +445,15 @@ namespace nr {
       "-----"
     },
     { // S
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----"
+      " +++ ",
+      "+    ",
+      "+ ---",
+      "+   -",
+      "  +  ",
+      "-   +",
+      "--- +",
+      "    +",
+      " +++ "
     },
     { // T
       "+++++",
@@ -625,6 +625,8 @@ std::string numberRecognition(BWImage* img) {
   for (int i = 0; i < characters.size(); i++) {
     res += characters[i].cc;
   }
+  // !!! ASSUME that we may fail to recognize D as 0
+  if (res[0] == '0') res[0] = 'D';
 
   imgCopy.show();
 
