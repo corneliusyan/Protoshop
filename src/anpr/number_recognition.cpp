@@ -123,7 +123,7 @@ namespace nr {
     }
   };
 
-  std::string tmpltChar = "0128345679AHBCDEFGIJKLMNOPQRSTUVWXYZ";
+  std::string tmpltChar = "0128345WB679AHCDEFGIJKLMNOPQRSTUVXYZ";
   std::string tmpltMap[36][9] = {
     { // 0
       " +++ ",
@@ -140,12 +140,12 @@ namespace nr {
       " +++ ",
       " +++ ",
       " +++ ",
-      " +++ ",
-      " +++ ",
-      " +++ ",
-      " +++ ",
-      " +++ ",
-      " +++ "
+      "  ++ ",
+      "  ++ ",
+      "  ++ ",
+      "   + ",
+      "   + ",
+      "   + "
     },
     { // 2
       "  +  ",
@@ -172,11 +172,11 @@ namespace nr {
     { // 3
       "  +  ",
       "     ",
-      "  - +",
-      "     ",
-      "- +  ",
-      "     ",
-      "  - +",
+      "- - +",
+      "-    ",
+      "- ++ ",
+      "-    ",
+      "- - +",
       "     ",
       "  +  "
     },
@@ -202,8 +202,30 @@ namespace nr {
       "     ",
       "  +  "
     },
+    { // W
+      "+ - +",
+      "+ - +",
+      "+ - +",
+      "+ - +",
+      "+   +",
+      "+ + +",
+      "+ + +",
+      " +++ ",
+      "  +  "
+    },
+    { // B
+      "+++  ",
+      "+    ",
+      "+ - +",
+      "+    ",
+      "+++  ",
+      "+    ",
+      "+ - +",
+      "+    ",
+      "+++  "
+    },
     { // 6
-      "  +  ",
+      " ++  ",
       "     ",
       "+ ---",
       "     ",
@@ -236,15 +258,15 @@ namespace nr {
       "  +  "
     },
     { // A
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----"
+      "- + -",
+      "-   -",
+      " +-+ ",
+      "     ",
+      " +++ ",
+      "     ",
+      "+ - +",
+      "+ - +",
+      "+ - +"
     },
     { // H
       "+ - +",
@@ -256,17 +278,6 @@ namespace nr {
       "+ - +",
       "+ - +",
       "+ - +"
-    },
-    { // B
-      "+++  ",
-      "+    ",
-      "+ - +",
-      "+    ",
-      "+++  ",
-      "+    ",
-      "+ - +",
-      "+    ",
-      "+++  "
     },
     { // C
       "- + -",
@@ -379,15 +390,15 @@ namespace nr {
       "-----"
     },
     { // N
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----"
+      "+ - +",
+      "+ - +",
+      "++- +",
+      "+   +",
+      "+ + +",
+      "+   +",
+      "+ -++",
+      "+ - +",
+      "+ - +"
     },
     { // O
       "- + -",
@@ -477,17 +488,6 @@ namespace nr {
       "-----",
       "-----"
     },
-    { // W
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----"
-    },
     { // X
       "+ - +",
       "     ",
@@ -500,15 +500,15 @@ namespace nr {
       "+ - +"
     },
     { // Y
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----",
-      "-----"
+      "+ - +",
+      "+ - +",
+      " + + ",
+      " + + ",
+      "- + -",
+      "- + -",
+      "- + -",
+      "- + -",
+      "- + -"
     },
     { // Z
       "-----",
@@ -582,7 +582,9 @@ namespace nr {
       for (int i= 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
           superPixel[i][j] = (superPixel[i][j] * 2 >= superPixelCount[i][j]);
+          std::cout << (superPixel[i][j] ? '#' : ' ');
         }
+        std::cout << std::endl;
       }
 
       newchar.r /= newchar.count;
@@ -616,7 +618,7 @@ std::string numberRecognition(BWImage* img) {
   nr::findBound(imgCopy.height, imgCopy.width, mark, numBlob, bounds);
   // !!!WARNING!!! We assume the size of each letter is this size
   // this is heuristic and fragile assumption
-  nr::determineBlob(numBlob, bounds, isNoise, std::min(5, imgCopy.width / 20), imgCopy.width / 6, imgCopy.height / 3, imgCopy.height );
+  nr::determineBlob(numBlob, bounds, isNoise, std::min(5, imgCopy.width / 20), imgCopy.width / 6, imgCopy.height / 3, 5 * imgCopy.height / 6 );
   nr::removeUnwantedBlob(&imgCopy, mark, isNoise);
   std::vector<nr::character> characters = nr::makeSuperPixel(numBlob, mark, bounds, isNoise);
   std::string res = "";
