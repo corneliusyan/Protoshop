@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ImageViewer_t {
-    QByteArrayData data[88];
-    char stringdata0[1200];
+    QByteArrayData data[90];
+    char stringdata0[1225];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -74,52 +74,54 @@ QT_MOC_LITERAL(38, 436, 10), // "inverseLog"
 QT_MOC_LITERAL(39, 447, 5), // "power"
 QT_MOC_LITERAL(40, 453, 11), // "graySlicing"
 QT_MOC_LITERAL(41, 465, 10), // "bitSlicing"
-QT_MOC_LITERAL(42, 476, 16), // "showHistogramRed"
-QT_MOC_LITERAL(43, 493, 18), // "showHistogramGreen"
-QT_MOC_LITERAL(44, 512, 17), // "showHistogramBlue"
-QT_MOC_LITERAL(45, 530, 26), // "showNormalizedHistogramRed"
-QT_MOC_LITERAL(46, 557, 28), // "showNormalizedHistogramGreen"
-QT_MOC_LITERAL(47, 586, 27), // "showNormalizedHistogramBlue"
-QT_MOC_LITERAL(48, 614, 13), // "showHistogram"
-QT_MOC_LITERAL(49, 628, 15), // "Qt::GlobalColor"
-QT_MOC_LITERAL(50, 644, 9), // "colorCode"
-QT_MOC_LITERAL(51, 654, 12), // "isNormalized"
-QT_MOC_LITERAL(52, 667, 4), // "copy"
-QT_MOC_LITERAL(53, 672, 5), // "paste"
-QT_MOC_LITERAL(54, 678, 6), // "zoomIn"
-QT_MOC_LITERAL(55, 685, 7), // "zoomOut"
-QT_MOC_LITERAL(56, 693, 10), // "normalSize"
-QT_MOC_LITERAL(57, 704, 11), // "fitToWindow"
-QT_MOC_LITERAL(58, 716, 13), // "filterGeneral"
-QT_MOC_LITERAL(59, 730, 10), // "KernelType"
-QT_MOC_LITERAL(60, 741, 10), // "kernelType"
-QT_MOC_LITERAL(61, 752, 13), // "filterAverage"
-QT_MOC_LITERAL(62, 766, 14), // "filterGaussian"
-QT_MOC_LITERAL(63, 781, 12), // "filterMedian"
-QT_MOC_LITERAL(64, 794, 9), // "filterMax"
-QT_MOC_LITERAL(65, 804, 9), // "filterMin"
-QT_MOC_LITERAL(66, 814, 11), // "filterHighA"
-QT_MOC_LITERAL(67, 826, 11), // "filterHighB"
-QT_MOC_LITERAL(68, 838, 11), // "filterHighC"
-QT_MOC_LITERAL(69, 850, 11), // "filterHighD"
-QT_MOC_LITERAL(70, 862, 11), // "filterHighE"
-QT_MOC_LITERAL(71, 874, 11), // "filterHighF"
-QT_MOC_LITERAL(72, 886, 13), // "filterUnsharp"
-QT_MOC_LITERAL(73, 900, 15), // "filterHighboost"
-QT_MOC_LITERAL(74, 916, 22), // "edgeDetectionGradientX"
-QT_MOC_LITERAL(75, 939, 22), // "edgeDetectionGradientY"
-QT_MOC_LITERAL(76, 962, 21), // "edgeDetection2ndDeriv"
-QT_MOC_LITERAL(77, 984, 20), // "edgeDetectionLaplace"
-QT_MOC_LITERAL(78, 1005, 16), // "edgeDetectionLoG"
-QT_MOC_LITERAL(79, 1022, 19), // "edgeDetectionSobelX"
-QT_MOC_LITERAL(80, 1042, 19), // "edgeDetectionSobelY"
-QT_MOC_LITERAL(81, 1062, 21), // "edgeDetectionPrewittX"
-QT_MOC_LITERAL(82, 1084, 21), // "edgeDetectionPrewittY"
-QT_MOC_LITERAL(83, 1106, 21), // "edgeDetectionRoberts1"
-QT_MOC_LITERAL(84, 1128, 21), // "edgeDetectionRoberts2"
-QT_MOC_LITERAL(85, 1150, 18), // "edgeDetectionCanny"
-QT_MOC_LITERAL(86, 1169, 24), // "sandboxNumberRecognition"
-QT_MOC_LITERAL(87, 1194, 5) // "about"
+QT_MOC_LITERAL(42, 476, 8), // "binarize"
+QT_MOC_LITERAL(43, 485, 15), // "binarizeAverage"
+QT_MOC_LITERAL(44, 501, 16), // "showHistogramRed"
+QT_MOC_LITERAL(45, 518, 18), // "showHistogramGreen"
+QT_MOC_LITERAL(46, 537, 17), // "showHistogramBlue"
+QT_MOC_LITERAL(47, 555, 26), // "showNormalizedHistogramRed"
+QT_MOC_LITERAL(48, 582, 28), // "showNormalizedHistogramGreen"
+QT_MOC_LITERAL(49, 611, 27), // "showNormalizedHistogramBlue"
+QT_MOC_LITERAL(50, 639, 13), // "showHistogram"
+QT_MOC_LITERAL(51, 653, 15), // "Qt::GlobalColor"
+QT_MOC_LITERAL(52, 669, 9), // "colorCode"
+QT_MOC_LITERAL(53, 679, 12), // "isNormalized"
+QT_MOC_LITERAL(54, 692, 4), // "copy"
+QT_MOC_LITERAL(55, 697, 5), // "paste"
+QT_MOC_LITERAL(56, 703, 6), // "zoomIn"
+QT_MOC_LITERAL(57, 710, 7), // "zoomOut"
+QT_MOC_LITERAL(58, 718, 10), // "normalSize"
+QT_MOC_LITERAL(59, 729, 11), // "fitToWindow"
+QT_MOC_LITERAL(60, 741, 13), // "filterGeneral"
+QT_MOC_LITERAL(61, 755, 10), // "KernelType"
+QT_MOC_LITERAL(62, 766, 10), // "kernelType"
+QT_MOC_LITERAL(63, 777, 13), // "filterAverage"
+QT_MOC_LITERAL(64, 791, 14), // "filterGaussian"
+QT_MOC_LITERAL(65, 806, 12), // "filterMedian"
+QT_MOC_LITERAL(66, 819, 9), // "filterMax"
+QT_MOC_LITERAL(67, 829, 9), // "filterMin"
+QT_MOC_LITERAL(68, 839, 11), // "filterHighA"
+QT_MOC_LITERAL(69, 851, 11), // "filterHighB"
+QT_MOC_LITERAL(70, 863, 11), // "filterHighC"
+QT_MOC_LITERAL(71, 875, 11), // "filterHighD"
+QT_MOC_LITERAL(72, 887, 11), // "filterHighE"
+QT_MOC_LITERAL(73, 899, 11), // "filterHighF"
+QT_MOC_LITERAL(74, 911, 13), // "filterUnsharp"
+QT_MOC_LITERAL(75, 925, 15), // "filterHighboost"
+QT_MOC_LITERAL(76, 941, 22), // "edgeDetectionGradientX"
+QT_MOC_LITERAL(77, 964, 22), // "edgeDetectionGradientY"
+QT_MOC_LITERAL(78, 987, 21), // "edgeDetection2ndDeriv"
+QT_MOC_LITERAL(79, 1009, 20), // "edgeDetectionLaplace"
+QT_MOC_LITERAL(80, 1030, 16), // "edgeDetectionLoG"
+QT_MOC_LITERAL(81, 1047, 19), // "edgeDetectionSobelX"
+QT_MOC_LITERAL(82, 1067, 19), // "edgeDetectionSobelY"
+QT_MOC_LITERAL(83, 1087, 21), // "edgeDetectionPrewittX"
+QT_MOC_LITERAL(84, 1109, 21), // "edgeDetectionPrewittY"
+QT_MOC_LITERAL(85, 1131, 21), // "edgeDetectionRoberts1"
+QT_MOC_LITERAL(86, 1153, 21), // "edgeDetectionRoberts2"
+QT_MOC_LITERAL(87, 1175, 18), // "edgeDetectionCanny"
+QT_MOC_LITERAL(88, 1194, 24), // "sandboxNumberRecognition"
+QT_MOC_LITERAL(89, 1219, 5) // "about"
 
     },
     "ImageViewer\0open\0\0print\0imageAdd\0"
@@ -135,8 +137,9 @@ QT_MOC_LITERAL(87, 1194, 5) // "about"
     "histogramEqualize\0histogramSpecification\0"
     "brightenScale\0contrastStretch\0log\0"
     "inverseLog\0power\0graySlicing\0bitSlicing\0"
-    "showHistogramRed\0showHistogramGreen\0"
-    "showHistogramBlue\0showNormalizedHistogramRed\0"
+    "binarize\0binarizeAverage\0showHistogramRed\0"
+    "showHistogramGreen\0showHistogramBlue\0"
+    "showNormalizedHistogramRed\0"
     "showNormalizedHistogramGreen\0"
     "showNormalizedHistogramBlue\0showHistogram\0"
     "Qt::GlobalColor\0colorCode\0isNormalized\0"
@@ -163,7 +166,7 @@ static const uint qt_meta_data_ImageViewer[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      78,   14, // methods
+      80,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -171,84 +174,86 @@ static const uint qt_meta_data_ImageViewer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  404,    2, 0x08 /* Private */,
-       3,    0,  405,    2, 0x08 /* Private */,
-       4,    0,  406,    2, 0x08 /* Private */,
-       5,    0,  407,    2, 0x08 /* Private */,
-       6,    0,  408,    2, 0x08 /* Private */,
-       7,    0,  409,    2, 0x08 /* Private */,
-       8,    1,  410,    2, 0x08 /* Private */,
-      10,    2,  413,    2, 0x08 /* Private */,
-      11,    0,  418,    2, 0x08 /* Private */,
-      12,    0,  419,    2, 0x08 /* Private */,
-      13,    0,  420,    2, 0x08 /* Private */,
-      14,    0,  421,    2, 0x08 /* Private */,
-      15,    0,  422,    2, 0x08 /* Private */,
-      16,    2,  423,    2, 0x08 /* Private */,
-      19,    2,  428,    2, 0x08 /* Private */,
-      20,    0,  433,    2, 0x08 /* Private */,
-      21,    0,  434,    2, 0x08 /* Private */,
-      22,    0,  435,    2, 0x08 /* Private */,
-      23,    0,  436,    2, 0x08 /* Private */,
-      24,    0,  437,    2, 0x08 /* Private */,
-      25,    0,  438,    2, 0x08 /* Private */,
-      26,    0,  439,    2, 0x08 /* Private */,
-      27,    0,  440,    2, 0x08 /* Private */,
-      28,    0,  441,    2, 0x08 /* Private */,
-      29,    0,  442,    2, 0x08 /* Private */,
-      30,    0,  443,    2, 0x08 /* Private */,
-      31,    0,  444,    2, 0x08 /* Private */,
-      32,    0,  445,    2, 0x08 /* Private */,
-      33,    0,  446,    2, 0x08 /* Private */,
-      34,    0,  447,    2, 0x08 /* Private */,
-      35,    0,  448,    2, 0x08 /* Private */,
-      36,    0,  449,    2, 0x08 /* Private */,
-      37,    0,  450,    2, 0x08 /* Private */,
-      38,    0,  451,    2, 0x08 /* Private */,
-      39,    0,  452,    2, 0x08 /* Private */,
-      40,    0,  453,    2, 0x08 /* Private */,
-      41,    0,  454,    2, 0x08 /* Private */,
-      42,    0,  455,    2, 0x08 /* Private */,
-      43,    0,  456,    2, 0x08 /* Private */,
-      44,    0,  457,    2, 0x08 /* Private */,
-      45,    0,  458,    2, 0x08 /* Private */,
-      46,    0,  459,    2, 0x08 /* Private */,
-      47,    0,  460,    2, 0x08 /* Private */,
-      48,    2,  461,    2, 0x08 /* Private */,
-      52,    0,  466,    2, 0x08 /* Private */,
-      53,    0,  467,    2, 0x08 /* Private */,
-      54,    0,  468,    2, 0x08 /* Private */,
-      55,    0,  469,    2, 0x08 /* Private */,
-      56,    0,  470,    2, 0x08 /* Private */,
-      57,    0,  471,    2, 0x08 /* Private */,
-      58,    1,  472,    2, 0x08 /* Private */,
-      61,    0,  475,    2, 0x08 /* Private */,
-      62,    0,  476,    2, 0x08 /* Private */,
-      63,    0,  477,    2, 0x08 /* Private */,
-      64,    0,  478,    2, 0x08 /* Private */,
-      65,    0,  479,    2, 0x08 /* Private */,
-      66,    0,  480,    2, 0x08 /* Private */,
-      67,    0,  481,    2, 0x08 /* Private */,
-      68,    0,  482,    2, 0x08 /* Private */,
-      69,    0,  483,    2, 0x08 /* Private */,
-      70,    0,  484,    2, 0x08 /* Private */,
-      71,    0,  485,    2, 0x08 /* Private */,
-      72,    0,  486,    2, 0x08 /* Private */,
-      73,    0,  487,    2, 0x08 /* Private */,
-      74,    0,  488,    2, 0x08 /* Private */,
-      75,    0,  489,    2, 0x08 /* Private */,
-      76,    0,  490,    2, 0x08 /* Private */,
-      77,    0,  491,    2, 0x08 /* Private */,
-      78,    0,  492,    2, 0x08 /* Private */,
-      79,    0,  493,    2, 0x08 /* Private */,
-      80,    0,  494,    2, 0x08 /* Private */,
-      81,    0,  495,    2, 0x08 /* Private */,
-      82,    0,  496,    2, 0x08 /* Private */,
-      83,    0,  497,    2, 0x08 /* Private */,
-      84,    0,  498,    2, 0x08 /* Private */,
-      85,    0,  499,    2, 0x08 /* Private */,
-      86,    0,  500,    2, 0x08 /* Private */,
-      87,    0,  501,    2, 0x08 /* Private */,
+       1,    0,  414,    2, 0x08 /* Private */,
+       3,    0,  415,    2, 0x08 /* Private */,
+       4,    0,  416,    2, 0x08 /* Private */,
+       5,    0,  417,    2, 0x08 /* Private */,
+       6,    0,  418,    2, 0x08 /* Private */,
+       7,    0,  419,    2, 0x08 /* Private */,
+       8,    1,  420,    2, 0x08 /* Private */,
+      10,    2,  423,    2, 0x08 /* Private */,
+      11,    0,  428,    2, 0x08 /* Private */,
+      12,    0,  429,    2, 0x08 /* Private */,
+      13,    0,  430,    2, 0x08 /* Private */,
+      14,    0,  431,    2, 0x08 /* Private */,
+      15,    0,  432,    2, 0x08 /* Private */,
+      16,    2,  433,    2, 0x08 /* Private */,
+      19,    2,  438,    2, 0x08 /* Private */,
+      20,    0,  443,    2, 0x08 /* Private */,
+      21,    0,  444,    2, 0x08 /* Private */,
+      22,    0,  445,    2, 0x08 /* Private */,
+      23,    0,  446,    2, 0x08 /* Private */,
+      24,    0,  447,    2, 0x08 /* Private */,
+      25,    0,  448,    2, 0x08 /* Private */,
+      26,    0,  449,    2, 0x08 /* Private */,
+      27,    0,  450,    2, 0x08 /* Private */,
+      28,    0,  451,    2, 0x08 /* Private */,
+      29,    0,  452,    2, 0x08 /* Private */,
+      30,    0,  453,    2, 0x08 /* Private */,
+      31,    0,  454,    2, 0x08 /* Private */,
+      32,    0,  455,    2, 0x08 /* Private */,
+      33,    0,  456,    2, 0x08 /* Private */,
+      34,    0,  457,    2, 0x08 /* Private */,
+      35,    0,  458,    2, 0x08 /* Private */,
+      36,    0,  459,    2, 0x08 /* Private */,
+      37,    0,  460,    2, 0x08 /* Private */,
+      38,    0,  461,    2, 0x08 /* Private */,
+      39,    0,  462,    2, 0x08 /* Private */,
+      40,    0,  463,    2, 0x08 /* Private */,
+      41,    0,  464,    2, 0x08 /* Private */,
+      42,    0,  465,    2, 0x08 /* Private */,
+      43,    0,  466,    2, 0x08 /* Private */,
+      44,    0,  467,    2, 0x08 /* Private */,
+      45,    0,  468,    2, 0x08 /* Private */,
+      46,    0,  469,    2, 0x08 /* Private */,
+      47,    0,  470,    2, 0x08 /* Private */,
+      48,    0,  471,    2, 0x08 /* Private */,
+      49,    0,  472,    2, 0x08 /* Private */,
+      50,    2,  473,    2, 0x08 /* Private */,
+      54,    0,  478,    2, 0x08 /* Private */,
+      55,    0,  479,    2, 0x08 /* Private */,
+      56,    0,  480,    2, 0x08 /* Private */,
+      57,    0,  481,    2, 0x08 /* Private */,
+      58,    0,  482,    2, 0x08 /* Private */,
+      59,    0,  483,    2, 0x08 /* Private */,
+      60,    1,  484,    2, 0x08 /* Private */,
+      63,    0,  487,    2, 0x08 /* Private */,
+      64,    0,  488,    2, 0x08 /* Private */,
+      65,    0,  489,    2, 0x08 /* Private */,
+      66,    0,  490,    2, 0x08 /* Private */,
+      67,    0,  491,    2, 0x08 /* Private */,
+      68,    0,  492,    2, 0x08 /* Private */,
+      69,    0,  493,    2, 0x08 /* Private */,
+      70,    0,  494,    2, 0x08 /* Private */,
+      71,    0,  495,    2, 0x08 /* Private */,
+      72,    0,  496,    2, 0x08 /* Private */,
+      73,    0,  497,    2, 0x08 /* Private */,
+      74,    0,  498,    2, 0x08 /* Private */,
+      75,    0,  499,    2, 0x08 /* Private */,
+      76,    0,  500,    2, 0x08 /* Private */,
+      77,    0,  501,    2, 0x08 /* Private */,
+      78,    0,  502,    2, 0x08 /* Private */,
+      79,    0,  503,    2, 0x08 /* Private */,
+      80,    0,  504,    2, 0x08 /* Private */,
+      81,    0,  505,    2, 0x08 /* Private */,
+      82,    0,  506,    2, 0x08 /* Private */,
+      83,    0,  507,    2, 0x08 /* Private */,
+      84,    0,  508,    2, 0x08 /* Private */,
+      85,    0,  509,    2, 0x08 /* Private */,
+      86,    0,  510,    2, 0x08 /* Private */,
+      87,    0,  511,    2, 0x08 /* Private */,
+      88,    0,  512,    2, 0x08 /* Private */,
+      89,    0,  513,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -294,14 +299,16 @@ static const uint qt_meta_data_ImageViewer[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 49, QMetaType::Bool,   50,   51,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 51, QMetaType::Bool,   52,   53,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 59,   60,
+    QMetaType::Void, 0x80000000 | 61,   62,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -378,47 +385,49 @@ void ImageViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 34: _t->power(); break;
         case 35: _t->graySlicing(); break;
         case 36: _t->bitSlicing(); break;
-        case 37: _t->showHistogramRed(); break;
-        case 38: _t->showHistogramGreen(); break;
-        case 39: _t->showHistogramBlue(); break;
-        case 40: _t->showNormalizedHistogramRed(); break;
-        case 41: _t->showNormalizedHistogramGreen(); break;
-        case 42: _t->showNormalizedHistogramBlue(); break;
-        case 43: _t->showHistogram((*reinterpret_cast< Qt::GlobalColor(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 44: _t->copy(); break;
-        case 45: _t->paste(); break;
-        case 46: _t->zoomIn(); break;
-        case 47: _t->zoomOut(); break;
-        case 48: _t->normalSize(); break;
-        case 49: _t->fitToWindow(); break;
-        case 50: _t->filterGeneral((*reinterpret_cast< KernelType(*)>(_a[1]))); break;
-        case 51: _t->filterAverage(); break;
-        case 52: _t->filterGaussian(); break;
-        case 53: _t->filterMedian(); break;
-        case 54: _t->filterMax(); break;
-        case 55: _t->filterMin(); break;
-        case 56: _t->filterHighA(); break;
-        case 57: _t->filterHighB(); break;
-        case 58: _t->filterHighC(); break;
-        case 59: _t->filterHighD(); break;
-        case 60: _t->filterHighE(); break;
-        case 61: _t->filterHighF(); break;
-        case 62: _t->filterUnsharp(); break;
-        case 63: _t->filterHighboost(); break;
-        case 64: _t->edgeDetectionGradientX(); break;
-        case 65: _t->edgeDetectionGradientY(); break;
-        case 66: _t->edgeDetection2ndDeriv(); break;
-        case 67: _t->edgeDetectionLaplace(); break;
-        case 68: _t->edgeDetectionLoG(); break;
-        case 69: _t->edgeDetectionSobelX(); break;
-        case 70: _t->edgeDetectionSobelY(); break;
-        case 71: _t->edgeDetectionPrewittX(); break;
-        case 72: _t->edgeDetectionPrewittY(); break;
-        case 73: _t->edgeDetectionRoberts1(); break;
-        case 74: _t->edgeDetectionRoberts2(); break;
-        case 75: _t->edgeDetectionCanny(); break;
-        case 76: _t->sandboxNumberRecognition(); break;
-        case 77: _t->about(); break;
+        case 37: _t->binarize(); break;
+        case 38: _t->binarizeAverage(); break;
+        case 39: _t->showHistogramRed(); break;
+        case 40: _t->showHistogramGreen(); break;
+        case 41: _t->showHistogramBlue(); break;
+        case 42: _t->showNormalizedHistogramRed(); break;
+        case 43: _t->showNormalizedHistogramGreen(); break;
+        case 44: _t->showNormalizedHistogramBlue(); break;
+        case 45: _t->showHistogram((*reinterpret_cast< Qt::GlobalColor(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 46: _t->copy(); break;
+        case 47: _t->paste(); break;
+        case 48: _t->zoomIn(); break;
+        case 49: _t->zoomOut(); break;
+        case 50: _t->normalSize(); break;
+        case 51: _t->fitToWindow(); break;
+        case 52: _t->filterGeneral((*reinterpret_cast< KernelType(*)>(_a[1]))); break;
+        case 53: _t->filterAverage(); break;
+        case 54: _t->filterGaussian(); break;
+        case 55: _t->filterMedian(); break;
+        case 56: _t->filterMax(); break;
+        case 57: _t->filterMin(); break;
+        case 58: _t->filterHighA(); break;
+        case 59: _t->filterHighB(); break;
+        case 60: _t->filterHighC(); break;
+        case 61: _t->filterHighD(); break;
+        case 62: _t->filterHighE(); break;
+        case 63: _t->filterHighF(); break;
+        case 64: _t->filterUnsharp(); break;
+        case 65: _t->filterHighboost(); break;
+        case 66: _t->edgeDetectionGradientX(); break;
+        case 67: _t->edgeDetectionGradientY(); break;
+        case 68: _t->edgeDetection2ndDeriv(); break;
+        case 69: _t->edgeDetectionLaplace(); break;
+        case 70: _t->edgeDetectionLoG(); break;
+        case 71: _t->edgeDetectionSobelX(); break;
+        case 72: _t->edgeDetectionSobelY(); break;
+        case 73: _t->edgeDetectionPrewittX(); break;
+        case 74: _t->edgeDetectionPrewittY(); break;
+        case 75: _t->edgeDetectionRoberts1(); break;
+        case 76: _t->edgeDetectionRoberts2(); break;
+        case 77: _t->edgeDetectionCanny(); break;
+        case 78: _t->sandboxNumberRecognition(); break;
+        case 79: _t->about(); break;
         default: ;
         }
     }
@@ -453,13 +462,13 @@ int ImageViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 78)
+        if (_id < 80)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 78;
+        _id -= 80;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 78)
+        if (_id < 80)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 78;
+        _id -= 80;
     }
     return _id;
 }

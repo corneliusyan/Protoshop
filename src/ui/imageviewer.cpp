@@ -559,6 +559,25 @@ void ImageViewer::bitSlicing() {
   }
 }
 
+void ImageViewer::binarize() {
+  bool ok;
+  int val = QInputDialog::getInt(this, tr("input value"),
+                                tr("Scalar Value:"), 0, -255, 255, 1, &ok);
+  if (ok) {
+    AdjustmentBinarize::applyBinarize(img, val);
+    const QImage newImage = img->getQImage();
+    setImage(newImage);
+    showMessage();
+  }
+}
+
+void ImageViewer::binarizeAverage() {
+  AdjustmentBinarize::applyAverage(img);
+  const QImage newImage = img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::showHistogramRed() {
   showHistogram(Qt::red, false);
 }
@@ -771,6 +790,8 @@ void ImageViewer::createActions() {
   imageActions.push_back(editMenu->addAction(tr("&Power"), this, &ImageViewer::power));
   imageActions.push_back(editMenu->addAction(tr("&Gray Slicing"), this, &ImageViewer::graySlicing));
   imageActions.push_back(editMenu->addAction(tr("&Bit Slicing"), this, &ImageViewer::bitSlicing));
+  imageActions.push_back(editMenu->addAction(tr("&Binarize"), this, &ImageViewer::binarize));
+  imageActions.push_back(editMenu->addAction(tr("&Binarize Average"), this, &ImageViewer::binarizeAverage));
 
   imageActions.push_back(editMenu->addAction(tr("&Fourier Transform"), this, &ImageViewer::fourierTransform));
   imageActions.push_back(editMenu->addAction(tr("&Inverse Fourier Transform"), this, &ImageViewer::inverseFourierTransform));

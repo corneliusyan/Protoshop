@@ -8,3 +8,4 @@
 #include "zoom.hpp"
 #include "enhancement.hpp"
 #include "equalize.hpp"
+#include "binarize.hpp"
