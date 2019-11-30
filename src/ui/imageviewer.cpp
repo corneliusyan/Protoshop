@@ -12,6 +12,7 @@
 #include <QtCharts/QLegend>
 #include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QValueAxis>
+#include <QLabel>
 
 #include "imageviewer.hpp"
 
@@ -358,6 +359,16 @@ void ImageViewer::unbrighten() {
     setImage(newImage);
     showMessage();
   }
+}
+
+void ImageViewer::houghTransform() {
+  Image* temp = Hough::transform(img);
+  const QImage newImage = temp->getQImage();
+
+  // show in new window
+  QLabel *wdg = new QLabel;
+  wdg->setPixmap(QPixmap::fromImage(newImage));
+  wdg->show();
 }
 
 void ImageViewer::fourierTransform() {
@@ -793,6 +804,7 @@ void ImageViewer::createActions() {
   imageActions.push_back(editMenu->addAction(tr("&Binarize"), this, &ImageViewer::binarize));
   imageActions.push_back(editMenu->addAction(tr("&Binarize Average"), this, &ImageViewer::binarizeAverage));
 
+  imageActions.push_back(editMenu->addAction(tr("&Hough Transform"), this, &ImageViewer::houghTransform));
   imageActions.push_back(editMenu->addAction(tr("&Fourier Transform"), this, &ImageViewer::fourierTransform));
   imageActions.push_back(editMenu->addAction(tr("&Inverse Fourier Transform"), this, &ImageViewer::inverseFourierTransform));
 

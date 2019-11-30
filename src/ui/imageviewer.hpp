@@ -12,6 +12,7 @@
 #include "src/adjustment/adjustment.hpp"
 #include "src/filter/filter.hpp"
 #include "src/frequency/fourier.hpp"
+#include "src/frequency/hough.hpp"
 #include "src/anpr/anpr.hpp"
 #include <iostream>
 
@@ -52,6 +53,7 @@ private slots:
   void scalarOperate(int operation, char *hint);
   int scalarDialog(int operation, char *hint);
 
+  void houghTransform();
   void fourierTransform();
   void inverseFourierTransform();
 
