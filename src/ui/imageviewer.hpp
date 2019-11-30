@@ -76,6 +76,8 @@ private slots:
   void power();
   void graySlicing();
   void bitSlicing();
+  void binarize();
+  void binarizeAverage();
 
   void showHistogramRed();
   void showHistogramGreen();

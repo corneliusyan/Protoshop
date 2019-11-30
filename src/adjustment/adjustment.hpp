@@ -9,3 +9,4 @@
 #include "enhancement.hpp"
 #include "equalize.hpp"
 #include "thinning.hpp"
+#include "binarize.hpp"
