@@ -125,6 +125,7 @@ private slots:
   void edgeDetectionCanny();
 
   void sandboxNumberRecognition();
+  void thinning();
 
   void about();
 

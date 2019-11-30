@@ -740,6 +740,13 @@ void ImageViewer::sandboxNumberRecognition() {
   delete bwImage;
 }
 
+void ImageViewer::thinning() {
+  AdjustmentThinning::apply(this->img);
+  const QImage newImage = this->img->getQImage();
+  setImage(newImage);
+  showMessage();
+}
+
 void ImageViewer::about() {
   QMessageBox::about(this, tr("About Protoshop"),
           tr("<p>Protoshop by Yonas Adiel Wiguna, Cornelius Yan M., and Hafizh Budiman</p>"));
@@ -870,6 +877,7 @@ void ImageViewer::createActions() {
 
   QMenu *sandboxMenu = menuBar()->addMenu(tr("Sandbox"));
   imageActions.push_back(sandboxMenu->addAction(tr("NumberRecognition"), this, &ImageViewer::sandboxNumberRecognition));
+  imageActions.push_back(sandboxMenu->addAction(tr("Thinning"), this, &ImageViewer::thinning));
 
   QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
   helpMenu->addAction(tr("&About"), this, &ImageViewer::about);
